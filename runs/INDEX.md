@@ -48,6 +48,7 @@ commit as the program.
 | 0039 | `ibm-fez-pipeline` | IBM Quantum | ibm_fez (156q) | 2048 x 6 | BV-4 with secret 1011 in one job with five calibration circuits: raw 0.9551, corrected 0.9880, depth 10, 4 s of runtime; worst readout 4.88% |
 | 0040 | `chapter19-local` | local | numpy | 2048 (record) | 42/42 checks, 71/71 exercises; inverse on the left 0.9880 against the transpose's 0.9732; determinant 0.2357, condition number 1.22 |
 | 0041 | `chapter20-local` | local | numpy | -- | 63/63 checks, 75/75 exercises; the ledger reads 19 contracts and 40 runs: 2,503 assertions, 588,176 shots, 0.00 USD paid against 984.84 refused; no device job |
+| 0042 | `ibm-fez-teleport` | IBM Quantum | ibm_kingston (156q) | 2048 x 13 | Teleportation with theta=pi/3, phi=pi/4: dynamic 0.9558, postselect 0.9499, uncorrected 0.4858; readout 0.20%/2.93%; depth 18, one job |
 
 ## Conventions
 

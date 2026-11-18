@@ -1,4 +1,4 @@
-"""Chapter 20 harness: the book's contracts, runs, bill and decisions.
+"""Chapter 20 harness: the protocol, the frame, the record and the fidelity.
 
 Run: python3 chapters/chapter20/files/run_ex20.py
 Prints "NN/NN checks passed" and exits non-zero on failure.
@@ -6,30 +6,21 @@ Prints "NN/NN checks passed" and exits non-zero on failure.
 
 from __future__ import annotations
 
+import json
+import math
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from ledger import (
-    BOOK_CHAPTERS,
-    BOOK_RUNS,
-    MAX_DEPTH,
-    MAX_QUBITS,
-    Problem,
-    chapter_table,
-    chapters,
-    counts,
-    decide_problem,
-    decision_table,
-    free,
-    provider_table,
-    refused_quote,
-    runs,
-    spend_book,
-    summary,
-)
+import numpy as np
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
 
+from teleport import Calibration, Prepared, bloch, calibration, distance, fidelity, postselect, run, teleport
+from teleport.circuit import BASES, before_measurement
+
+ROOT = Path(__file__).resolve().parents[3]
 checks = 0
 failures: list[str] = []
 
@@ -45,124 +36,132 @@ def section(name: str) -> None:
     print(f"\n== {name}")
 
 
-# -- the contracts ------------------------------------------------------
-section("the contracts")
-found = chapters()
-check(len(found) == BOOK_CHAPTERS == 19, "nineteen contracts")
-check(found[0].number == 1, "the first is chapter 1")
-check(found[-1].number == 19 and found[-1].title == "The Pipeline", "the last is the pipeline")
-check(all(chapter.exercises == 5 for chapter in found), "every chapter has five exercises")
-check(all(chapter.floor == 14000 for chapter in found), "every floor is 14,000")
-check(all(chapter.proofs > 0 for chapter in found), "every chapter has assertions")
-check(sum(chapter.proofs for chapter in found) == 2503, "2,503 assertions in total")
-check(sum(chapter.artifacts for chapter in found) == 357, "357 published files")
-check([chapter.number for chapter in found if chapter.from_record] == [2], "chapter 2 resolves from its record")
-check(len({chapter.title for chapter in found}) == 19, "the titles are distinct")
-check(found[5].proofs == 206, "chapter 6 carries the most assertions")
-check(found[16].proofs == 98, "chapter 17 carries the fewest")
+# -- the state ----------------------------------------------------------
+section("the state")
+prepared = Prepared(math.pi / 3, math.pi / 4)
+x, y, z = prepared.bloch()
+check(abs(x - 0.6124) < 0.001, "the bloch x is sin(theta) cos(phi)")
+check(abs(y - 0.6124) < 0.001, "the bloch y is sin(theta) sin(phi)")
+check(abs(z - 0.5) < 0.001, "the bloch z is cos(theta)")
+check(abs(fidelity(prepared, prepared.bloch()) - 1.0) < 1e-9, "a state is perfectly faithful to itself")
+check(abs(fidelity(prepared, (0.0, 0.0, 0.0)) - 0.5) < 1e-9, "the centre is a coin flip")
+check(abs(fidelity(prepared, (-x, -y, -z))) < 1e-9, "the opposite vector is orthogonal")
+check(abs(distance(prepared, prepared.bloch())) < 1e-12, "the distance to itself is zero")
+check(Prepared(0.0, 0.0).bloch() == (0.0, 0.0, 1.0), "theta zero is the north pole")
 
-# -- the runs -----------------------------------------------------------
-section("the runs")
-recorded = runs()
-check(len(recorded) == BOOK_RUNS == 40, "forty runs")
-check(sum(run.live for run in recorded) == 21, "twenty-one live")
-check(sum(not run.live for run in recorded) == 19, "nineteen local")
-check(sum(run.shots for run in recorded) == 588176, "588,176 shots")
-check(len({run.number for run in recorded}) == 40, "the numbers are unique")
-check(recorded[-1].number == 40, "the last is 0040")
-by_number = {run.number: run for run in recorded}
-check(by_number[39].shots == 12288, "2048 x 6 is twelve thousand")
-check(by_number[8].shots == 200000, "200k is two hundred thousand")
-check(by_number[20].shots == 0, "a saved snapshot has no shots")
-check(by_number[1].provider == "IBM Quantum", "the first live run is IBM")
-check(by_number[25].provider.startswith("qBraid"), "0025 is the qBraid aggregator")
-check(len({run.provider for run in recorded}) >= 8, "at least eight provider strings")
-check(all(not run.live for run in recorded if run.provider.startswith("local")), "local rows are local")
-
-# -- the bill -----------------------------------------------------------
-section("the bill")
-total = spend_book()
-check(total.usd == 0.0, "the book paid nothing")
-check(total.chapters == 19 and total.runs == 40, "nineteen chapters, forty runs")
-check(total.live + total.local == total.runs, "live and local partition the runs")
-check(total.proofs == 2503, "the bill carries the assertions")
-check(total.words == 299122, "299,122 words in chapters 1-19")
-check(total.artifacts == 357, "357 artifacts")
-check(abs(refused_quote() - 984.84) < 1e-9, "the refused invoice is 984.84")
-check(free("local") and free("IBM Quantum") and free("qBraid (aggregator)"), "the free tiers are recognised")
-check(not free("Rigetti"), "a paid provider is not")
-
-paid = recorded[0].__class__(99, "fake", "Rigetti", "Ankaa", 100, "a paid run")
-try:
-    spend_book(records=(paid,))
-except ValueError as error:
-    check("Rigetti" in str(error), "a paid run is refused by name")
-else:
-    check(False, "a paid run is refused by name")
-
-small = spend_book(records=recorded[:2])
-check(small.runs == 2 and small.chapters == 19, "a subset of runs keeps the chapters")
-check(small.shots == 2048, "two runs at 1,024 shots are 2,048")
-
-# -- the decisions ------------------------------------------------------
-section("the decisions")
-problems = None
-from ledger import cases  # noqa: E402
-
-problems = cases()
-check(len(problems) == 6, "six cases")
-verdicts = [decide_problem(problem) for problem in problems]
-check([verdict.decision for verdict in verdicts] == ["device", "skip", "wait", "simulate", "refuse", "skip"],
-      "and five distinct decisions")
-check(counts(verdicts) == (("device", 1), ("skip", 2), ("wait", 1), ("simulate", 1), ("refuse", 1)),
-      "the tally is 1-2-1-1-1")
-
-back = {verdict.problem: verdict for verdict in verdicts}
-check(back["bv-4-demo"].failed == "none", "the demo passes every question")
-check(back["bv-4-advantage"].failed == "Does the problem need a machine?", "the advantage case fails the first")
-check(back["shor-2048"].failed == "Does the circuit fit the machine?", "Shor fails the second")
-check(back["random-20"].failed == "Can the answer be checked?", "the random circuit fails the third")
-check(back["ionq-demo"].failed == "Does the price fit the budget?", "IonQ fails the fourth")
-check(abs(back["ionq-demo"].usd - 984.84) < 1e-9, "at 984.84")
-check(problems[0].circuits == 6, "a four-qubit problem is six circuits")
-check(MAX_QUBITS == 156 and MAX_DEPTH == 100, "the machine is 156 qubits and depth 100")
-
-try:
-    Problem("shor", qubits=0, depth=10, classical="hard", checkable=True, purpose="advantage")
-except ValueError:
-    check(True, "zero qubits is refused")
-else:
-    check(False, "zero qubits is refused")
-
-for bad in (
-    dict(name="x", qubits=4, depth=0, classical="hard", checkable=True, purpose="learn"),
-    dict(name="x", qubits=4, depth=10, classical="maybe", checkable=True, purpose="learn"),
-    dict(name="x", qubits=4, depth=10, classical="hard", checkable=True, purpose="fun"),
-    dict(name="x", qubits=4, depth=10, classical="hard", checkable=True, purpose="learn", provider="nope"),
-    dict(name="x", qubits=4, depth=10, classical="hard", checkable=True, purpose="learn", shots=0),
-    dict(name="x", qubits=4, depth=10, classical="hard", checkable=True, purpose="learn", budget_usd=-1),
-):
+for bad in ((4.0, 0.0), (-0.1, 0.0), (1.0, -0.5), (1.0, 7.0)):
     try:
-        Problem(**bad)
+        Prepared(*bad)
     except ValueError:
         check(True, f"{bad} is refused")
     else:
         check(False, f"{bad} is refused")
 
-# -- the report ---------------------------------------------------------
-section("the report")
-table = chapter_table(found)
-check(table.count("\n") == 19, "the chapter table has a header and nineteen rows")
-check("The Pipeline" in table, "and names the last chapter")
-providers = provider_table(recorded)
-check(providers.count("\n") == 10, "ten provider strings in the table")
-check("IBM Quantum" in providers, "including Big Blue")
-decisions = decision_table(verdicts)
-check(decisions.count("\n") == 6, "the decision table is six rows plus a header")
-page = summary(total, verdicts)
-check("0.00 USD" in page, "the page says what was paid")
-check("984.84 USD" in page, "and what was refused")
-check("1 device, 2 skip, 1 wait, 1 simulate, 1 refuse" in page, "and how the cases landed")
+# -- the circuit --------------------------------------------------------
+section("the circuit")
+one = teleport(prepared, "Z", dynamic=True)
+check(one.num_qubits == 3 and one.num_clbits == 3, "three qubits and three classical bits")
+check(one.count_ops().get("if_else", 0) == 2, "two conditional corrections")
+check(teleport(prepared, "Z", dynamic=False).count_ops().get("if_else", 0) == 0, "the postselect version has none")
+check(teleport(prepared, "Z", dynamic=False, correct=False).count_ops().get("if_else", 0) == 0, "and neither does the control")
+check(len({basis: teleport(prepared, basis) for basis in BASES}) == 3, "three bases, three circuits")
+check(len(calibration()) == 4, "four calibration circuits")
+check(len(before_measurement(prepared).cregs) == 0, "the pre-measurement circuit has no register")
+
+try:
+    teleport(prepared, "W")
+except ValueError:
+    check(True, "an unknown basis is refused")
+else:
+    check(False, "an unknown basis is refused")
+
+# -- the branches -------------------------------------------------------
+section("the branches")
+psi_circuit = QuantumCircuit(1)
+psi_circuit.u(prepared.theta, prepared.phi, 0.0, 0)
+psi = Statevector.from_int(0, 2).evolve(psi_circuit).data
+state = Statevector(before_measurement(prepared)).data
+X = np.array([[0, 1], [1, 0]], dtype=complex)
+Z = np.array([[1, 0], [0, -1]], dtype=complex)
+for m0 in (0, 1):
+    for m1 in (0, 1):
+        branch = np.zeros(8, dtype=complex)
+        for index, amplitude in enumerate(state):
+            if (index & 1) == m0 and ((index >> 1) & 1) == m1:
+                branch[index] = amplitude
+        branch /= np.linalg.norm(branch)
+        base = m0 | (m1 << 1)
+        received = np.array([branch[base], branch[base + 4]])
+        received /= np.linalg.norm(received)
+        corrected = received.copy()
+        if m0:
+            corrected = Z @ corrected
+        if m1:
+            corrected = X @ corrected
+        check(abs(abs(np.vdot(psi, corrected)) ** 2 - 1.0) < 1e-9, f"branch {m0}{m1} corrects to the state")
+
+# -- the frame ----------------------------------------------------------
+section("the frame")
+counts = {}
+for basis in BASES:
+    circuit = before_measurement(prepared)
+    if basis == "X":
+        circuit.h(2)
+    elif basis == "Y":
+        circuit.sdg(2)
+        circuit.h(2)
+    probabilities = Statevector(circuit).probabilities_dict()
+    counts[basis] = {key.replace(" ", ""): int(round(p * 100_000)) for key, p in probabilities.items()}
+
+exact = bloch(counts, 0.0, 0.0, postselected=True, correct=True)
+check(abs(fidelity(prepared, exact) - 1.0) < 1e-3, "the frame returns the state exactly")
+check(abs(fidelity(prepared, bloch(counts, 0.0, 0.0, postselected=True, correct=False)) - 0.5) < 1e-3,
+      "and without it the state is a coin flip")
+
+histogram = {"101": 40, "100": 10, "001": 30, "000": 20}
+flipped = postselect(histogram, "X", correct=True)
+check(flipped["1"] == 40, "the X basis flips on m0")
+check(postselect(histogram, "Z", correct=True)["1"] == 50, "the Z basis flips on m1")
+check(postselect(histogram, "Y", correct=True)["1"] == 40, "the Y basis flips on both")
+check(postselect(histogram, "X", correct=False)["1"] == 50, "the control flips nothing")
+
+# -- the record ---------------------------------------------------------
+section("the record")
+record = json.loads((ROOT / "runs/0042-ibm-fez-teleport/result.json").read_text())
+check(record["shots"] == 2048, "2,048 shots")
+check(record["transpiled_depth"] == 18, "depth 18 after transpilation")
+check(record["backend"] == "ibm_kingston", "the backend is ibm_kingston")
+check(record["job_id"].startswith("dburv"), "the job id is recorded")
+check(len(record["calibration"]) == 4, "four calibration circuits")
+check(set(record["dynamic"]["counts"]) == {"X", "Y", "Z"}, "three bases for the dynamic run")
+check(set(record["postselect"]["counts"]) == {"X", "Y", "Z"}, "three for the postselect run")
+check(set(record["uncorrected"]["counts"]) == {"X", "Y", "Z"}, "three for the control")
+check(sum(record["dynamic"]["counts"]["Z"].values()) == 2048, "a basis is 2,048 shots")
+
+rates = Calibration.from_counts(record["calibration"])
+check(abs(rates.p_one_given_zero - 0.0020) < 0.002, "the receiving qubit misreads a zero rarely")
+check(abs(rates.p_zero_given_one - 0.0293) < 0.004, "and a one about three percent of the time")
+
+# -- the fidelity -------------------------------------------------------
+section("the fidelity")
+dynamic = run(record, "dynamic")
+post = run(record, "postselect")
+control = run(record, "uncorrected")
+check(abs(dynamic.fidelity - 0.9558) < 0.005, "the dynamic circuit teleports at 0.9558")
+check(abs(post.fidelity - 0.9499) < 0.005, "the postselect version at 0.9499")
+check(control.fidelity < 0.55, "the control sits near a half")
+check(dynamic.fidelity - control.fidelity > 0.40, "the correction is worth more than forty points")
+check(abs(dynamic.fidelity - post.fidelity) < 0.02, "the two corrected runs agree within two points")
+check(dynamic.verdict == "the state arrived", "and the verdict says so")
+check(control.verdict == "not teleported", "the control is not teleported")
+check(dynamic.distance < 0.15, "the bloch vector is within 0.15 of the ideal")
+
+try:
+    run(record, "nonsense")
+except KeyError:
+    check(True, "an unknown kind is refused")
+else:
+    check(False, "an unknown kind is refused")
 
 print()
 if failures:

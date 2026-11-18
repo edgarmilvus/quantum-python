@@ -1,22 +1,35 @@
-"""Demo 05: the one page a reader takes to work on Monday.
+"""Demo 05: the report the chapter ends on.
 
 Run: python3 chapters/chapter20/files/05_report.py
 
-The summary is the book measured against itself, and the decision table is the procedure.
-Neither replaces the nineteen chapters: the page is what remains after them, which is the
-only kind of summary a technical book is allowed to end on.
+One table: the prepared state, the three runs, the fidelity of each, and the verdict. The
+last line is the chapter's claim, and it is a sentence because the result is a sentence:
+the state arrived, and the two classical bits are what carried it.
 """
 
-from ledger import cases, counts, decide_problem, decision_table, spend_book, summary
+import json
+import sys
+from pathlib import Path
 
-verdicts = [decide_problem(problem) for problem in cases()]
-print(summary(spend_book(), verdicts))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from teleport import Calibration, Prepared, run
+
+ROOT = Path(__file__).resolve().parents[3]
+record = json.loads((ROOT / "runs/0042-ibm-fez-teleport/result.json").read_text())
+prepared = Prepared(record["prepared"]["theta"], record["prepared"]["phi"])
+
+print(f"teleportation on {record['backend']}, {record['shots']} shots")
+print(prepared.report())
+print(Calibration.from_counts(record["calibration"]).report())
 print()
-print(decision_table(verdicts))
+print(f"{'run':12s}{'fidelity':>10s}   verdict")
+for kind in ("dynamic", "postselect", "uncorrected"):
+    scored = run(record, kind)
+    print(f"{kind:12s}{scored.fidelity:10.4f}   {scored.verdict}")
 print()
-tally = ", ".join(f"{count} {name}" for name, count in counts(verdicts))
-print(f"the six cases land on {tally}.")
-print()
-print("run the pipeline when the decision is device; run nothing when it is skip;")
-print("write the paper when it is wait; and when it is simulate, the answer is a")
-print("simulator and a sentence about what the device would have to become.")
+best = run(record, "dynamic")
+worst = run(record, "uncorrected")
+print(f"the correction is worth {best.fidelity - worst.fidelity:.3f} in fidelity,")
+print("and the dynamic circuit matches the arithmetic to within half a point.")
+print(f"the state arrived with fidelity {best.fidelity:.4f}.")

@@ -1,24 +1,24 @@
 book: "Quantum Python"
 chapter: 20
-title: "What to Do on Monday"
-subtitle: "Nineteen chapters, one ledger, and four questions"
+title: "The Last Experiment"
+subtitle: "Teleporting a state, correcting in the open, and proving it arrived"
 
 invariant: >
-  A result is worth publishing when it beats a classical answer, fits the machine, can be
-  checked against an ideal, and fits the budget — and the ledger is what makes the book's
-  own claims auditable instead of remembered.
+  Teleportation moves a state with a Bell measurement and two classical bits; the only
+  honest demonstration is a corrected receiving qubit measured in three bases, with the
+  uncorrected run as the control and the shot error as the error bar.
 
 audience:
-  reader: "Senior software engineer. Finished chapters 1 to 19. Has run a circuit, read a table, and priced a job."
+  reader: "Senior software engineer. Finished chapters 1 to 19. Has run a circuit, corrected a readout, and read a benchmark."
   assumes:
-    - "the four gates of the pipeline (chapter 19)"
-    - "the benchmark's floor and the price table (chapters 18 and 11)"
-    - "what the device of 2026 can hold (chapters 3, 12, 16, 17)"
-  does_not_assume: ["research taste", "grant writing", "vendor strategy"]
+    - "entanglement and the Bell basis (chapter 2)"
+    - "readout correction (chapters 12 and 19)"
+    - "dynamic circuits and mid-circuit measurement (chapter 17)"
+  does_not_assume: ["tomography", "quantum communication", "density matrices"]
 
 structure:
   - Opening (3 paragraphs, no headings)
-  - Theoretical Foundations (11 subsections)
+  - Theoretical Foundations (12 subsections)
   - Basic Code Example
   - Common Pitfalls (12)
   - Advanced Application Implementation
@@ -29,105 +29,103 @@ structure:
   - What this chapter established
 
 theory_subsections:
-  - "The book, counted"
-  - "What the ledger reads, and what it refuses"
-  - "What the book cost, and what it refused"
-  - "The first question: is a machine needed?"
-  - "The second: does the circuit fit?"
-  - "The third: can the answer be checked?"
-  - "The fourth: does the price fit?"
-  - "Five decisions, and what each asks of you"
-  - "What the book did not prove"
-  - "The state of the hardware in 2026"
-  - "The memo a reader writes on Monday"
+  - "The protocol: one state, one Bell pair, two bits"
+  - "The four branches, and the Pauli each one carries"
+  - "The Bell basis, written out"
+  - "The correction is a frame, and its signs are the subtlety"
+  - "Tomography: three bases and a Bloch vector"
+  - "The fidelity, and what two-thirds means"
+  - "Doing the correction on the machine"
+  - "Doing it in the arithmetic"
+  - "The control: what the two bits are worth"
+  - "What the device added to the ideal"
+  - "The error bar on a fidelity"
+  - "What teleportation is not"
 
 artifacts:
-  - chapters/chapter20/files/ledger/spec.py
-  - chapters/chapter20/files/ledger/spend.py
-  - chapters/chapter20/files/ledger/decide.py
-  - chapters/chapter20/files/ledger/report.py
-  - chapters/chapter20/files/ledger/__init__.py
-  - chapters/chapter20/files/01_chapters.py
-  - chapters/chapter20/files/02_runs.py
-  - chapters/chapter20/files/03_spend.py
-  - chapters/chapter20/files/04_decide.py
+  - chapters/chapter20/files/teleport/state.py
+  - chapters/chapter20/files/teleport/circuit.py
+  - chapters/chapter20/files/teleport/verify.py
+  - chapters/chapter20/files/teleport/__init__.py
+  - chapters/chapter20/files/01_protocol.py
+  - chapters/chapter20/files/02_frame.py
+  - chapters/chapter20/files/03_record.py
+  - chapters/chapter20/files/04_fidelity.py
   - chapters/chapter20/files/05_report.py
   - chapters/chapter20/files/run_ex20.py
-  - chapters/chapter20/files/exercises/ex1_shots.py
-  - chapters/chapter20/files/exercises/ex2_cases.py
-  - chapters/chapter20/files/exercises/ex3_cost.py
-  - chapters/chapter20/files/exercises/ex4_classical.py
+  - chapters/chapter20/files/exercises/ex1_bell.py
+  - chapters/chapter20/files/exercises/ex2_shots.py
+  - chapters/chapter20/files/exercises/ex3_correction.py
+  - chapters/chapter20/files/exercises/ex4_frame.py
   - chapters/chapter20/files/exercises/memo_core.py
   - chapters/chapter20/files/exercises/memo_render.py
-  - chapters/chapter20/files/exercises/ex5_memo.py
+  - chapters/chapter20/files/exercises/ex5_report.py
   - chapters/chapter20/files/exercises/selfcheck.py
   - chapters/chapter20/files/exercises/run_exercises.py
 
 gates:
   harness: "python3 chapters/chapter20/files/run_ex20.py"
-  harness_expected: "63/63 checks passed"
+  harness_expected: "50/50 checks passed"
   exercises: "python3 chapters/chapter20/files/exercises/run_exercises.py"
-  exercises_expected: "75/75 exercise checks passed"
+  exercises_expected: "76/76 exercise checks passed"
 
 words: { target: 16000, floor: 14000 }
 
 api_surface:
-  spec: ["Chapter", "Run", "chapters", "runs", "published", "BOOK_CHAPTERS", "BOOK_RUNS"]
-  spend: ["Spend", "spend", "free", "refused_quote"]
-  decide: ["Problem", "Question", "Verdict", "decide", "cases", "MAX_QUBITS", "MAX_DEPTH"]
-  report: ["chapter_table", "provider_table", "decision_table", "counts", "summary"]
+  state: ["Prepared", "fidelity", "distance"]
+  circuit: ["BASES", "teleport", "tomography", "calibration", "before_measurement"]
+  verify: ["Calibration", "Report", "bloch", "postselect", "run"]
 
 exercises:
   - id: 1
-    title: "The shot count that ignores the multiplier"
+    title: "A Bell pair that was never entangled"
     kind: repair
-    files: [ex1_shots.py]
+    files: [ex1_bell.py]
     tests: 13
-    problem: "`2048 x 6` read as 2,048 shots instead of 12,288, so the book's sample size depends on how many circuits each run had."
+    problem: "Without the Hadamard the pair is a product state; one branch still reads 0.75, which looks like a partial success."
   - id: 2
-    title: "What the six cases cost together"
+    title: "How many shots the fidelity is worth"
     kind: extend
-    files: [ex2_cases.py]
-    tests: 14
-    problem: "The batch is 984.84 and the refusal must name the case that broke the budget."
+    files: [ex2_shots.py]
+    tests: 17
+    problem: "A fidelity from 2,048 shots has an error of 0.011, and the correction is 0.47 away from the control."
   - id: 3
-    title: "What one proof cost"
+    title: "What the two classical bits are worth"
     kind: measure
-    files: [ex3_cost.py]
+    files: [ex3_correction.py]
     tests: 15
-    problem: "Zero dollars per assertion is true and useless; the words per proof and the shots per live run are the measurements."
+    problem: "Corrected 0.9558, postselected 0.9499, uncorrected 0.4858: the bits are worth 0.470."
   - id: 4
-    title: "The decider without its first question"
+    title: "A Pauli frame with the bits swapped"
     kind: break
-    files: [ex4_classical.py]
-    tests: 15
-    problem: "Without the classical question, two skips become device candidates and one of them costs 984.84."
+    files: [ex4_frame.py]
+    tests: 14
+    problem: "The swapped frame gives 0.6875 on an exact simulation, above 2/3, so a verdict-only check passes it."
   - id: 5
-    title: "The one page a reader takes to work"
+    title: "The memo the experiment ends on"
     kind: integrate
-    files: [memo_core.py, memo_render.py, ex5_memo.py]
-    tests: 18
-    problem: "A memo of six numbers, a decision tally and one sentence, from a spend and six verdicts."
+    files: [memo_core.py, memo_render.py, ex5_report.py]
+    tests: 17
+    problem: "Three fidelities, the gap, and a sentence, from a record and no clock."
 
 multi_file_exercise:
   id: 5
-  files: [memo_core.py, memo_render.py, ex5_memo.py]
+  files: [memo_core.py, memo_render.py, ex5_report.py]
   why: >
-    memo_core.py is pure (a spend and verdicts in, a dictionary out), memo_render.py formats,
-    ex5_memo.py prices the cases and reads the ledger.
+    memo_core.py is pure (a record in, a dictionary out), memo_render.py formats,
+    ex5_report.py knows where the record lives.
 
 figures:
-  - "the book's five movements"
-  - "what the ledger reads and what it produces"
-  - "0.00 paid against 984.84 refused"
-  - "four questions, five decisions"
-  - "the memo"
+  - "the protocol: three qubits and two classical bits"
+  - "the four branches and their corrections"
+  - "the three fidelities on the device"
+  - "the frame: which bit flips which basis"
+  - "the record of the last run"
 
 runs:
-  - "runs/0040-chapter19-local (the last record the ledger reads)"
-  - "no new device job: this chapter audits the book"
+  - "runs/0042-ibm-fez-teleport/result.json (13 circuits, 2,048 shots, depth 18)"
 
 chapter_notes: >
-  The ledger reads chapters 1-19 and runs 0001-0040 on purpose, so its numbers do not move
-  when chapter 20's own record is added. One contract (chapter 2) still carries the NN/NN
-  placeholder, and the ledger resolves it from that chapter's local run rather than guessing.
+  The device run is the chapter's evidence: dynamic 0.9558, postselect 0.9499,
+  uncorrected 0.4858 on ibm_kingston. The uncorrected run is not a failure to hide;
+  it is the control that gives the two classical bits their value.

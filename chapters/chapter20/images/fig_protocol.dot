@@ -1,0 +1,13 @@
+digraph protocol {
+  rankdir=LR; bgcolor="#F1EDE3";
+  node [shape=box, style="rounded,filled", fillcolor="#F6D5C0", color="#14213A",
+        fontname="Helvetica", fontsize=11, margin="0.13,0.08"];
+  edge [color="#14213A", fontname="Helvetica", fontsize=9];
+  psi [label="q0: the state\nRy(pi/3), phi=pi/4"];
+  bell [label="q1,q2: a Bell pair\nH then CX", fillcolor="#E8833A"];
+  meas [label="Bell measurement\nCX q0->q1, H q0"];
+  bits [label="two classical bits\nm0, m1", fillcolor="#CFE3D4"];
+  fix [label="q2: X if m1\nZ if m0"];
+  out [label="q2: the state", fillcolor="#CFE3D4"];
+  psi -> meas; bell -> meas; meas -> bits; bits -> fix; fix -> out;
+}

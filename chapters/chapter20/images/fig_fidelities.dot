@@ -1,0 +1,11 @@
+digraph fidelities {
+  bgcolor="#F1EDE3";
+  node [shape=box, style="rounded,filled", fillcolor="#F6D5C0", color="#14213A",
+        fontname="Helvetica", fontsize=11, margin="0.16,0.09"];
+  edge [color="#14213A", style=invis];
+  ideal [label="ideal\n1.0000"];
+  dynamic [label="dynamic\n0.9558", fillcolor="#CFE3D4"];
+  post [label="postselect\n0.9499", fillcolor="#CFE3D4"];
+  control [label="uncorrected\n0.4858", fillcolor="#E8833A"];
+  ideal -> dynamic -> post -> control;
+}

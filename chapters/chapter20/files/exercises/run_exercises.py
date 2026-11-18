@@ -12,11 +12,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-import ex1_shots
-import ex2_cases
-import ex3_cost
-import ex4_classical
-import ex5_memo
+import ex1_bell
+import ex2_shots
+import ex3_correction
+import ex4_frame
+import ex5_report
 
 count = 0
 failures: list[str] = []
@@ -30,11 +30,11 @@ def check(condition: bool, description: str) -> None:
 
 
 MODULES = [
-    ("exercise 1 (repair)", ex1_shots),
-    ("exercise 2 (extend)", ex2_cases),
-    ("exercise 3 (measure)", ex3_cost),
-    ("exercise 4 (break)", ex4_classical),
-    ("exercise 5 (integrate)", ex5_memo),
+    ("exercise 1 (repair)", ex1_bell),
+    ("exercise 2 (extend)", ex2_shots),
+    ("exercise 3 (measure)", ex3_correction),
+    ("exercise 4 (break)", ex4_frame),
+    ("exercise 5 (integrate)", ex5_report),
 ]
 
 selected = None

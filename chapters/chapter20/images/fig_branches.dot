@@ -1,0 +1,12 @@
+digraph branches {
+  bgcolor="#F1EDE3";
+  node [shape=box, style="rounded,filled", fillcolor="#F6D5C0", color="#14213A",
+        fontname="Helvetica", fontsize=11, margin="0.14,0.08"];
+  edge [color="#14213A", fontname="Helvetica", fontsize=9];
+  b00 [label="m0=0, m1=0\nI |psi>"];
+  b01 [label="m0=0, m1=1\nX |psi>", fillcolor="#E8833A"];
+  b10 [label="m0=1, m1=0\nZ |psi>", fillcolor="#E8833A"];
+  b11 [label="m0=1, m1=1\nXZ |psi>", fillcolor="#E8833A"];
+  fix [label="apply X^m1 Z^m0\n-> |psi>", fillcolor="#CFE3D4"];
+  b00 -> fix; b01 -> fix; b10 -> fix; b11 -> fix;
+}

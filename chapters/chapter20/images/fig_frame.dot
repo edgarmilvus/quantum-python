@@ -1,0 +1,10 @@
+digraph frame {
+  bgcolor="#F1EDE3";
+  node [shape=box, style="rounded,filled", fillcolor="#F6D5C0", color="#14213A",
+        fontname="Helvetica", fontsize=11, margin="0.15,0.09"];
+  edge [color="#14213A", fontname="Helvetica", fontsize=9];
+  x [label="basis X\nflip if m0"];
+  y [label="basis Y\nflip if m0 xor m1", fillcolor="#E8833A"];
+  z [label="basis Z\nflip if m1"];
+  x -> y -> z [style=invis];
+}

@@ -13,7 +13,7 @@ suite:
 ```
 
 Every chapter ships a harness that asserts on real numbers and five exercises with their
-own checks. Across the twenty chapters that is **2,641 assertions**, and the whole suite
+own checks. Across the twenty chapters that is **2,629 assertions**, and the whole suite
 runs offline in about fifty seconds.
 
 ## The chapters
@@ -39,7 +39,7 @@ runs offline in about fifty seconds.
 | 17 | [Dynamic Circuits](chapters/chapter17/) | 98 | 18 |
 | 18 | [The Benchmark](chapters/chapter18/) | 112 | 18 |
 | 19 | [The Pipeline](chapters/chapter19/) | 113 | 19 |
-| 20 | [What to Do on Monday](chapters/chapter20/) | 138 | 20 |
+| 20 | [The Last Experiment](chapters/chapter20/) | 126 | 20 |
 
 Each chapter folder holds `spec.yaml` (the contract: floor, gate counts and files),
 `words.txt` (the chapter's length, recorded when the book was built), and `files/` with the
@@ -73,7 +73,7 @@ python3 run_offline.py
 ```
 
 Both walk the chapters in order and run each chapter's harness, then its five exercises.
-The suite covers 2,641 assertions, takes about a minute, and ends `all chapters green`:
+The suite covers 2,629 assertions, takes about a minute, and ends `all chapters green`:
 
 ```
 == chapter20

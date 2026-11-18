@@ -1,0 +1,12 @@
+digraph record {
+  bgcolor="#F1EDE3";
+  node [shape=box, style="rounded,filled", fillcolor="#F6D5C0", color="#14213A",
+        fontname="Helvetica", fontsize=11, margin="0.13,0.08"];
+  edge [color="#14213A", fontname="Helvetica", fontsize=9];
+  rec [label="result.json", fillcolor="#CFE3D4"];
+  task [label="prepared\nstate"];
+  job [label="ibm_kingston\n13 circuits, 2,048 shots"];
+  runs [label="dynamic, postselect,\nuncorrected", fillcolor="#E8833A"];
+  cal [label="4 calibration\ncircuits"];
+  rec -> task; rec -> job; rec -> runs; rec -> cal;
+}
