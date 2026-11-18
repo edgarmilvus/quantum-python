@@ -10,6 +10,9 @@ __pycache__/
 .pytest_cache/
 .ipynb_checkpoints/
 
+# The book's figures belong to the manuscript, not to the code
+/chapters/chapter*/images/
+
 # A chapter built locally from the book's sources
 /chapters/chapter*.md
 /chapters/*.epub
