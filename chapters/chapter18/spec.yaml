@@ -1,0 +1,127 @@
+book: "Quantum Python"
+chapter: 18
+title: "The Benchmark"
+subtitle: "One circuit, four sources, and the number that survives the comparison"
+
+invariant: >
+  A benchmark is a distance from an ideal plus the floor that sampling puts under it,
+  so a table without its shot counts, its wall time and its price compares nothing.
+
+audience:
+  reader: "Senior software engineer. Finished chapters 1 to 17. Has run at least one provider."
+  assumes:
+    - "the provider interface and its price table (chapter 11)"
+    - "shot noise and the binomial error (chapter 5)"
+    - "readout and gate error on a device (chapter 12)"
+  does_not_assume: ["benchmark design", "statistical distances", "queue economics"]
+
+structure:
+  - Opening (3 paragraphs, no headings)
+  - Theoretical Foundations (11 subsections)
+  - Basic Code Example
+  - Common Pitfalls (12)
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises (requirements only)
+  - Solutions (five-part Instructor's Analysis)
+  - What this chapter established
+
+theory_subsections:
+  - "The task: one circuit, four sources"
+  - "A benchmark is a distance, and a distance needs an ideal"
+  - "Three metrics, one ordering"
+  - "The floor: shot noise is the benchmark's zero"
+  - "Cost is two numbers, and only one of them is dollars"
+  - "Time is two numbers: wall clock and machine time"
+  - "What the GHZ table says"
+  - "What the Bell table says"
+  - "What a benchmark cannot measure"
+  - "The table a reader should build"
+  - "Decision table: simulate, call, or buy"
+
+artifacts:
+  - chapters/chapter18/files/bench/task.py
+  - chapters/chapter18/files/bench/sources.py
+  - chapters/chapter18/files/bench/__init__.py
+  - chapters/chapter18/files/01_task.py
+  - chapters/chapter18/files/02_ghz.py
+  - chapters/chapter18/files/03_bell.py
+  - chapters/chapter18/files/04_cost.py
+  - chapters/chapter18/files/05_verdict.py
+  - chapters/chapter18/files/run_ex18.py
+  - chapters/chapter18/files/exercises/ex1_metric.py
+  - chapters/chapter18/files/exercises/ex2_signal.py
+  - chapters/chapter18/files/exercises/ex3_floor.py
+  - chapters/chapter18/files/exercises/ex4_compare.py
+  - chapters/chapter18/files/exercises/plan_core.py
+  - chapters/chapter18/files/exercises/plan_render.py
+  - chapters/chapter18/files/exercises/ex5_bench.py
+  - chapters/chapter18/files/exercises/selfcheck.py
+  - chapters/chapter18/files/exercises/run_exercises.py
+
+gates:
+  harness: "python3 chapters/chapter18/files/run_ex18.py"
+  harness_expected: "44/44 checks passed"
+  exercises: "python3 chapters/chapter18/files/exercises/run_exercises.py"
+  exercises_expected: "68/68 exercise checks passed"
+
+words: { target: 16000, floor: 14000 }
+
+api_surface:
+  task: ["ghz_ops", "ideal_distribution", "total_variation", "hellinger", "signal", "noise_floor", "Row", "table", "improvements"]
+  sources: ["ibm_ghz", "qbraid_ghz", "local_ghz", "bell_rows", "quoted", "by_provider"]
+
+exercises:
+  - id: 1
+    title: "A distance that forgets half the ideal"
+    kind: repair
+    files: [ex1_metric.py]
+    tests: 11
+    problem: "Restricting both distributions to the run's support makes a run that never left 000 look perfect."
+  - id: 2
+    title: "Two more metrics, and what each one is for"
+    kind: extend
+    files: [ex2_signal.py]
+    tests: 19
+    problem: "The signal is easier to explain and blind to a missing branch; Hellinger compresses the gap."
+  - id: 3
+    title: "The floor moves with the shot count, as a square root"
+    kind: measure
+    files: [ex3_floor.py]
+    tests: 10
+    problem: "The floor is 0.023 at 256 shots and 0.0028 at 16,384, and a comparison without the count compares floors."
+  - id: 4
+    title: "Two rows, two shot counts, one misleading table"
+    kind: break
+    files: [ex4_compare.py]
+    tests: 12
+    problem: "A device at 256 shots looks worse than a simulator at 4,096 by a thousandth, and the floor reverses it."
+  - id: 5
+    title: "One ranking from four sources"
+    kind: integrate
+    files: [plan_core.py, plan_render.py, ex5_bench.py]
+    tests: 16
+    problem: "The report must rank the sources, say how many are devices, and refuse a table with no machine in it."
+
+multi_file_exercise:
+  id: 5
+  files: [plan_core.py, plan_render.py, ex5_bench.py]
+  why: >
+    plan_core.py is pure (rows in, a ranking and a verdict out), plan_render.py formats,
+    ex5_bench.py reads the records through the chapter's sources.
+
+figures:
+  - "the GHZ task and its ideal distribution"
+  - "four sources, one table, four distances"
+  - "the floor against the shot count"
+  - "two runs, three metrics"
+  - "the decision the table supports"
+
+runs:
+  - "runs/0036-ibm-fez-ghz/result.json (2 circuits, 4 s runtime, 160 s wall)"
+  - "runs/0037-qbraid-ghz/result.json (1 circuit, 0 credits, 11.6 s)"
+
+chapter_notes: >
+  The GHZ run is the chapter's new evidence; the Bell rows are the book's first three
+  runs, reused because a benchmark needs sources that share a circuit and nothing else.

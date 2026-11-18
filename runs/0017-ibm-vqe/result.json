@@ -1,0 +1,28 @@
+{
+  "case": "ibm-vqe-h2",
+  "recorded_at": "2026-11-17T00:00:00Z",
+  "provider": "ibm_quantum_platform",
+  "backend": "ibm_fez",
+  "job_id": "dbu7ro1jbrss73a7d9g0",
+  "theta": -0.2235,
+  "shots": 10000,
+  "exact_energy": -1.137305,
+  "depths": [
+    9,
+    9
+  ],
+  "counts": {
+    "Z": {
+      "01": 9027,
+      "11": 100,
+      "00": 580,
+      "10": 293
+    },
+    "X": {
+      "11": 1967,
+      "01": 2861,
+      "00": 2133,
+      "10": 3039
+    }
+  }
+}

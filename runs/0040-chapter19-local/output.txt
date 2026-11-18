@@ -1,0 +1,8 @@
+== harness
+42/42 checks passed
+
+== exercises
+71/71 exercise checks passed
+
+== record
+ibm_fez dbuovetarooc73fkbekg 2048 10

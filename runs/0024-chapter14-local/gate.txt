@@ -1,0 +1,30 @@
+== chapter14
+
+== the QUBO
+
+== bits to spins
+
+== the sampler
+
+== Chimera
+
+== the embedding
+
+63/63 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+75/75 exercise checks passed
+chapter14: 17 listings, byte for byte
+chapter14: 9 section headings, all preceded by a blank line
+chapter14: 10 subsections publish files, each says how to run them
+chapter14: 5 figures, all built and referenced
+chapter14: 17572 words with listings, 10038 without, floor 14000

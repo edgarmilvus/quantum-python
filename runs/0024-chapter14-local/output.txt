@@ -1,0 +1,39 @@
+== harness
+
+63/63 checks passed
+
+== exercises
+
+75/75 exercise checks passed
+
+== demos
+--- 01_qubo
+  4 assignments reach it, out of 4,096
+  this is the instance demo 02 anneals, and it has no graph in it at all
+
+the same dictionary means two things: as a QUBO it is read with bits,
+as a coupling map it is read with spins, and the two minima differ.
+--- 02_anneal
+  p = 0.100 ->   29 reads
+  p = 0.050 ->   59 reads
+
+the same number from the other side: ten reads at p = 0.25 gives
+  0.944, which is why the curve is worth reading twice.
+--- 03_embed
+0.2 leaves one chain in five broken; 1.0 breaks none; 4.0 breaks none
+and still loses twelve reads, because a chain that strong is a local minimum.
+
+a broken read: chain(s) [1, 3] disagreed, majority vote gave {0: 1, 1: -1, 2: -1, 3: -1, 4: 1}
+  its logical energy -1.0 against the optimum -5.0
+--- 04_reads
+times shorter, and the two numbers measure different things: the first is a
+circuit plus the queue, the second is a scheduled annealing window.
+
+what does not shrink is the reads: a machine that succeeds one time in
+twenty needs sixty attempts, and sixty attempts is the algorithm's cost.
+--- 05_dwave
+  the QUBO and its optimum              nothing
+  the embedding and its chains          nothing, but the real topology is Pegasus
+  chain-break rate at a strength        the coupling errors and the flux noise
+  success probability per read          the anneal time, the schedule, the temperature
+  wall time per read                    the queue and the programming cycle

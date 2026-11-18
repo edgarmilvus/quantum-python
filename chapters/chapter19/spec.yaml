@@ -1,0 +1,130 @@
+book: "Quantum Python"
+chapter: 19
+title: "The Pipeline"
+subtitle: "One task, four gates, and the file a stranger can replay"
+
+invariant: >
+  A pipeline is four stages that each refuse: a task that validates, an estimate that
+  prices, a run that records, and a report that corrects — and the refusals are what
+  make the last stage trustworthy.
+
+audience:
+  reader: "Senior software engineer. Finished chapters 1 to 18. Has run a circuit and read a table."
+  assumes:
+    - "the provider interface and its prices (chapter 11)"
+    - "readout correction (chapter 12)"
+    - "the benchmark's distance and floor (chapter 18)"
+  does_not_assume: ["workflow engines", "CI systems", "experiment tracking"]
+
+structure:
+  - Opening (3 paragraphs, no headings)
+  - Theoretical Foundations (11 subsections)
+  - Basic Code Example
+  - Common Pitfalls (12)
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises (requirements only)
+  - Solutions (five-part Instructor's Analysis)
+  - What this chapter established
+
+theory_subsections:
+  - "The task: one BV circuit, end to end"
+  - "Four stages, and each one can refuse"
+  - "A task is a contract, and the contract is checked"
+  - "The estimate is the only thing between a line and an invoice"
+  - "The calibration is most of the job"
+  - "Correction is a matrix, and the side matters"
+  - "The report says what the run did, not what you hoped"
+  - "The record is the deliverable"
+  - "What the pipeline does not do"
+  - "The pipeline in five lines"
+  - "Decision table: script, notebook, or pipeline"
+
+artifacts:
+  - chapters/chapter19/files/pipe/spec.py
+  - chapters/chapter19/files/pipe/estimate.py
+  - chapters/chapter19/files/pipe/run.py
+  - chapters/chapter19/files/pipe/__init__.py
+  - chapters/chapter19/files/01_spec.py
+  - chapters/chapter19/files/02_estimate.py
+  - chapters/chapter19/files/03_readout.py
+  - chapters/chapter19/files/04_run.py
+  - chapters/chapter19/files/05_pipeline.py
+  - chapters/chapter19/files/run_ex19.py
+  - chapters/chapter19/files/exercises/ex1_transpose.py
+  - chapters/chapter19/files/exercises/ex2_shots.py
+  - chapters/chapter19/files/exercises/ex3_calibration.py
+  - chapters/chapter19/files/exercises/ex4_guard.py
+  - chapters/chapter19/files/exercises/plan_core.py
+  - chapters/chapter19/files/exercises/plan_render.py
+  - chapters/chapter19/files/exercises/ex5_pipeline.py
+  - chapters/chapter19/files/exercises/selfcheck.py
+  - chapters/chapter19/files/exercises/run_exercises.py
+
+gates:
+  harness: "python3 chapters/chapter19/files/run_ex19.py"
+  harness_expected: "42/42 checks passed"
+  exercises: "python3 chapters/chapter19/files/exercises/run_exercises.py"
+  exercises_expected: "71/71 exercise checks passed"
+
+words: { target: 16000, floor: 14000 }
+
+api_surface:
+  spec: ["Task", "bv_ops", "SECRET", "KNOWN"]
+  estimate: ["Estimate", "estimate", "price", "cheapest"]
+  run: ["Readout", "Report", "readout", "correct", "top", "run", "load"]
+
+exercises:
+  - id: 1
+    title: "The correction applied on the wrong side"
+    kind: repair
+    files: [ex1_transpose.py]
+    tests: 13
+    problem: "The transpose gives 0.973 instead of 0.988, which still looks like an improvement."
+  - id: 2
+    title: "The shot count that makes the peak visible"
+    kind: extend
+    files: [ex2_shots.py]
+    tests: 13
+    problem: "1,900 shots for a 0.005 error, and the same precision costs 985 dollars on IonQ."
+  - id: 3
+    title: "The calibration is most of the job"
+    kind: measure
+    files: [ex3_calibration.py]
+    tests: 15
+    problem: "Five of six circuits at four qubits, and the share grows with the machine."
+  - id: 4
+    title: "The pipeline without its guard"
+    kind: break
+    files: [ex4_guard.py]
+    tests: 15
+    problem: "A one-line task is a 985-dollar invoice, and the estimate is the only thing in between."
+  - id: 5
+    title: "One report from a task and a record"
+    kind: integrate
+    files: [plan_core.py, plan_render.py, ex5_pipeline.py]
+    tests: 15
+    problem: "The report must separate the peak, the correction and the answer, and carry the refusal."
+
+multi_file_exercise:
+  id: 5
+  files: [plan_core.py, plan_render.py, ex5_pipeline.py]
+  why: >
+    plan_core.py is pure (a task and a record in, four numbers out), plan_render.py formats,
+    ex5_pipeline.py prices the task and reads the record.
+
+figures:
+  - "the four stages and their refusals"
+  - "the BV circuit and the recovered secret"
+  - "the estimate on five providers"
+  - "raw, transposed and corrected peaks"
+  - "the record's fields"
+
+runs:
+  - "runs/0039-ibm-fez-pipeline/result.json (1 BV circuit + 5 calibration, 4 s)"
+
+chapter_notes: >
+  The BV run is the chapter's evidence: 2,048 shots on ibm_fez, raw peak 0.9551,
+  corrected 0.9880. The calibration circuits are in the same job, which is what makes
+  the pipeline's second half possible offline.

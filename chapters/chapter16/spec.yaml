@@ -1,0 +1,129 @@
+book: "Quantum Python"
+chapter: 16
+title: "Error Correction"
+subtitle: "A vote of three, the binomial tail, and the axis it cannot see"
+
+invariant: >
+  A repetition code turns a physical error rate into a logical one by majority vote,
+  so the binomial tail predicts the device to within ten percent, and the code is
+  blind on the axis it does not check.
+
+audience:
+  reader: "Senior software engineer. Finished chapters 1 to 15. Comfortable with a probability and a circuit."
+  assumes:
+    - "measurement and shots (chapters 2 and 5)"
+    - "a device's readout asymmetry (chapters 5 and 12)"
+    - "the distinction between a bias and a fluctuation (chapters 12 and 15)"
+  does_not_assume: ["stabiliser formalism", "surface codes", "decoding algorithms"]
+
+structure:
+  - Opening (3 paragraphs, no headings)
+  - Theoretical Foundations (11 subsections)
+  - Basic Code Example
+  - Common Pitfalls (12)
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises (requirements only)
+  - Solutions (five-part Instructor's Analysis)
+  - What this chapter established
+
+theory_subsections:
+  - "The task: three qubits, one bit, one vote"
+  - "A code is a subspace, and the vote is a projection"
+  - "Syndromes: what is measured and what is deliberately not"
+  - "The binomial tail is the whole theory"
+  - "Distance buys qubits squared, until it does not"
+  - "The axis the vote cannot see"
+  - "Why a threshold needs two dimensions"
+  - "What the device did"
+  - "Correction is not mitigation"
+  - "What this chapter does not claim"
+  - "Decision table: encode, mitigate, or neither"
+
+artifacts:
+  - chapters/chapter16/files/ecc/code.py
+  - chapters/chapter16/files/ecc/sim.py
+  - chapters/chapter16/files/ecc/__init__.py
+  - chapters/chapter16/files/01_code.py
+  - chapters/chapter16/files/02_rates.py
+  - chapters/chapter16/files/03_axes.py
+  - chapters/chapter16/files/04_device.py
+  - chapters/chapter16/files/05_threshold.py
+  - chapters/chapter16/files/run_ex16.py
+  - chapters/chapter16/files/exercises/ex1_majority.py
+  - chapters/chapter16/files/exercises/ex2_distance.py
+  - chapters/chapter16/files/exercises/ex3_predict.py
+  - chapters/chapter16/files/exercises/ex4_axis.py
+  - chapters/chapter16/files/exercises/plan_core.py
+  - chapters/chapter16/files/exercises/plan_render.py
+  - chapters/chapter16/files/exercises/ex5_repetition.py
+  - chapters/chapter16/files/exercises/selfcheck.py
+  - chapters/chapter16/files/exercises/run_exercises.py
+
+gates:
+  harness: "python3 chapters/chapter16/files/run_ex16.py"
+  harness_expected: "48/48 checks passed"
+  exercises: "python3 chapters/chapter16/files/exercises/run_exercises.py"
+  exercises_expected: "85/85 exercise checks passed"
+
+words: { target: 17000, floor: 14000 }
+
+api_surface:
+  code: ["Repetition", "logical_error_ideal", "logical_from_counts", "physical_from_counts", "wilson"]
+  sim: ["sample_bitflips", "phase_flip_error", "curve", "break_even", "device_table"]
+
+exercises:
+  - id: 1
+    title: "A decoder that reads one qubit and calls it a vote"
+    kind: repair
+    files: [ex1_majority.py]
+    tests: 15
+    problem: "Taking the first bit passes every test that flips the last qubit, and its error is the physical rate of one qubit."
+  - id: 2
+    title: "A seventh qubit, and a zero that is not a zero"
+    kind: extend
+    files: [ex2_distance.py]
+    tests: 16
+    problem: "Each step of two qubits divides the logical error by six, and a zero in 4,096 shots is below 0.0009 at 95%."
+  - id: 3
+    title: "Predict the device from its own physical error"
+    kind: measure
+    files: [ex3_predict.py]
+    tests: 23
+    problem: "The binomial tail takes the measured physical rate and lands within a point of the twelve measured rows."
+  - id: 4
+    title: "A code that checks the wrong axis"
+    kind: break
+    files: [ex4_axis.py]
+    tests: 14
+    problem: "Pointing the phase-flip code at bit-flip noise leaves 0.244 where the right code leaves 0.028, worse than a bare qubit."
+  - id: 5
+    title: "One report from a recorded run"
+    kind: integrate
+    files: [plan_core.py, plan_render.py, ex5_repetition.py]
+    tests: 17
+    problem: "The same summary must carry a rate, its interval and the verdict, for twelve rows from one job."
+
+multi_file_exercise:
+  id: 5
+  files: [plan_core.py, plan_render.py, ex5_repetition.py]
+  why: >
+    plan_core.py is pure (a histogram, a distance and a bit in; rates out), plan_render.py
+    formats, ex5_repetition.py reads the recorded run and picks the row to print.
+
+figures:
+  - "three codewords and the vote that repairs one of them"
+  - "the binomial tail at four physical rates"
+  - "the two axes: bit flips fall with distance, phase flips rise"
+  - "the logical error against idle time on ibm_marrakesh"
+  - "the measured rows and the binomial prediction beside them"
+
+runs:
+  - "runs/0028-ibm-fez-repetition/result.json (12 circuits, ibm_kingston)"
+  - "runs/0029-ibm-fez-idle/result.json (12 circuits, ibm_marrakesh)"
+
+chapter_notes: >
+  Two device runs, both 12 circuits at 4,096 shots. The idle experiment is the chapter's
+  evidence: at 20 microseconds the three-qubit code leaves 0.0369 and the five-qubit one
+  0.0156, and the binomial tail predicts both from the measured physical rates.

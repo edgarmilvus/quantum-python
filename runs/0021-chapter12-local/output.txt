@@ -1,0 +1,44 @@
+== harness
+
+95/95 checks passed
+
+== exercises
+
+85/85 exercise checks passed
+
+== demos
+--- 01_channels
+  phase 0.2          2 Kraus operators, ||sum K+K - 1|| = 1.11e-16
+
+a two-qubit depolarizing channel at p=0.1 keeps the Bell populations
+but cuts the coherence from 0.5000 to 0.4500, which is the (1-p) survival:
+  populations [0.475, 0.025, 0.025, 0.475]
+  coherence   0.4500
+--- 02_simulate
+that is 0.36 sigma, so the model survives its first test
+
+the same rate, on Grover's 45 two-qubit gates:
+  survival 0.4707, peak 0.4450
+  the device reported 0.7148 raw and 0.7649 after readout correction
+  demo 05 shows why the prediction is off by a factor, and what replaces it
+--- 03_readout
+Grover         raw 0.7148   corrected 0.7649   ideal 0.9453   clipped 0.0000
+               the matrix explains 21.7% of the gap
+               amplification 1.153, from a three-wire matrix
+
+the Grover correction borrows the pair's per-qubit flips for a third qubit it
+never calibrated: the number is an estimate, and the prose says so
+--- 04_zne
+
+one sampled run, 4096 shots per setting, no readout in the model:
+  scale 1: S = 2.7852
+  scale 3: S = 2.6753
+  scale 5: S = 2.6348
+  linear extrapolation: linear: 2.8112 +/- 0.0273
+--- 05_leverage
+
+that factor is the whole argument: an average is a property of a circuit,
+a per-gate number is a property of an edge, and only the second one extrapolates
+
+the device's worst edge has error 1.00, which is a dead coupler;
+the transpiler never routes through it, and no average would have told you it existed

@@ -1,0 +1,30 @@
+== chapter10
+
+== the Hamiltonian
+
+== the ansatz
+
+== the optimiser
+
+== the tallies
+
+== the recorded device run
+
+50/50 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+56/56 exercise checks passed
+chapter10: 17 listings, byte for byte
+chapter10: 9 section headings, all preceded by a blank line
+chapter10: 11 subsections publish files, each says how to run them
+chapter10: 5 figures, all built and referenced
+chapter10: 14002 words with listings, 8916 without, floor 14000

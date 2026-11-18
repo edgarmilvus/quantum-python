@@ -1,0 +1,34 @@
+== chapter06
+
+== an oracle is a permutation
+
+== the oracle families
+
+== phase kickback
+
+== Deutsch-Jozsa
+
+== Bernstein-Vazirani
+
+== the promise
+
+== the recorded device run
+
+131/131 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+75/75 exercise checks passed
+chapter06: 18 listings, byte for byte
+chapter06: 9 section headings, all preceded by a blank line
+chapter06: 11 subsections publish files, each says how to run them
+chapter06: 4 figures, all built and referenced
+chapter06: 14012 words with listings, 8745 without, floor 14000

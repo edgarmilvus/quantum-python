@@ -1,0 +1,26 @@
+== chapter17
+
+== the circuit
+
+== the trajectory
+
+== the device
+
+38/38 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+60/60 exercise checks passed
+chapter17: 16 listings, byte for byte
+chapter17: 9 section headings, all preceded by a blank line
+chapter17: 9 subsections publish files, each says how to run them
+chapter17: 5 figures, all built and referenced
+chapter17: 14043 words with listings, 8657 without, floor 14000

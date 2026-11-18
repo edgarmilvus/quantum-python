@@ -1,0 +1,29 @@
+== harness
+
+38/38 checks passed
+
+== exercises
+
+60/60 exercise checks passed
+
+== demos
+--- 01_syndrome
+
+a single flip comes back clean only with the correction; two flips are a
+majority for the wrong answer, which is the code's limit and not a bug.
+--- 02_collapse
+that is the pair a final-measurement simulator would confuse for the
+conditional one, and the difference between the two tables is the whole
+reason a dynamic circuit needs its own kind of simulator.
+--- 03_inject
+the middle qubit does best because its syndrome 11 is two flips away from 00
+in readout terms, while the edge qubits sit at 10 and 01 and one misread
+turns them into a false 00. That asymmetry is the ancilla's, not the code's.
+--- 04_latency
+
+so the chapter's first claim is that the mechanism works and the latency is
+not the problem; the second is that the syndrome's own error rate is.
+--- 05_budget
+on a clean codeword the correction is fifty times worse than the control,
+0.0325 against 0.0005, and the reason is in the first table: a correction that
+fires on a wrong syndrome adds the error it was meant to remove.

@@ -1,0 +1,32 @@
+== chapter03
+
+== a circuit is a unitary
+
+== depth is layers, not gates
+
+== three rotations are enough
+
+== compilation keeps the unitary and pays in depth
+
+== what the device profile predicts
+
+== the recorded run
+
+73/73 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+56/56 exercise checks passed
+chapter03: 20 listings, byte for byte
+chapter03: 9 section headings, all preceded by a blank line
+chapter03: 13 subsections publish files, each says how to run them
+chapter03: 5 figures, all built and referenced
+chapter03: 15299 words with listings, 9132 without, floor 14000

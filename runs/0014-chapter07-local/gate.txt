@@ -1,0 +1,30 @@
+== chapter07
+
+== the oracle and the diffusion
+
+== one iteration
+
+== the curve
+
+== the optimum
+
+== the recorded device run
+
+52/52 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+59/59 exercise checks passed
+chapter07: 16 listings, byte for byte
+chapter07: 9 section headings, all preceded by a blank line
+chapter07: 10 subsections publish files, each says how to run them
+chapter07: 4 figures, all built and referenced
+chapter07: 14004 words with listings, 9589 without, floor 14000

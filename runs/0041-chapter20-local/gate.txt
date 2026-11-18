@@ -1,0 +1,30 @@
+== chapter20
+
+== the contracts
+
+== the runs
+
+== the bill
+
+== the decisions
+
+== the report
+
+63/63 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+75/75 exercise checks passed
+chapter20: 19 listings, byte for byte
+chapter20: 9 section headings, all preceded by a blank line
+chapter20: 12 subsections publish files, each says how to run them
+chapter20: 5 figures, all built and referenced
+chapter20: 16586 words with listings, 10949 without, floor 14000

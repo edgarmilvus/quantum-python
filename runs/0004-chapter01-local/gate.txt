@@ -1,0 +1,35 @@
+== chapter01
+
+== state vector
+
+== normalization
+
+== measurement
+
+== error bars
+
+== phase
+
+== gates
+
+== four implementations
+
+== the wall
+
+91/91 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+52/52 exercise checks passed
+chapter01: 18 listings, byte for byte
+chapter01: 9 section headings, all preceded by a blank line
+chapter01: 12 subsections publish files, each says how to run them
+chapter01: 15711 words with listings, 10332 without, floor 14000

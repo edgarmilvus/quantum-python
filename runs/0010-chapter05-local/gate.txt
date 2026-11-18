@@ -1,0 +1,34 @@
+== chapter05
+
+== frequencies and intervals
+
+== shot budgets
+
+== combining estimates
+
+== the readout matrix
+
+== correcting the CHSH data
+
+== correction removes bias and adds variance
+
+== the same arithmetic elsewhere
+
+52/52 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+48/48 exercise checks passed
+chapter05: 18 listings, byte for byte
+chapter05: 9 section headings, all preceded by a blank line
+chapter05: 11 subsections publish files, each says how to run them
+chapter05: 4 figures, all built and referenced
+chapter05: 14079 words with listings, 8583 without, floor 14000

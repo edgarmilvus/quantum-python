@@ -1,0 +1,132 @@
+book: "Quantum Python"
+chapter: 15
+title: "Quantum Machine Learning"
+subtitle: "Kernels, the n² bill, and what a device does to a Gram matrix"
+
+invariant: >
+  A quantum kernel replaces a similarity function with a circuit, so the classifier
+  never changes, the bill becomes quadratic in the points, and the device's error
+  arrives as a bias in the matrix rather than as noise on the answer.
+
+audience:
+  reader: "Senior software engineer. Finished chapters 1 to 14. Has met a cost function and a sampler."
+  assumes:
+    - "statevectors and measurement (chapters 2 and 4)"
+    - "shot noise and its arithmetic (chapters 5 and 12)"
+    - "a device's noise compresses what it measures (chapter 12)"
+  does_not_assume: ["kernel methods", "support vector machines", "regression"]
+
+structure:
+  - Opening (3 paragraphs, no headings)
+  - Theoretical Foundations (11 subsections)
+  - Basic Code Example
+  - Common Pitfalls (12)
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises (requirements only)
+  - Solutions (five-part Instructor's Analysis)
+  - What this chapter established
+
+theory_subsections:
+  - "The task: two arms, six points each"
+  - "A kernel is a similarity, and a quantum kernel is a circuit"
+  - "The feature map: what each gate does to a point"
+  - "The overlap circuit, and why the inverse is the whole trick"
+  - "The classifier is nine lines, so the kernel is the only variable"
+  - "Layers sharpen the kernel, and sharper is not better"
+  - "Shot noise is a fluctuation; a device's error is a bias"
+  - "What the device did to the matrix"
+  - "The bill is n squared circuits, before anything is learned"
+  - "What this chapter does not claim"
+  - "Decision table: quantum kernel, classical kernel, or neither"
+
+artifacts:
+  - chapters/chapter15/files/qml/data.py
+  - chapters/chapter15/files/qml/featuremap.py
+  - chapters/chapter15/files/qml/kernel.py
+  - chapters/chapter15/files/qml/classifier.py
+  - chapters/chapter15/files/qml/__init__.py
+  - chapters/chapter15/files/01_dataset.py
+  - chapters/chapter15/files/02_kernel.py
+  - chapters/chapter15/files/03_shots.py
+  - chapters/chapter15/files/04_device.py
+  - chapters/chapter15/files/05_cost.py
+  - chapters/chapter15/files/run_ex15.py
+  - chapters/chapter15/files/exercises/ex1_inverse.py
+  - chapters/chapter15/files/exercises/ex2_features.py
+  - chapters/chapter15/files/exercises/ex3_budget.py
+  - chapters/chapter15/files/exercises/ex4_sharp.py
+  - chapters/chapter15/files/exercises/plan_core.py
+  - chapters/chapter15/files/exercises/plan_render.py
+  - chapters/chapter15/files/exercises/ex5_kernel.py
+  - chapters/chapter15/files/exercises/selfcheck.py
+  - chapters/chapter15/files/exercises/run_exercises.py
+
+gates:
+  harness: "python3 chapters/chapter15/files/run_ex15.py"
+  harness_expected: "51/51 checks passed"
+  exercises: "python3 chapters/chapter15/files/exercises/run_exercises.py"
+  exercises_expected: "72/72 exercise checks passed"
+
+words: { target: 17000, floor: 14000 }
+
+api_surface:
+  data: ["Dataset", "spiral", "stratified", "split_indices", "circles12", "blobs"]
+  featuremap: ["ops_for", "state_for", "overlap_ops", "fidelity", "apply", "zero"]
+  kernel: ["matrix", "sampled", "from_counts", "device_matrix", "off_diagonal_mean", "condition"]
+  classifier: ["fit", "Ridge", "accuracy", "confusion", "rbf", "cross", "run"]
+
+exercises:
+  - id: 1
+    title: "The overlap circuit without its inverse"
+    kind: repair
+    files: [ex1_inverse.py]
+    tests: 11
+    problem: "Dropping the dagger gives a matrix that is not symmetric, not one on the diagonal, and not a kernel."
+  - id: 2
+    title: "A third feature, and the accuracy it costs"
+    kind: extend
+    files: [ex2_features.py]
+    tests: 13
+    problem: "Adding the radius sharpens the kernel from 0.25 to 0.12 off-diagonal and drops the accuracy from 1.000 to 0.833."
+  - id: 3
+    title: "The number of points the budget buys"
+    kind: measure
+    files: [ex3_budget.py]
+    tests: 17
+    problem: "At 0.298 seconds a circuit the free tier buys forty-four training points, and forty-five do not fit."
+  - id: 4
+    title: "A kernel so sharp it forgets the data"
+    kind: break
+    files: [ex4_sharp.py]
+    tests: 16
+    problem: "Four layers cut the condition number to 5 and the accuracy to 0.833; the sharpest kernel is not the best."
+  - id: 5
+    title: "One report from an exact and a measured kernel"
+    kind: integrate
+    files: [plan_core.py, plan_render.py, ex5_kernel.py]
+    tests: 15
+    problem: "The same summary must read a statevector's matrix and one from ibm_fez, and say which beat the classical baseline."
+
+multi_file_exercise:
+  id: 5
+  files: [plan_core.py, plan_render.py, ex5_kernel.py]
+  why: >
+    plan_core.py is pure (two matrices and two label lists in, a report out), plan_render.py
+    formats, ex5_kernel.py builds the exact matrix and reads the recorded one.
+
+figures:
+  - "one point through the map, the overlap, and into the matrix"
+  - "the six by six kernel matrix as a coloured grid"
+  - "the accuracy against the number of layers"
+  - "the exact and measured kernels side by side"
+  - "the circuits against the points"
+
+runs:
+  - "runs/0026-ibm-fez-kernel/result.json (57 circuits, one job, 17 seconds)"
+
+chapter_notes: >
+  The device numbers come from one job of 57 circuits on ibm_fez at 1,024 shots, depth 66.
+  The dataset, the split, the feature map and the classifier are deterministic, so every
+  other number is reproducible by running a file.

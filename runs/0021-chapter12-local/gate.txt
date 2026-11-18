@@ -1,0 +1,36 @@
+== chapter12
+
+== density matrices
+
+== the three channels
+
+== the readout matrix
+
+== the recorded runs
+
+== the simulator
+
+== folding
+
+== the falsification
+
+== the fit
+
+95/95 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+85/85 exercise checks passed
+chapter12: 21 listings, byte for byte
+chapter12: 9 section headings, all preceded by a blank line
+chapter12: 14 subsections publish files, each says how to run them
+chapter12: 5 figures, all built and referenced
+chapter12: 22417 words with listings, 11650 without, floor 14000

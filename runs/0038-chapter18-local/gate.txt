@@ -1,0 +1,30 @@
+== chapter18
+
+== the task
+
+== the metric
+
+== the sources
+
+== the prices
+
+== the table
+
+44/44 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+68/68 exercise checks passed
+chapter18: 16 listings, byte for byte
+chapter18: 9 section headings, all preceded by a blank line
+chapter18: 9 subsections publish files, each says how to run them
+chapter18: 6 figures, all built and referenced
+chapter18: 14010 words with listings, 9242 without, floor 14000

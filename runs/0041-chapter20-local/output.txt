@@ -1,0 +1,9 @@
+== harness
+63/63 checks passed
+
+== exercises
+75/75 exercise checks passed
+
+== ledger
+19 chapters, 40 runs, 2503 assertions, 588176 shots
+paid 0.00 USD, refused 984.84 USD

@@ -1,0 +1,19 @@
+{
+  "case": "ibm-bernstein-vazirani",
+  "recorded_at": "2026-11-17T00:00:00Z",
+  "provider": "ibm_quantum_platform",
+  "backend": "ibm_marrakesh",
+  "job_id": "dbu6v28vv3fc73c0t14g",
+  "secret": 5,
+  "secret_bits": "101",
+  "n": 3,
+  "shots": 1024,
+  "transpiled_depth": 9,
+  "counts": {
+    "101": 965,
+    "001": 25,
+    "100": 27,
+    "000": 5,
+    "111": 2
+  }
+}

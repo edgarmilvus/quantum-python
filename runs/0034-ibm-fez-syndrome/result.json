@@ -1,0 +1,43 @@
+{
+  "case": "ibm-fez-syndrome",
+  "recorded_at": "2026-11-18T11:10:24Z",
+  "provider": "ibm_quantum_platform",
+  "backend": "ibm_kingston",
+  "job_id": "dbuoe4mps3fc73bj7nu0",
+  "shots": 8192,
+  "results": [
+    {
+      "prepared": 0,
+      "syndromes": {
+        "00": 7752,
+        "01": 243,
+        "10": 190,
+        "11": 7
+      },
+      "counts": {
+        "000": 8139,
+        "100": 39,
+        "010": 7,
+        "001": 7
+      }
+    },
+    {
+      "prepared": 1,
+      "syndromes": {
+        "00": 7678,
+        "10": 68,
+        "01": 419,
+        "11": 27
+      },
+      "counts": {
+        "111": 7861,
+        "110": 128,
+        "011": 110,
+        "100": 2,
+        "101": 88,
+        "010": 2,
+        "001": 1
+      }
+    }
+  ]
+}

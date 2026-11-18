@@ -1,0 +1,126 @@
+book: "Quantum Python"
+chapter: 1
+title: "The Qubit Is a Vector"
+subtitle: "Complex amplitudes, normalization, and the measurement procedure"
+
+invariant: >
+  A one-qubit state is a pair of complex amplitudes whose measurement
+  probabilities are their squared magnitudes, and a hand-written numpy model,
+  Qiskit, PennyLane and Cirq agree on those numbers to within float64 printing.
+
+audience:
+  reader: "Senior software engineer. Fluent Python and numpy. No physics."
+  assumes: ["complex numbers as a programming type", "numpy arrays and broadcasting"]
+  does_not_assume: ["Hilbert spaces", "wave functions", "Dirac notation", "any physics vocabulary"]
+  inline_math: true   # no appendix: the chapter teaches what it uses
+
+structure:
+  - Opening (3 paragraphs, no headings)
+  - Theoretical Foundations (9 subsections, 400-700 words each)
+  - Basic Code Example
+  - Common Pitfalls (10-12)
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises (requirements only)
+  - Solutions (with five-part Instructor's Analysis)
+  - What this chapter established
+
+theory_subsections:
+  - "The task: one qubit, two amplitudes, one honest number"
+  - "A complex number is two floats with a multiplication rule"
+  - "Normalization is a conservation law, not a convention"
+  - "Measurement is a sampler, and its p is |alpha|^2"
+  - "Global phase is invisible; relative phase is not"
+  - "What a state vector is not (no hidden values, no parallel worlds)"
+  - "Four implementations of the same vector: numpy, Qiskit, PennyLane, Cirq"
+  - "The cost: 2^n complex numbers, and the wall at 30 qubits"
+  - "Decision table: when to hand-roll the vector and when to import one"
+
+artifacts:
+  - chapters/chapter01/files/state.py
+  - chapters/chapter01/files/sampling.py
+  - chapters/chapter01/files/sdks.py
+  - chapters/chapter01/files/01_amplitudes.py
+  - chapters/chapter01/files/02_normalization.py
+  - chapters/chapter01/files/03_global_phase.py
+  - chapters/chapter01/files/04_relative_phase.py
+  - chapters/chapter01/files/05_three_sdks.py
+  - chapters/chapter01/files/06_second_domain.py
+  - chapters/chapter01/files/run_ex1.py
+  - chapters/chapter01/files/exercises/ex1_normalize.py
+  - chapters/chapter01/files/exercises/ex2_measure_many.py
+  - chapters/chapter01/files/exercises/ex3_shots.py
+  - chapters/chapter01/files/exercises/ex4_float32.py
+  - chapters/chapter01/files/exercises/ex5_report.py
+  - chapters/chapter01/files/exercises/report_core.py
+  - chapters/chapter01/files/exercises/report_render.py
+  - chapters/chapter01/files/exercises/run_exercises.py
+  - chapters/chapter01/files/exercises/selfcheck.py
+
+gates:
+  harness: "python3 chapters/chapter01/files/run_ex1.py"
+  harness_expected: "91/91 checks passed"
+  exercises: "python3 chapters/chapter01/files/exercises/run_exercises.py"
+  exercises_expected: "52/52 exercise checks passed"
+
+words: { target: 17000, floor: 14000 }
+
+api_surface:
+  state.py: ["StateVector", "StateVector.from_amplitudes", "StateVector.probabilities",
+             "StateVector.normalized", "StateVector.inner", "StateVector.__len__"]
+  sampling.py: ["sample_index", "sample_counts", "estimated_probability"]
+  sdks.py: ["qiskit_statevector", "pennylane_statevector", "cirq_statevector"]
+
+exercises:
+  - id: 1
+    title: "Normalize a state that lost its norm"
+    kind: repair
+    files: [ex1_normalize.py]
+    tests: 8
+    problem: "A loader returns amplitudes that sum in squares to 1.02; the sampler downstream assumes 1.0 and silently biases every probability."
+  - id: 2
+    title: "Measure the same state ten thousand times"
+    kind: extend
+    files: [ex2_measure_many.py]
+    tests: 10
+    problem: "A dashboard needs frequencies, not a single outcome, and it must be reproducible from a seed."
+  - id: 3
+    title: "How many shots before the estimate is useful"
+    kind: measure
+    files: [ex3_shots.py]
+    tests: 9
+    problem: "A report quotes P(0)=0.5 from 20 shots and a reviewer asks for the error bar."
+  - id: 4
+    title: "Find the precision where normalization breaks"
+    kind: break
+    files: [ex4_float32.py]
+    tests: 9
+    problem: "The same pipeline runs in float32 on a GPU and float64 on the CPU; at some depth the normalization check starts failing."
+  - id: 5
+    title: "A report that separates pure computation from rendering"
+    kind: integrate
+    files: [report_core.py, report_render.py, ex5_report.py]
+    tests: 12
+    problem: "The chapter's numbers must become a printed report, with the computation testable without touching stdout."
+
+multi_file_exercise:
+  id: 5
+  files: [report_core.py, report_render.py, ex5_report.py]
+  why: >
+    report_core.py is pure (state to rows of numbers), report_render.py owns the
+    effect (formatting to a string), ex5_report.py is the wiring that reads a
+    state and prints. The seam is the row tuple, so the computation can be tested
+    with no stdout and the rendering can be tested with fixed rows.
+
+figures:
+  - "the state vector as an array, with each amplitude splitting into real and imaginary parts"
+  - "measurement as a sampler: amplitudes to probabilities to counts"
+  - "the four implementations agreeing on one number, drawn as a single pipeline"
+  - "the 2^n wall: memory against qubit count, log scale, with the 16 GB line"
+
+chapter_notes: >
+  The reader has never seen a ket. The chapter therefore writes |0> as the array
+  [1, 0] and |1> as [0, 1] before the notation appears, and only introduces the
+  bracket on the page where it becomes shorter than the array. Every claim about
+  agreement between SDKs is a printed number from this machine.

@@ -1,0 +1,9 @@
+== harness
+80/80 checks passed
+real 2.77
+user 1.73
+sys 0.33
+
+== exercises
+
+55/55 exercise checks passed

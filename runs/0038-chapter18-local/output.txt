@@ -1,0 +1,29 @@
+== harness
+
+44/44 checks passed
+
+== exercises
+
+68/68 exercise checks passed
+
+== demos
+--- 01_task
+three metrics on the same two runs, and they order them the same way:
+  good: tvd 0.0093, hellinger 0.0665
+  bad: tvd 0.2070, hellinger 0.3331
+--- 02_ghz
+the IBM row at 20 microseconds of delay is in the same table and is not a
+different backend: same job, same qubits, a delay. Its distance nearly triples
+from 0.0681 to 0.1616, which is the benchmark measuring time rather than vendor.
+--- 03_bell
+
+and the improvement the device would need to match the emulator:
+  0.0537 / 0.0205 = 2.62 times
+--- 04_cost
+the last column is the only one that matters to a buyer, and it is zero for
+every row because none of them was paid for. The paid row's number is the
+one to compute before running the experiment, not after.
+--- 05_verdict
+4,096 shots, a good device is 0.068 away from ideal, an exact emulator is
+0.021 away, and a sampler on a laptop is 0.010 away because that is the shot
+noise. The device is the only row whose number is about a machine.

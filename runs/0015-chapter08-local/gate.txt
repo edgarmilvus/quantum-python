@@ -1,0 +1,28 @@
+== chapter08
+
+== the Fourier matrix
+
+== the circuit
+
+== phase estimation
+
+== precision
+
+80/80 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+65/65 exercise checks passed
+chapter08: 17 listings, byte for byte
+chapter08: 9 section headings, all preceded by a blank line
+chapter08: 11 subsections publish files, each says how to run them
+chapter08: 4 figures, all built and referenced
+chapter08: 14052 words with listings, 9166 without, floor 14000

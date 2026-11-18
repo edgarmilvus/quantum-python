@@ -1,0 +1,39 @@
+{
+  "case": "qi-qx-emulator-bell-1024",
+  "recorded_at": "2026-11-16T22:10:00Z",
+  "provider": "quantum_inspire",
+  "auth": "qi login (OAuth device flow, member 3619)",
+  "backend": "QX emulator",
+  "backend_kind": "emulator",
+  "backend_qubits": 10,
+  "job_id": null,
+  "program": "backend.run",
+  "circuit": {
+    "name": "bell",
+    "ops": ["h(0)", "cx(0,1)"],
+    "logical_depth": 2,
+    "transpiled_depth": 3,
+    "optimization_level": 1
+  },
+  "shots": 1024,
+  "counts": { "00": 533, "11": 491 },
+  "derived": {
+    "p_00": 0.5205,
+    "p_11": 0.4795,
+    "p_correlated": 1.0,
+    "p_anti_correlated": 0.0
+  },
+  "hardware_state_at_submission": {
+    "QX emulator": "IDLE",
+    "Tuna-5": "OFFLINE",
+    "Tuna-9": "OFFLINE",
+    "Tuna-17": "BENCHMARKING",
+    "Ry emulator": "OFFLINE"
+  },
+  "notes": [
+    "No API token on Quantum Inspire 2.0: authentication is `qi login`, stored in ~/.quantuminspire/config.json.",
+    "Every free QPU was offline or benchmarking at submission time, so the run degraded to the emulator and says so.",
+    "Zero anti-correlated outcomes is the expected result for a noise-free emulator and the control for the 5.4% seen on ibm_fez.",
+    "qiskit-quantuminspire pins qiskit below 2.6; the environment runs 2.3.1 and IBM Quantum still answers on it."
+  ]
+}

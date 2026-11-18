@@ -1,0 +1,133 @@
+book: "Quantum Python"
+chapter: 20
+title: "What to Do on Monday"
+subtitle: "Nineteen chapters, one ledger, and four questions"
+
+invariant: >
+  A result is worth publishing when it beats a classical answer, fits the machine, can be
+  checked against an ideal, and fits the budget — and the ledger is what makes the book's
+  own claims auditable instead of remembered.
+
+audience:
+  reader: "Senior software engineer. Finished chapters 1 to 19. Has run a circuit, read a table, and priced a job."
+  assumes:
+    - "the four gates of the pipeline (chapter 19)"
+    - "the benchmark's floor and the price table (chapters 18 and 11)"
+    - "what the device of 2026 can hold (chapters 3, 12, 16, 17)"
+  does_not_assume: ["research taste", "grant writing", "vendor strategy"]
+
+structure:
+  - Opening (3 paragraphs, no headings)
+  - Theoretical Foundations (11 subsections)
+  - Basic Code Example
+  - Common Pitfalls (12)
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises (requirements only)
+  - Solutions (five-part Instructor's Analysis)
+  - What this chapter established
+
+theory_subsections:
+  - "The book, counted"
+  - "What the ledger reads, and what it refuses"
+  - "What the book cost, and what it refused"
+  - "The first question: is a machine needed?"
+  - "The second: does the circuit fit?"
+  - "The third: can the answer be checked?"
+  - "The fourth: does the price fit?"
+  - "Five decisions, and what each asks of you"
+  - "What the book did not prove"
+  - "The state of the hardware in 2026"
+  - "The memo a reader writes on Monday"
+
+artifacts:
+  - chapters/chapter20/files/ledger/spec.py
+  - chapters/chapter20/files/ledger/spend.py
+  - chapters/chapter20/files/ledger/decide.py
+  - chapters/chapter20/files/ledger/report.py
+  - chapters/chapter20/files/ledger/__init__.py
+  - chapters/chapter20/files/01_chapters.py
+  - chapters/chapter20/files/02_runs.py
+  - chapters/chapter20/files/03_spend.py
+  - chapters/chapter20/files/04_decide.py
+  - chapters/chapter20/files/05_report.py
+  - chapters/chapter20/files/run_ex20.py
+  - chapters/chapter20/files/exercises/ex1_shots.py
+  - chapters/chapter20/files/exercises/ex2_cases.py
+  - chapters/chapter20/files/exercises/ex3_cost.py
+  - chapters/chapter20/files/exercises/ex4_classical.py
+  - chapters/chapter20/files/exercises/memo_core.py
+  - chapters/chapter20/files/exercises/memo_render.py
+  - chapters/chapter20/files/exercises/ex5_memo.py
+  - chapters/chapter20/files/exercises/selfcheck.py
+  - chapters/chapter20/files/exercises/run_exercises.py
+
+gates:
+  harness: "python3 chapters/chapter20/files/run_ex20.py"
+  harness_expected: "63/63 checks passed"
+  exercises: "python3 chapters/chapter20/files/exercises/run_exercises.py"
+  exercises_expected: "75/75 exercise checks passed"
+
+words: { target: 16000, floor: 14000 }
+
+api_surface:
+  spec: ["Chapter", "Run", "chapters", "runs", "published", "BOOK_CHAPTERS", "BOOK_RUNS"]
+  spend: ["Spend", "spend", "free", "refused_quote"]
+  decide: ["Problem", "Question", "Verdict", "decide", "cases", "MAX_QUBITS", "MAX_DEPTH"]
+  report: ["chapter_table", "provider_table", "decision_table", "counts", "summary"]
+
+exercises:
+  - id: 1
+    title: "The shot count that ignores the multiplier"
+    kind: repair
+    files: [ex1_shots.py]
+    tests: 13
+    problem: "`2048 x 6` read as 2,048 shots instead of 12,288, so the book's sample size depends on how many circuits each run had."
+  - id: 2
+    title: "What the six cases cost together"
+    kind: extend
+    files: [ex2_cases.py]
+    tests: 14
+    problem: "The batch is 984.84 and the refusal must name the case that broke the budget."
+  - id: 3
+    title: "What one proof cost"
+    kind: measure
+    files: [ex3_cost.py]
+    tests: 15
+    problem: "Zero dollars per assertion is true and useless; the words per proof and the shots per live run are the measurements."
+  - id: 4
+    title: "The decider without its first question"
+    kind: break
+    files: [ex4_classical.py]
+    tests: 15
+    problem: "Without the classical question, two skips become device candidates and one of them costs 984.84."
+  - id: 5
+    title: "The one page a reader takes to work"
+    kind: integrate
+    files: [memo_core.py, memo_render.py, ex5_memo.py]
+    tests: 18
+    problem: "A memo of six numbers, a decision tally and one sentence, from a spend and six verdicts."
+
+multi_file_exercise:
+  id: 5
+  files: [memo_core.py, memo_render.py, ex5_memo.py]
+  why: >
+    memo_core.py is pure (a spend and verdicts in, a dictionary out), memo_render.py formats,
+    ex5_memo.py prices the cases and reads the ledger.
+
+figures:
+  - "the book's five movements"
+  - "what the ledger reads and what it produces"
+  - "0.00 paid against 984.84 refused"
+  - "four questions, five decisions"
+  - "the memo"
+
+runs:
+  - "runs/0040-chapter19-local (the last record the ledger reads)"
+  - "no new device job: this chapter audits the book"
+
+chapter_notes: >
+  The ledger reads chapters 1-19 and runs 0001-0040 on purpose, so its numbers do not move
+  when chapter 20's own record is added. One contract (chapter 2) still carries the NN/NN
+  placeholder, and the ledger resolves it from that chapter's local run rather than guessing.

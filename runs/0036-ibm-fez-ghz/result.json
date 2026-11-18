@@ -1,0 +1,43 @@
+{
+  "case": "ibm-fez-ghz",
+  "recorded_at": "2026-11-18T11:34:28Z",
+  "provider": "ibm_quantum_platform",
+  "backend": "ibm_kingston",
+  "job_id": "dbuop97f8rhs73bmlvm0",
+  "shots": 4096,
+  "circuit": "ghz-3",
+  "ideal": {
+    "000": 0.5,
+    "111": 0.5
+  },
+  "wall_seconds": 160.7,
+  "transpiled_depth": 13,
+  "results": [
+    {
+      "delay_us": 0.0,
+      "counts": {
+        "000": 2092,
+        "111": 1769,
+        "100": 22,
+        "101": 53,
+        "011": 53,
+        "010": 8,
+        "110": 88,
+        "001": 11
+      }
+    },
+    {
+      "delay_us": 20.0,
+      "counts": {
+        "111": 1386,
+        "000": 2068,
+        "101": 220,
+        "011": 129,
+        "110": 205,
+        "100": 42,
+        "001": 24,
+        "010": 22
+      }
+    }
+  ]
+}

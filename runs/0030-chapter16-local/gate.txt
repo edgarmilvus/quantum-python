@@ -1,0 +1,28 @@
+== chapter16
+
+== the code
+
+== the rates
+
+== the axes
+
+== the device
+
+48/48 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+85/85 exercise checks passed
+chapter16: 16 listings, byte for byte
+chapter16: 9 section headings, all preceded by a blank line
+chapter16: 9 subsections publish files, each says how to run them
+chapter16: 5 figures, all built and referenced
+chapter16: 14120 words with listings, 9041 without, floor 14000

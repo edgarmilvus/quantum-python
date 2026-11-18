@@ -1,0 +1,34 @@
+== chapter13
+
+== the graph
+
+== the state
+
+== the QAOA state
+
+== the gradient
+
+== the optimiser
+
+== the budget
+
+== the device
+
+73/73 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+89/89 exercise checks passed
+chapter13: 19 listings, byte for byte
+chapter13: 9 section headings, all preceded by a blank line
+chapter13: 11 subsections publish files, each says how to run them
+chapter13: 5 figures, all built and referenced
+chapter13: 18524 words with listings, 10195 without, floor 14000

@@ -1,0 +1,24 @@
+{
+  "case": "qbraid-ionq-sim-ghz",
+  "recorded_at": "2026-11-18T11:35:00Z",
+  "provider": "qbraid",
+  "backend": "ionq:ionq:sim:simulator",
+  "job_id": "ionq:ionq:sim:simulator-9584-qjob-6afd8d595164ac0338276163",
+  "shots": 4096,
+  "circuit": "ghz-3",
+  "ideal": {
+    "000": 0.5,
+    "111": 0.5
+  },
+  "wall_seconds": 11.6,
+  "cost_credits": "0",
+  "results": [
+    {
+      "delay_us": 0.0,
+      "counts": {
+        "111": 2048,
+        "000": 2048
+      }
+    }
+  ]
+}

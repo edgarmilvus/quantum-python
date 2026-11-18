@@ -1,0 +1,85 @@
+{
+  "backend": "ibm_fez",
+  "num_qubits": 156,
+  "basis_gates": [
+    "cz",
+    "delay",
+    "id",
+    "if_else",
+    "measure",
+    "measure_2",
+    "measure_reset",
+    "measure_reset_2",
+    "reset",
+    "reset_2",
+    "rz",
+    "sx",
+    "x",
+    "xslow"
+  ],
+  "two_qubit_error_sample": null,
+  "readout_error_sample": 0.029296875,
+  "coupling_sample": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      5
+    ]
+  ],
+  "fetched_at": "2026-11-17",
+  "cz_errors": [
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "cz_error": 0.007221406172541245
+    },
+    {
+      "pair": [
+        1,
+        2
+      ],
+      "cz_error": 0.0022717884373071318
+    },
+    {
+      "pair": [
+        1,
+        0
+      ],
+      "cz_error": 0.007221406172541245
+    },
+    {
+      "pair": [
+        2,
+        3
+      ],
+      "cz_error": 0.0015835330194476083
+    },
+    {
+      "pair": [
+        10,
+        11
+      ],
+      "cz_error": 0.009599078697140023
+    }
+  ],
+  "t1_q0": 5.881995707756366e-05,
+  "t2_q0": 5.118026426421043e-05,
+  "readout_error_q0": 0.029296875
+}

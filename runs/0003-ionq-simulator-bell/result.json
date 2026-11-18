@@ -1,0 +1,29 @@
+{
+  "case": "ionq-simulator-bell",
+  "recorded_at": "2026-11-16T22:20:00Z",
+  "provider": "ionq",
+  "auth": "IONQ_API_KEY (REST v0.3)",
+  "backend": "simulator",
+  "backend_kind": "emulator",
+  "noise_model": "ideal",
+  "job_id": "01a1e631-d58f-725c-bd7e-8dee74fcea81",
+  "program": "POST /v0.3/jobs (gateset qis)",
+  "circuit": {
+    "name": "bell",
+    "ops": ["h(0)", "cnot(0,1)"],
+    "qubits": 2
+  },
+  "shots": 1024,
+  "probabilities": { "0": 0.5, "3": 0.5 },
+  "derived": {
+    "p_00": 0.5,
+    "p_11": 0.5,
+    "p_correlated": 1.0,
+    "p_anti_correlated": 0.0
+  },
+  "notes": [
+    "The ideal simulator returns probabilities, not a shot histogram: 'shots' is accepted and ignored, so the result must not be reported as counts.",
+    "Probabilities are fetched by reference from results.probabilities.url, which moved to API v0.4; data.histogram on the job is empty.",
+    "State labels are integers: 0 is |00> and 3 is |11> for a two-qubit register."
+  ]
+}

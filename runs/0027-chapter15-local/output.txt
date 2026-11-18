@@ -1,0 +1,34 @@
+== harness
+
+52/52 checks passed
+
+== exercises
+
+72/72 exercise checks passed
+
+== demos
+--- 01_dataset
+  gamma  16.0: train accuracy 0.667, test accuracy 0.333
+
+best classical: 0.667 at gamma 4.0
+a line does worse than this, because no line separates the arms.
+--- 02_kernel
+    4     14         0.188        4.9          0.833
+
+three layers reach 1.000 and four fall back to 0.833: a sharper kernel is not
+a better one, and the condition number says why, 9 against 5.
+--- 03_shots
+
+so the kernel is robust to sampling, and the next demo shows what it is not
+robust to: a phase error that moves one pair from 0.49 to 0.00, which no
+penalty can undo because it is a bias rather than a fluctuation.
+--- 04_device
+the device's kernel still beats the classical one at a small penalty, 0.833
+against 0.667, and the exact kernel is perfect at every penalty. The gap the
+machine opened is the difference between a 1.000 and a 0.833, and it is made
+of one collapsed pair and a diagonal of 0.983 instead of 1.000.
+--- 05_cost
+
+this is why the honest claim for quantum kernels is not speed:
+it is that the kernel is a different, possibly better, geometry, and that
+the price of measuring it is quadratic in the points before it buys anything.

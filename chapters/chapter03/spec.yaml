@@ -1,0 +1,130 @@
+book: "Quantum Python"
+chapter: 3
+title: "Circuits, Unitaries, Compilation"
+subtitle: "Depth, bases, decompositions, and what a device actually runs"
+
+invariant: >
+  A circuit is a unitary plus a schedule; compilation preserves the unitary and
+  changes the depth, and the price is measurable against a recorded device profile.
+
+audience:
+  reader: "Senior software engineer. Finished chapters 1 and 2. No physics."
+  assumes:
+    - "state as a complex array, measurement as sampling (chapter 1)"
+    - "tensor product, embed, endianness (chapter 2)"
+  does_not_assume: ["routing", "noise channels", "transpiler internals"]
+
+structure:
+  - Opening (3 paragraphs, no headings)
+  - Theoretical Foundations (11 subsections, 400-700 words each)
+  - Basic Code Example
+  - Common Pitfalls (10-12)
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises (requirements only)
+  - Solutions (five-part Instructor's Analysis)
+  - What this chapter established
+
+theory_subsections:
+  - "The task: one circuit, two numbers, and a device that has neither"
+  - "A circuit is a unitary, and the order is the matrix product"
+  - "Depth counts layers, and gates on different wires share one"
+  - "One-qubit gates are three rotations, and the decomposition is exact"
+  - "A basis is the gate set the device has, and it is never a choice"
+  - "Transpilation is the same idea with routing on top"
+  - "What the device charges: a profile, and a first-order model"
+  - "Error models are first-order until they are not"
+  - "The same result from two plans, outside quantum computing"
+  - "Decision table: hand-written, vendor, or both"
+  - "A worked derivation: the Bell circuit by hand"
+
+artifacts:
+  - chapters/chapter03/files/circuit.py
+  - chapters/chapter03/files/decompose.py
+  - chapters/chapter03/files/compiler.py
+  - chapters/chapter03/files/profile.py
+  - chapters/chapter03/files/01_unitary.py
+  - chapters/chapter03/files/02_depth.py
+  - chapters/chapter03/files/03_decompose.py
+  - chapters/chapter03/files/04_compile.py
+  - chapters/chapter03/files/05_hardware.py
+  - chapters/chapter03/files/06_second_domain.py
+  - chapters/chapter03/files/run_ex3.py
+  - chapters/chapter03/profiles/ibm_fez.json
+  - chapters/chapter03/files/exercises/ex1_order.py
+  - chapters/chapter03/files/exercises/ex2_cancel.py
+  - chapters/chapter03/files/exercises/ex3_budget.py
+  - chapters/chapter03/files/exercises/ex4_first_order.py
+  - chapters/chapter03/files/exercises/pipeline_core.py
+  - chapters/chapter03/files/exercises/pipeline_render.py
+  - chapters/chapter03/files/exercises/ex5_pipeline.py
+  - chapters/chapter03/files/exercises/selfcheck.py
+  - chapters/chapter03/files/exercises/run_exercises.py
+
+gates:
+  harness: "python3 chapters/chapter03/files/run_ex3.py"
+  harness_expected: "73/73 checks passed"
+  exercises: "python3 chapters/chapter03/files/exercises/run_exercises.py"
+  exercises_expected: "56/56 exercise checks passed"
+
+words: { target: 17000, floor: 14000 }
+
+api_surface:
+  circuit.py: ["Circuit", "Circuit.add", "Circuit.unitary", "Circuit.depth", "Circuit.layers",
+               "Circuit.gate_count", "Circuit.is_unitary", "gate_matrix", "rotation"]
+  decompose.py: ["zyz", "rebuild", "distance_up_to_phase"]
+  compiler.py: ["compile_1q", "compile_circuit", "compiled_cost", "check_basis", "BASIS_1Q"]
+  profile.py: ["load", "predicted_error", "worst_two_qubit_error", "depth_where_prediction_crosses", "summary"]
+
+exercises:
+  - id: 1
+    title: "A unitary built by applying the gates backwards"
+    kind: repair
+    files: [ex1_order.py]
+    tests: 8
+    problem: "A simulator multiplies gate matrices in writing order, so every circuit computes the inverse of what it should."
+  - id: 2
+    title: "Cancel the gates that undo each other"
+    kind: extend
+    files: [ex2_cancel.py]
+    tests: 11
+    problem: "Hand-written circuits accumulate X X, H H, S four times, T eight times; a cheap pass removes them."
+  - id: 3
+    title: "How much of the error is readout"
+    kind: measure
+    files: [ex3_budget.py]
+    tests: 11
+    problem: "5.4% of shots land on the wrong Bell state; the profile splits it into readout and gate error."
+  - id: 4
+    title: "Where the first-order model stops being usable"
+    kind: break
+    files: [ex4_first_order.py]
+    tests: 13
+    problem: "Adding error rates is exact only for one gate; the crossing is a number, not an opinion."
+  - id: 5
+    title: "Two compilers, one circuit"
+    kind: integrate
+    files: [pipeline_core.py, pipeline_render.py, ex5_pipeline.py]
+    tests: 14
+    problem: "The chapter's compiler and a vendor's both preserve the unitary and disagree on depth; the comparison must run without an SDK in the pure part."
+
+multi_file_exercise:
+  id: 5
+  files: [pipeline_core.py, pipeline_render.py, ex5_pipeline.py]
+  why: >
+    pipeline_core.py is pure (circuit to cost dictionary), pipeline_render.py owns
+    formatting, ex5_pipeline.py is the wiring that imports Qiskit and prints. The seam
+    is the circuit object.
+
+figures:
+  - "four gates on one wire against four on two wires, as layers"
+  - "any 2x2 unitary as rz, ry, rz plus a global phase"
+  - "two written gates becoming ten compiled ones"
+  - "the error budget: two readouts against one CZ, and the measured total"
+  - "the file graph"
+
+chapter_notes: >
+  The device numbers come from runs/0001-ibm-fez-bell/result.json, recorded in chapter
+  1 and reused rather than re-run. The profile is captured once and committed. The
+  chapter does not route, and says so.

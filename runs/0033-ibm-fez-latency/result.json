@@ -1,0 +1,51 @@
+{
+  "case": "ibm-fez-latency",
+  "recorded_at": "2026-11-18T11:07:18Z",
+  "provider": "ibm_quantum_platform",
+  "backend": "ibm_marrakesh",
+  "job_id": "dbuodln82tmc73dtp2r0",
+  "shots": 4096,
+  "modes": [
+    "none",
+    "noop",
+    "correct"
+  ],
+  "transpiled_depth": 15,
+  "results": [
+    {
+      "mode": "none",
+      "counts": {
+        "111": 3901,
+        "101": 45,
+        "011": 87,
+        "110": 59,
+        "100": 2,
+        "010": 2
+      }
+    },
+    {
+      "mode": "noop",
+      "counts": {
+        "111": 3908,
+        "011": 75,
+        "101": 42,
+        "110": 69,
+        "010": 1,
+        "100": 1
+      }
+    },
+    {
+      "mode": "correct",
+      "counts": {
+        "110": 349,
+        "011": 677,
+        "111": 2879,
+        "101": 94,
+        "001": 27,
+        "010": 66,
+        "000": 1,
+        "100": 3
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+== chapter15
+
+== the dataset
+
+== the feature map
+
+== the kernel
+
+== the classifier
+
+== the device
+
+== the cost
+
+52/52 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+72/72 exercise checks passed
+chapter15: 18 listings, byte for byte
+chapter15: 9 section headings, all preceded by a blank line
+chapter15: 11 subsections publish files, each says how to run them
+chapter15: 5 figures, all built and referenced
+chapter15: 16291 words with listings, 9494 without, floor 14000

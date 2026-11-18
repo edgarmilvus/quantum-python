@@ -1,0 +1,32 @@
+== chapter09
+
+== orders
+
+== continued fractions
+
+== the multiplier
+
+== phase estimation on the multiplier
+
+== success rates
+
+== resources
+
+44/44 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+130/130 exercise checks passed
+chapter09: 16 listings, byte for byte
+chapter09: 9 section headings, all preceded by a blank line
+chapter09: 10 subsections publish files, each says how to run them
+chapter09: 4 figures, all built and referenced
+chapter09: 14012 words with listings, 8908 without, floor 14000

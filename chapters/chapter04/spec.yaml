@@ -1,0 +1,122 @@
+book: "Quantum Python"
+chapter: 4
+title: "Entanglement and the CHSH Inequality"
+subtitle: "A bound that a program cannot reach, measured on a real device"
+
+invariant: >
+  Correlations from a shared Bell pair exceed 2 only if no local hidden-variable
+  program can produce them; the recorded device reaches S = 2.541 +/- 0.048, eleven
+  sigma above the classical bound and 65% of the way to Tsirelson.
+
+audience:
+  reader: "Senior software engineer. Finished chapters 1 to 3. No physics."
+  assumes:
+    - "state vector, measurement as sampling (chapter 1)"
+    - "tensor product, Bell pair as an array (chapter 2)"
+    - "compiled depth and a recorded device profile (chapter 3)"
+  does_not_assume: ["loopholes", "density matrices", "CHSH derivation from operators"]
+
+structure:
+  - Opening (3 paragraphs, no headings)
+  - Theoretical Foundations (10 subsections)
+  - Basic Code Example
+  - Common Pitfalls (10-12)
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises (requirements only)
+  - Solutions (five-part Instructor's Analysis)
+  - What this chapter established
+
+theory_subsections:
+  - "The task: four settings, four numbers, one inequality"
+  - "Correlation is an expectation, and it is one number per setting"
+  - "The classical bound comes from a program, not from a device"
+  - "Tsirelson's bound and why the maximum is 2 sqrt 2"
+  - "Angles: why 0, 90, 45 and 135"
+  - "Noise is a visibility, and visibility has a threshold"
+  - "The error bar on S, and what eleven sigma means"
+  - "What the experiment does not prove"
+  - "Decision table: simulate, model, or measure"
+  - "A worked derivation: the four expectations by hand"
+
+artifacts:
+  - chapters/chapter04/files/bell.py
+  - chapters/chapter04/files/01_bell.py
+  - chapters/chapter04/files/02_expectations.py
+  - chapters/chapter04/files/03_chsh.py
+  - chapters/chapter04/files/04_hardware.py
+  - chapters/chapter04/files/05_local_model.py
+  - chapters/chapter04/files/run_ex4.py
+  - chapters/chapter04/files/exercises/ex1_signs.py
+  - chapters/chapter04/files/exercises/ex2_sweep.py
+  - chapters/chapter04/files/exercises/ex3_margin.py
+  - chapters/chapter04/files/exercises/ex4_visibility.py
+  - chapters/chapter04/files/exercises/report_core.py
+  - chapters/chapter04/files/exercises/report_render.py
+  - chapters/chapter04/files/exercises/ex5_report.py
+  - chapters/chapter04/files/exercises/selfcheck.py
+  - chapters/chapter04/files/exercises/run_exercises.py
+
+gates:
+  harness: "python3 chapters/chapter04/files/run_ex4.py"
+  harness_expected: "49/49 checks passed"
+  exercises: "python3 chapters/chapter04/files/exercises/run_exercises.py"
+  exercises_expected: "53/53 exercise checks passed"
+
+words: { target: 17000, floor: 14000 }
+
+api_surface:
+  bell.py: ["SETTINGS", "CLASSICAL_BOUND", "TSIRELSON_BOUND", "bell_state", "probabilities",
+            "expectation_from_probabilities", "expectation_from_counts", "chsh",
+            "predicted_expectation", "standard_error", "chsh_error", "violation_sigma", "simulate"]
+
+exercises:
+  - id: 1
+    title: "The CHSH combination with the wrong signs"
+    kind: repair
+    files: [ex1_signs.py]
+    tests: 8
+    problem: "A dashboard adds all four expectations, reports 1.414 on an ideal pair, and still looks like a violation."
+  - id: 2
+    title: "Sweep the angles and find the maximum"
+    kind: extend
+    files: [ex2_sweep.py]
+    tests: 11
+    problem: "The chapter uses 0, 90, 45, 135 without showing that they are optimal."
+  - id: 3
+    title: "The margin, in sigmas, from the recorded run"
+    kind: measure
+    files: [ex3_margin.py]
+    tests: 11
+    problem: "0.54 looks convincing until someone asks how many shots it took."
+  - id: 4
+    title: "How much noise a Bell pair tolerates"
+    kind: break
+    files: [ex4_visibility.py]
+    tests: 12
+    problem: "Below a visibility of 0.7071 no number of shots recovers a violation, because the state no longer has one."
+  - id: 5
+    title: "A report that separates data from rendering"
+    kind: integrate
+    files: [report_core.py, report_render.py, ex5_report.py]
+    tests: 13
+    problem: "The recorded counts must become a one-page verdict, testable without the file and without stdout."
+
+multi_file_exercise:
+  id: 5
+  files: [report_core.py, report_render.py, ex5_report.py]
+  why: >
+    report_core.py is pure (counts to expectations to summary), report_render.py owns
+    formatting, ex5_report.py is the wiring that reads runs/0007 and prints. The seam
+    is the summary dictionary.
+
+figures:
+  - "the four settings as two angles per qubit"
+  - "the three numbers on one axis: 2, 2.541, 2.828"
+  - "S against visibility, crossing the bound at 0.7071"
+  - "the file graph"
+
+chapter_notes: >
+  The device numbers come from runs/0007-ibm-chsh/result.json, one job with four
+  circuits at 1024 shots, submitted once and never re-run.

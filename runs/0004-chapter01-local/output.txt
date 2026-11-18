@@ -1,0 +1,20 @@
+== harness
+== the wall
+
+91/91 checks passed
+
+== exercises
+== exercise 5 (integrate)
+
+52/52 exercise checks passed
+
+== float precision
+float32 first failure at cycle 2020
+float64 first failure: None
+float64 worst drift at 200k: 1.8504864307544722e-11
+float32 drift at 2000: 9.889237117022276e-05
+
+== shots
+shots for 0.05: 385
+shots for 0.01: 9604
+wilson 5000/10000: (0.49020206181540477, 0.5097979381845952)

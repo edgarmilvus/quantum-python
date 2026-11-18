@@ -1,0 +1,129 @@
+{
+  "case": "ibm-fez-dynamic",
+  "recorded_at": "2026-11-18T11:04:27Z",
+  "provider": "ibm_quantum_platform",
+  "backend": "ibm_marrakesh",
+  "job_id": "dbuocavf8rhs73bml3rg",
+  "shots": 4096,
+  "preparations": [
+    0,
+    1
+  ],
+  "idle_us": [
+    0.0,
+    20.0
+  ],
+  "corrections": [
+    true,
+    false
+  ],
+  "transpiled_depth": 15,
+  "results": [
+    {
+      "prepared": 0,
+      "idle_us": 0.0,
+      "corrected": true,
+      "counts": {
+        "000": 3561,
+        "001": 433,
+        "010": 11,
+        "101": 4,
+        "100": 80,
+        "110": 7
+      }
+    },
+    {
+      "prepared": 0,
+      "idle_us": 0.0,
+      "corrected": false,
+      "counts": {
+        "000": 3981,
+        "001": 12,
+        "100": 91,
+        "010": 12
+      }
+    },
+    {
+      "prepared": 0,
+      "idle_us": 20.0,
+      "corrected": true,
+      "counts": {
+        "000": 3575,
+        "001": 435,
+        "100": 60,
+        "101": 9,
+        "010": 11,
+        "110": 4,
+        "011": 2
+      }
+    },
+    {
+      "prepared": 0,
+      "idle_us": 20.0,
+      "corrected": false,
+      "counts": {
+        "000": 3978,
+        "001": 15,
+        "100": 90,
+        "010": 13
+      }
+    },
+    {
+      "prepared": 1,
+      "idle_us": 0.0,
+      "corrected": true,
+      "counts": {
+        "111": 2835,
+        "011": 609,
+        "110": 441,
+        "010": 92,
+        "101": 78,
+        "100": 13,
+        "001": 27,
+        "000": 1
+      }
+    },
+    {
+      "prepared": 1,
+      "idle_us": 0.0,
+      "corrected": false,
+      "counts": {
+        "111": 3862,
+        "011": 110,
+        "101": 42,
+        "110": 80,
+        "010": 2
+      }
+    },
+    {
+      "prepared": 1,
+      "idle_us": 20.0,
+      "corrected": true,
+      "counts": {
+        "100": 46,
+        "111": 2719,
+        "110": 272,
+        "001": 196,
+        "000": 420,
+        "011": 310,
+        "010": 38,
+        "101": 95
+      }
+    },
+    {
+      "prepared": 1,
+      "idle_us": 20.0,
+      "corrected": false,
+      "counts": {
+        "111": 1527,
+        "101": 176,
+        "010": 326,
+        "011": 1534,
+        "001": 171,
+        "110": 292,
+        "100": 37,
+        "000": 33
+      }
+    }
+  ]
+}

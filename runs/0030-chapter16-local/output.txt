@@ -1,0 +1,34 @@
+== harness
+
+48/48 checks passed
+
+== exercises
+
+85/85 exercise checks passed
+
+== demos
+--- 01_code
+the code's guarantee is a count of flips, not a rate:
+  d=3 corrects 1 flip, d=5 corrects 2
+  a rate of 0.05 with n=3 gives a logical error of 0.00725
+  and with n=5, 0.00116
+--- 02_rates
+  d=7: 0.5000
+
+half the qubits flipping is the point where a majority is a coin flip, so the
+code has no threshold below it; a surface code does, because it checks both axes.
+--- 03_axes
+
+a depolarising channel has both, so a repetition code's total error has a
+minimum at some distance and grows after it; the surface code is what removes
+the minimum by checking both axes at once.
+--- 04_device
+the prepared-1 rows fall apart because T1 moves |1> to |0> and the vote sees it.
+at zero idle time the code is already working: 1.2e-3 against a physical 1.5e-2.
+
+a logical error of zero in 4096 shots is below 0.0009 at 95%
+--- 05_threshold
+code it is around one percent per operation, and this book's device sits at a
+few tenths of a percent per gate and one to three percent per readout, which is
+why a small surface code on today's hardware is a demonstration and not a
+machine.

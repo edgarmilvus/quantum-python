@@ -1,0 +1,24 @@
+{
+  "case": "ibm-grover",
+  "recorded_at": "2026-11-17T00:00:00Z",
+  "provider": "ibm_quantum_platform",
+  "backend": "ibm_fez",
+  "job_id": "dbu74k2e8crs738b5tt0",
+  "n": 3,
+  "marked": 5,
+  "marked_bits": "101",
+  "steps": 2,
+  "shots": 1024,
+  "transpiled_depth": 169,
+  "ideal_probability": 0.9453124999999959,
+  "counts": {
+    "101": 732,
+    "010": 44,
+    "110": 49,
+    "111": 36,
+    "100": 34,
+    "001": 66,
+    "011": 33,
+    "000": 30
+  }
+}

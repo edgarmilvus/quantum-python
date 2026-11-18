@@ -1,0 +1,35 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# A chapter built locally from the book's sources
+/chapters/chapter*.md
+/chapters/*.epub
+
+# Scratch copies left in the root; not part of the book
+/ex1_metric.py
+/ex2_shots.py
+/ex2_signal.py
+/ex3_floor.py
+/ex4_compare.py
+
+# Recorded runs that are large or machine-specific
+runs/**/*.log
+runs/tmp/
+
+# macOS
+.DS_Store
+
+# The author's working notes, not part of the reader's copy
+/STYLE.md
+/tools/audit_terms.py
+/chapters/chapter*/audit.md
+/chapters/chapter*/terms.txt

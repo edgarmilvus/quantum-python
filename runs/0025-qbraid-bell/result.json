@@ -1,0 +1,33 @@
+{
+  "case": "qbraid-qir-sv-bell",
+  "recorded_at": "2026-11-18T10:12:31Z",
+  "provider": "qbraid",
+  "backend": "qbraid:qbraid:sim:qir-sv",
+  "job_id": "qbraid:qbraid:sim:qir-sv-9584-qjob-6afd79fc5164ac033827603c",
+  "program": "qasm2",
+  "circuit": {
+    "name": "bell",
+    "ops": [
+      "h(0)",
+      "cx(0,1)"
+    ]
+  },
+  "shots": 1024,
+  "counts": {
+    "00": 509,
+    "11": 515
+  },
+  "derived": {
+    "p_00": 0.4971,
+    "p_11": 0.5029,
+    "p_correlated": 1.0
+  },
+  "cost_credits": 0,
+  "execution_ms": 37,
+  "notes": [
+    "First qBraid job in the book, submitted through chapter 11's own adapter: the seventh provider is the aggregator, and this run is the evidence that the interface reaches it.",
+    "A noiseless simulator, so only the two Bell outcomes appear; the point is the interface, not the physics.",
+    "Free on the free plan: estimatedCost 0, actual cost 0 credits, 30-qubit device."
+  ],
+  "backend_qubits": 30
+}

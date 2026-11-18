@@ -1,0 +1,30 @@
+== chapter11
+
+== the circuit type
+
+== the replay backend
+
+== the budget
+
+== the registry
+
+== the four failures
+
+44/44 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+48/48 exercise checks passed
+chapter11: 21 listings, byte for byte
+chapter11: 9 section headings, all preceded by a blank line
+chapter11: 14 subsections publish files, each says how to run them
+chapter11: 5 figures, all built and referenced
+chapter11: 16705 words with listings, 10370 without, floor 14000

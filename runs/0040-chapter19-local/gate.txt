@@ -1,0 +1,28 @@
+== chapter19
+
+== the task
+
+== the estimate
+
+== the readout
+
+== the report
+
+42/42 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+71/71 exercise checks passed
+chapter19: 18 listings, byte for byte
+chapter19: 9 section headings, all preceded by a blank line
+chapter19: 11 subsections publish files, each says how to run them
+chapter19: 5 figures, all built and referenced
+chapter19: 14642 words with listings, 10026 without, floor 14000

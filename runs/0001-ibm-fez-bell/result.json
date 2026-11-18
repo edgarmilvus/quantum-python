@@ -1,0 +1,31 @@
+{
+  "case": "ibm-fez-bell-1024",
+  "recorded_at": "2026-11-16T21:55:00Z",
+  "provider": "ibm_quantum_platform",
+  "instance": "open-instance",
+  "backend": "ibm_fez",
+  "backend_qubits": 156,
+  "job_id": "dbtmplrrto6s73ft23ag",
+  "program": "sampler",
+  "circuit": {
+    "name": "bell",
+    "ops": ["h(0)", "cx(0,1)"],
+    "logical_depth": 2,
+    "transpiled_depth": 8,
+    "optimization_level": 1
+  },
+  "shots": 1024,
+  "counts": { "00": 484, "01": 26, "10": 29, "11": 485 },
+  "derived": {
+    "p_00": 0.4727,
+    "p_11": 0.4736,
+    "p_correlated": 0.9463,
+    "p_anti_correlated": 0.0537,
+    "correlation_asymmetry": 0.0009
+  },
+  "notes": [
+    "First hardware run of the book; ran on the least busy of three 156-qubit devices.",
+    "Anti-correlated outcomes are treated as readout error, not as loss of entanglement.",
+    "Depth 2 -> 8 measured on heavy-hex with the ECR basis; quoted in the compilation chapter."
+  ]
+}

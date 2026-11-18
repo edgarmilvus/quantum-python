@@ -1,0 +1,34 @@
+== chapter02
+
+== tensor product
+
+== a gate on one wire
+
+== phase and interference
+
+== the Bloch vector
+
+== endianness
+
+== factorability
+
+== the cost
+
+80/80 checks passed
+
+== exercise 1 (repair)
+
+== exercise 2 (extend)
+
+== exercise 3 (measure)
+
+== exercise 4 (break)
+
+== exercise 5 (integrate)
+
+55/55 exercise checks passed
+chapter02: 20 listings, byte for byte
+chapter02: 9 section headings, all preceded by a blank line
+chapter02: 13 subsections publish files, each says how to run them
+chapter02: 5 figures, all built and referenced
+chapter02: 17353 words with listings, 10370 without, floor 14000

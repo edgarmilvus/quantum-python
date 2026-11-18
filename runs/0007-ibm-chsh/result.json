@@ -1,0 +1,59 @@
+{
+  "case": "ibm-chsh",
+  "recorded_at": "2026-11-17T00:00:00Z",
+  "provider": "ibm_quantum_platform",
+  "backend": "ibm_fez",
+  "backend_qubits": 156,
+  "job_id": "dbu60149po4c73cejq5g",
+  "shots": 1024,
+  "settings": {
+    "ab": [
+      0.0,
+      45.0
+    ],
+    "ab_prime": [
+      0.0,
+      135.0
+    ],
+    "a_prime_b": [
+      90.0,
+      45.0
+    ],
+    "a_prime_b_prime": [
+      90.0,
+      135.0
+    ]
+  },
+  "transpiled_depths": [
+    8,
+    8,
+    8,
+    8
+  ],
+  "counts": {
+    "ab": {
+      "11": 431,
+      "00": 389,
+      "01": 100,
+      "10": 104
+    },
+    "ab_prime": {
+      "00": 108,
+      "10": 422,
+      "01": 419,
+      "11": 75
+    },
+    "a_prime_b": {
+      "00": 472,
+      "11": 353,
+      "01": 104,
+      "10": 95
+    },
+    "a_prime_b_prime": {
+      "11": 424,
+      "00": 439,
+      "01": 81,
+      "10": 80
+    }
+  }
+}

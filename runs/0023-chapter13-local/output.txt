@@ -1,0 +1,39 @@
+== harness
+
+73/73 checks passed
+
+== exercises
+
+89/89 exercise checks passed
+
+== demos
+--- 01_cut
+  cut 4:  2 of 16 assignments
+
+the gap between 4 and 2.5 is what the circuit has to close, and the 12.5%
+chance of sampling an optimal assignment is what it has to raise.
+--- 02_state
+
+at beta = gamma = 0 the state is the uniform superposition:
+  expected cut 2.5000, the uniform mean 2.5
+which is the control: with no phase separator and no mixer, QAOA is guessing.
+--- 03_landscape
+
+move the same 36 points by half a step and the best is 3.0433,
+or 0.7608 of the optimum: the same budget, 5 points worse,
+because the peak fell between the grid points.
+--- 04_layers
+
+p=1 to p=2 buys +0.1547 of ratio for one extra parameter pair;
+p=3 buys +0.0328 more, and p=4 buys +0.0031.
+the last four digits cost two thousand evaluations and buy 0.3% of the answer.
+--- 05_hardware
+the noise is close to unbiased on average and still costs the peak 0.1292 of cut.
+
+approximation ratio at the best measured point: 0.7751
+the same point on the simulator: 0.8075
+--- 06_budget
+
+the last row is the argument against p=4 on hardware:
+  p=4 needs 960 circuits for 20 steps, 320 seconds of runtime,
+  and it buys 0.0032 of approximation ratio over p=3.
