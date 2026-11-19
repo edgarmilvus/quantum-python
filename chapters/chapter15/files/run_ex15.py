@@ -150,7 +150,7 @@ check(abs(classifier.rbf([(0, 0)], 1.0)[0, 0] - 1.0) < 1e-12, "an RBF of a point
 
 # -- the device ---------------------------------------------------------
 section("the device")
-record = json.loads((ROOT / "runs/0026-ibm-fez-kernel/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter15/0026-kernel-12points-57x1024-ibm/result.json").read_text())
 check(record["backend"] == "ibm_fez", "the run is on ibm_fez")
 check(len(record["results"]) == 57, "fifty-seven circuits came back")
 check(record["shots"] == 1024, "at 1,024 shots")

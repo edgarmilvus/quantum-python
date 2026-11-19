@@ -65,7 +65,7 @@ def checks(check: Callable[[bool, str], None]) -> None:
     check(result["wrong"] > 0.01, "the transposed one misses by more than one percent")
     check(result["wrong"] > 3 * result["right"], "and by more than three times as much")
 
-    bell = device.load_json(device.ROOT / "runs/0001-ibm-fez-bell/result.json")
+    bell = device.load_json(device.ROOT / "runs/chapter18/0001-bell-1024-ibm/result.json")
     right, _ = confusion.correct(bell["counts"], matrix)
     wrong = correct_transposed(bell["counts"], matrix)
     right_correlation = right["00"] + right["11"]

@@ -7,6 +7,7 @@ again, which is what makes the chapters runnable on a machine with no account.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -23,6 +24,11 @@ class Replay(Backend):
         self.provider = "replay"
         self._root = Path(root) if root else DEFAULT_ROOT
         path = self._root / case / "result.json"
+        if not path.exists() and re.fullmatch(r"\d{4}", case):
+            # A reader writes replay:0029; the folder is runs/chapter16/0029-...
+            matches = sorted(self._root.glob(f"*/{case}-*/result.json"))
+            if len(matches) == 1:
+                path = matches[0]
         if not path.exists():
             raise BackendError(f"no recorded run at {path}")
         self._record = json.loads(path.read_text())
@@ -53,7 +59,8 @@ class Replay(Backend):
         raise BackendError(f"cannot read counts shaped like {type(first).__name__}")
 
     def cases(self) -> List[str]:
-        return sorted(path.parent.name for path in self._root.glob("*/result.json"))
+        return sorted(str(path.parent.relative_to(self._root))
+                      for path in self._root.glob("*/*/result.json"))
 
     def profile(self) -> Profile:
         record = self._record

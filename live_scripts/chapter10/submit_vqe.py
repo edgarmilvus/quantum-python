@@ -1,7 +1,7 @@
 """VQE's converged circuit on a device: two tallies, one energy.
 
 Checks the circuit against the exact value before submitting.
-Writes runs/0017-ibm-vqe/result.json
+Writes runs/chapter10/0017-vqe-h2-10000-ibm/result.json
 """
 
 import json
@@ -74,7 +74,7 @@ record = {
     "depths": [c.depth() for c in isa],
     "counts": counts,
 }
-out = ROOT / "runs" / "0017-ibm-vqe"
+out = ROOT / "runs" / "chapter10/0017-vqe-h2-10000-ibm"
 out.mkdir(parents=True, exist_ok=True)
 (out / "result.json").write_text(json.dumps(record, indent=2))
 print(json.dumps(counts, indent=1), flush=True)

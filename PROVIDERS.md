@@ -44,8 +44,8 @@ without any of them; an account buys a recorded run on real hardware.
 ## Verification, once keys exist
 
 ```bash
-python3 tools/providers.py --check      # prints which providers answer
-python3 tools/providers.py --budget     # remaining free time/credits, where reported
+python3 live_scripts/check_providers.py --check      # prints which providers answer
+python3 live_scripts/check_providers.py --budget     # remaining free time/credits, where reported
 ```
 
 Nothing in the book's gates calls this. It exists so a reader can see what

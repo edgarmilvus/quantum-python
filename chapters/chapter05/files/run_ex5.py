@@ -131,7 +131,7 @@ else:
 # -- correction ---------------------------------------------------------
 section("correcting the CHSH data")
 inverse = invert(matrix)
-chsh = json.loads((ROOT / "runs/0007-ibm-chsh/result.json").read_text())
+chsh = json.loads((ROOT / "runs/chapter04/0007-chsh-1024-ibm/result.json").read_text())
 values = calibrate.corrected_chsh(chsh["counts"], inverse)
 
 check(abs(calibrate.chsh_from(values, "raw") - 2.541) < 0.01, "the raw S is 2.541")

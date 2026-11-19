@@ -5,7 +5,7 @@ the postselected one, three for the uncorrected control, and four calibration ci
 The prepared state is theta = pi/3, phi = pi/4, whose Bloch vector has all three
 components non-zero, so the tomography cannot pass by accident.
 
-Run: python3 tools/run_teleport.py
+Run: python3 live_scripts/chapter20/submit_teleport.py
 """
 
 from __future__ import annotations
@@ -19,8 +19,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from qiskit import transpile
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs/0042-ibm-fez-teleport"
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "runs/chapter20/0042-teleport-pi3-pi4-2048-ibm"
 SHOTS = 2048
 THETA = 3.141592653589793 / 3
 PHI = 3.141592653589793 / 4

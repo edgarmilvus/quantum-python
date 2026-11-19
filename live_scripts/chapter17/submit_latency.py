@@ -1,6 +1,6 @@
 """Submit the chapter 17 latency probe: the conditional with and without its gate.
 
-Run: python3 tools/run_latency.py
+Run: python3 live_scripts/chapter17/submit_latency.py
 
 Three circuits on a clean |111>: no conditional, a conditional that applies an
 identity, and the real correction. The middle one isolates the cost of the
@@ -18,8 +18,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from qiskit import ClassicalRegister, QuantumCircuit, QuantumRegister, transpile
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs/0033-ibm-fez-latency"
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "runs/chapter17/0033-latency-conditional-4096-ibm"
 SHOTS = 4096
 MODES = ("none", "noop", "correct")
 

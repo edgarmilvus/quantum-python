@@ -36,7 +36,7 @@ def wilson(count: int, shots: int, z: float = Z95) -> Tuple[float, float]:
 
 
 def load() -> dict:
-    return json.loads((ROOT / "runs/0013-ibm-grover/result.json").read_text())
+    return json.loads((ROOT / "runs/chapter07/0013-grover-3qubits-1024-ibm/result.json").read_text())
 
 
 def quality(counts: Dict[str, int], marked: str) -> Dict[str, float]:

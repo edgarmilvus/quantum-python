@@ -18,7 +18,7 @@ S_IDEAL = 2 * math.sqrt(2)
 ROOT = Path(__file__).resolve().parents[3]
 
 matrix = device.readout_from_record().matrix()
-record = json.loads((ROOT / "runs/0007-ibm-chsh/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter04/0007-chsh-1024-ibm/result.json").read_text())
 correlators = {
     name: confusion.correlation(confusion.correct(counts, matrix)[0])
     for name, counts in record["counts"].items()

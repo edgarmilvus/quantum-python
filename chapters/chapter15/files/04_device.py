@@ -2,7 +2,7 @@
 
 Run: python3 chapters/chapter15/files/04_device.py
 
-Reads runs/0026-ibm-fez-kernel/result.json: 57 circuits, depth 66, 1024 shots.
+Reads runs/chapter15/0026-kernel-12points-57x1024-ibm/result.json: 57 circuits, depth 66, 1024 shots.
 The self-overlap comes back at 0.983, the off-diagonal entries correlate 0.58 with
 the exact ones, and one pair collapses from 0.49 to 0.000. That last error is not
 noise, so a larger ridge penalty makes the classifier worse instead of better.
@@ -16,7 +16,7 @@ import numpy as np
 from qml import classifier, featuremap as fm, kernel
 
 ROOT = pathlib.Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0026-ibm-fez-kernel/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter15/0026-kernel-12points-57x1024-ibm/result.json").read_text())
 points = [tuple(point) for point in record["points"]]
 labels = record["labels"]
 train, test = record["train"], record["test"]

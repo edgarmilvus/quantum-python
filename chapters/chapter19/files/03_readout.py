@@ -9,7 +9,7 @@ rates per qubit, builds the matrix, inverts it, and moves the peak of the BV run
 
 from pipe import run, spec
 
-record = run.load("0039-ibm-fez-pipeline")
+record = run.load("chapter19/0039-bv-1011-pipeline-2048-ibm")
 model = run.readout(record)
 print(model.report())
 print(f"the matrix is 16 by 16, tensored from four 2 by 2 models, "

@@ -2,7 +2,7 @@
 
 Run: python3 chapters/chapter07/files/04_hardware.py
 
-Reads runs/0013-ibm-grover/result.json.
+Reads runs/chapter07/0013-grover-3qubits-1024-ibm/result.json.
 """
 
 import json
@@ -11,7 +11,7 @@ from pathlib import Path
 import grover
 
 ROOT = Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0013-ibm-grover/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter07/0013-grover-3qubits-1024-ibm/result.json").read_text())
 
 counts = record["counts"]
 total = sum(counts.values())

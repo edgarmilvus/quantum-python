@@ -39,7 +39,7 @@ def loop(backends, circuit, shots) -> Dict[str, int]:
 
 def checks(check: Callable[[bool, str], None]) -> None:
     circuit = p.Circuit(2).add("h", 0).add("cx", 0, 1)
-    replay = p.Replay("0001-ibm-fez-bell")
+    replay = p.Replay("chapter18/0001-bell-1024-ibm")
     check(loop([replay], circuit, 64) == {"replay": 1024}, "the loop works on a replay")
 
     specs = dict(p.SPECS)

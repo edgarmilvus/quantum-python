@@ -1,7 +1,7 @@
 """Grover on three qubits, two iterations, one marked item.
 
 Checks the circuit against the analytic success probability before submitting.
-Writes runs/0013-ibm-grover/result.json.
+Writes runs/chapter07/0013-grover-3qubits-1024-ibm/result.json.
 """
 
 import json
@@ -92,7 +92,7 @@ record = {
     "ideal_probability": expected,
     "counts": counts,
 }
-out = ROOT / "runs" / "0013-ibm-grover"
+out = ROOT / "runs" / "chapter07/0013-grover-3qubits-1024-ibm"
 out.mkdir(parents=True, exist_ok=True)
 (out / "result.json").write_text(json.dumps(record, indent=2))
 print(json.dumps(dict(sorted(counts.items(), key=lambda kv: -kv[1])), indent=1), flush=True)

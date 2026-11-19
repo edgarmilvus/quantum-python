@@ -1,6 +1,6 @@
 """Submit the four CHSH settings to IBM Quantum and record the counts.
 
-One job, four circuits, 1024 shots each. Writes runs/0007-ibm-chsh/result.json.
+One job, four circuits, 1024 shots each. Writes runs/chapter04/0007-chsh-1024-ibm/result.json.
 """
 
 import json
@@ -67,7 +67,7 @@ record = {
     "transpiled_depths": depths,
     "counts": raw,
 }
-out = ROOT / "runs" / "0007-ibm-chsh"
+out = ROOT / "runs" / "chapter04/0007-chsh-1024-ibm"
 out.mkdir(parents=True, exist_ok=True)
 (out / "result.json").write_text(json.dumps(record, indent=2))
 

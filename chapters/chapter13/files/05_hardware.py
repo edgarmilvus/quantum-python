@@ -2,7 +2,7 @@
 
 Run: python3 chapters/chapter13/files/05_hardware.py
 
-Reads runs/0022-ibm-fez-qaoa/result.json, one job of 36 circuits at 1,024 shots
+Reads runs/chapter13/0022-qaoa-maxcut4-36x1024-ibm/result.json, one job of 36 circuits at 1,024 shots
 each. The question is not whether the device found the optimum; it is whether the
 surface it returned has the same shape as the simulated one. It does, to four
 decimals of correlation, and it is flatter.
@@ -16,7 +16,7 @@ import numpy as np
 from qaoa import graph as g, qaoa
 
 ROOT = Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0022-ibm-fez-qaoa/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter13/0022-qaoa-maxcut4-36x1024-ibm/result.json").read_text())
 instance = g.Graph(n=record["graph"]["n"], edges=tuple(tuple(edge) for edge in record["graph"]["edges"]))
 optimum, _ = instance.max_cut()
 

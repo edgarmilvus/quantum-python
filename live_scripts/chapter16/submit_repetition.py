@@ -5,7 +5,7 @@ logical X layers: an even number returns the codeword, so the only thing a depth
 adds is gate error. The measurement is the codeword, and the majority vote is the
 decoding.
 
-Run: python3 tools/run_repetition.py
+Run: python3 live_scripts/chapter16/submit_repetition.py
 """
 
 from __future__ import annotations
@@ -19,8 +19,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from qiskit import QuantumCircuit, transpile
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs/0028-ibm-fez-repetition"
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "runs/chapter16/0028-repetition-d3-d5-4096-ibm"
 SHOTS = 4096
 DISTANCES = (3, 5)
 PREPARATIONS = (0, 1)

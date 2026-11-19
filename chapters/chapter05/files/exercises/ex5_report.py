@@ -24,15 +24,15 @@ def load_run(name: str) -> dict:
 
 
 def report() -> str:
-    calibration = load_run("0009-ibm-readout")
-    chsh = load_run("0007-ibm-chsh")
+    calibration = load_run("chapter12/0009-readout-4circuits-4096-ibm")
+    chsh = load_run("chapter04/0007-chsh-1024-ibm")
     result = summary(calibration["counts"], calibration["preparations"], chsh["counts"])
     return render(rows(result))
 
 
 def checks(check: Callable[[bool, str], None]) -> None:
-    calibration = load_run("0009-ibm-readout")
-    chsh = load_run("0007-ibm-chsh")
+    calibration = load_run("chapter12/0009-readout-4circuits-4096-ibm")
+    chsh = load_run("chapter04/0007-chsh-1024-ibm")
     result = summary(calibration["counts"], calibration["preparations"], chsh["counts"])
 
     check(abs(result["readout_error"] - 0.0434) < 0.001, "the readout error is 4.3%")

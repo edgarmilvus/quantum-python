@@ -22,7 +22,7 @@ ROOT = _pathlib.Path(__file__).resolve().parents[4]
 
 
 def load_counts(path: _pathlib.Path | None = None) -> Dict[str, Dict[str, int]]:
-    target = path or (ROOT / "runs/0007-ibm-chsh/result.json")
+    target = path or (ROOT / "runs/chapter04/0007-chsh-1024-ibm/result.json")
     record = json.loads(_pathlib.Path(target).read_text())
     return record["counts"]
 

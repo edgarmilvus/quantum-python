@@ -52,7 +52,9 @@ commit as the program.
 
 ## Conventions
 
-- One directory per case: `runs/NNNN-<provider>-<case>/`.
+- One directory per experiment: `runs/chapterNN/<NNNN>-<name>/`. The four digits
+  are the stable citation the prose uses; the rest of the name says what ran and at how
+  many shots.
 - `result.json` holds the raw counts and the metadata needed to re-read them:
   provider, backend, job id, shots, circuit depth before and after transpilation.
 - `derived` holds only arithmetic done on `counts`, so a reader can recompute it.

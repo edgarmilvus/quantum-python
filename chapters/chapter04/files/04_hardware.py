@@ -2,7 +2,7 @@
 
 Run: python3 chapters/chapter04/files/04_hardware.py
 
-Reads runs/0007-ibm-chsh/result.json. No network, no new spend.
+Reads runs/chapter04/0007-chsh-1024-ibm/result.json. No network, no new spend.
 """
 
 import json
@@ -11,7 +11,7 @@ from pathlib import Path
 import bell
 
 ROOT = Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0007-ibm-chsh/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter04/0007-chsh-1024-ibm/result.json").read_text())
 
 print(f"backend: {record['backend']}, job {record['job_id']}")
 print(f"shots per setting: {record['shots']}")

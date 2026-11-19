@@ -3,7 +3,7 @@
 Four circuits prepare 00, 01, 10, 11 and measure immediately. 4096 shots each give the
 2-qubit confusion matrix, which is what a correction needs.
 
-Writes runs/0009-ibm-readout/result.json
+Writes runs/chapter12/0009-readout-4circuits-4096-ibm/result.json
 """
 
 import json
@@ -60,7 +60,7 @@ record = {
     "preparations": {k: v for k, v in PREPARATIONS.items()},
     "counts": counts,
 }
-out = ROOT / "runs" / "0009-ibm-readout"
+out = ROOT / "runs" / "chapter12/0009-readout-4circuits-4096-ibm"
 out.mkdir(parents=True, exist_ok=True)
 (out / "result.json").write_text(json.dumps(record, indent=2))
 print(json.dumps(counts, indent=1), flush=True)

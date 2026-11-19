@@ -99,12 +99,13 @@ python3 05_report.py
 ## Live run
 
 Chapters 11 to 20 were recorded against real providers, and the records live under
-`runs/`. Two different things can spend a job, and they are guarded differently:
+`runs/chapterNN/<id>-<name>/`. Two different things can spend a job, and they are guarded
+differently:
 
 - **the chapter 11 interface** — `providers/registry.py` refuses to submit unless
   `QUANTUM_LIVE=1`, and its budget guard enforces `QUANTUM_MAX_SPEND_USD` (five dollars by
   default). The chapter's demos go through it.
-- **the recorders in `tools/`** — `run_pipeline.py`, `run_teleport.py`, `run_qaoa.py` and
+- **the submit scripts under `live_scripts/`** — `submit_bv.py`, `submit_teleport.py` and
   the rest submit as soon as they are invoked. They read the keys from `.env` and do not
   check `QUANTUM_LIVE`; run them one at a time, on purpose.
 
@@ -122,30 +123,33 @@ cp .env.example .env
 | `QUANTUM_LIVE` | chapter 11 | `1` allows a submission through the interface; `0` replays |
 | `QUANTUM_MAX_SPEND_USD` | chapter 11 | the interface's ceiling, five dollars by default |
 
-The recorders, with the job each one submits and what it costs in QPU time (one second of
-runtime is roughly 3,000 shots):
+The submit scripts, with the job each one sends and what it costs in QPU time (one second
+of runtime is roughly 3,000 shots):
 
-| recorder | re-records | job | QPU |
+| script | re-records | job | QPU |
 | --- | --- | --- | --- |
-| `hello_ibm.py` | a smoke test | 1 × 1,024 | < 1 s |
-| `run_bv.py` | chapter 6 | 1 × 1,024 | < 1 s |
-| `run_chsh.py` | chapter 4 | 4 × 1,024 | ~1.5 s |
-| `run_grover.py` | chapter 7 | 1 × 1,024 | < 1 s |
-| `run_vqe.py` | chapter 10 | 2 × 10,000 | ~7 s |
-| `run_qaoa.py` | chapter 13 | 36 × 1,024 | ~12 s |
-| `run_kernel.py` | chapter 15 | 57 × 1,024 | ~19 s |
-| `run_repetition.py` | chapter 16 | 12 × 4,096 | ~16 s |
-| `run_idle.py` | chapter 16 | 12 × 4,096 | ~16 s |
-| `run_dynamic.py` | chapter 17 | 8 × 4,096 | ~11 s |
-| `run_inject.py` | chapter 17 | 6 × 4,096 | ~8 s |
-| `run_latency.py` | chapter 17 | 3 × 4,096 | ~4 s |
-| `run_syn.py` | chapter 17 | 2 × 8,192 | ~5 s |
-| `run_benchmark.py` | chapter 18 | 2 × 4,096, plus qBraid | ~3 s |
-| `run_pipeline.py` | chapter 19 | 6 × 2,048 | ~4 s |
-| `run_teleport.py` | chapter 20 | 13 × 2,048 | ~9 s |
+| `live_scripts/hello_ibm.py` | a smoke test | 1 × 1,024 | < 1 s |
+| `live_scripts/hello_ionq.py` | a smoke test | 1 × 1,024 | free |
+| `live_scripts/hello_qi.py` | a smoke test | 1 × 1,024 | free |
+| `live_scripts/chapter04/submit_chsh.py` | chapter 4 | 4 × 1,024 | ~1.5 s |
+| `live_scripts/chapter06/submit_bv.py` | chapter 6 | 1 × 1,024 | < 1 s |
+| `live_scripts/chapter07/submit_grover.py` | chapter 7 | 1 × 1,024 | < 1 s |
+| `live_scripts/chapter10/submit_vqe.py` | chapter 10 | 2 × 10,000 | ~7 s |
+| `live_scripts/chapter12/submit_readout.py` | chapter 12 | 4 × 4,096 | ~5 s |
+| `live_scripts/chapter13/submit_qaoa.py` | chapter 13 | 36 × 1,024 | ~12 s |
+| `live_scripts/chapter15/submit_kernel.py` | chapter 15 | 57 × 1,024 | ~19 s |
+| `live_scripts/chapter16/submit_repetition.py` | chapter 16 | 12 × 4,096 | ~16 s |
+| `live_scripts/chapter16/submit_idle.py` | chapter 16 | 12 × 4,096 | ~16 s |
+| `live_scripts/chapter17/submit_dynamic.py` | chapter 17 | 8 × 4,096 | ~11 s |
+| `live_scripts/chapter17/submit_inject.py` | chapter 17 | 6 × 4,096 | ~8 s |
+| `live_scripts/chapter17/submit_latency.py` | chapter 17 | 3 × 4,096 | ~4 s |
+| `live_scripts/chapter17/submit_syndrome.py` | chapter 17 | 2 × 8,192 | ~5 s |
+| `live_scripts/chapter18/submit_ghz.py` | chapter 18 | 2 × 4,096, plus qBraid | ~3 s |
+| `live_scripts/chapter19/submit_bv_pipeline.py` | chapter 19 | 6 × 2,048 | ~4 s |
+| `live_scripts/chapter20/submit_teleport.py` | chapter 20 | 13 × 2,048 | ~9 s |
 
-A full pass is about two minutes of QPU and half an hour to an hour of wall clock, almost
-all of it in the queue. Each recorder **overwrites** `runs/<case>/result.json`; the
+A full pass is about two minutes of QPU and thirty to sixty minutes of wall clock, almost
+all of it in the queue. Each script **overwrites** its record under `runs/chapterNN/`; the
 harnesses assert the recorded numbers, so after an experiment either restore the tree with
 `git checkout -- runs/` or work in a second clone.
 
@@ -184,12 +188,11 @@ book shows `chapters/chapter20/...`; that is the only difference.
 ```
 chapters/chapterNN/
   spec.yaml                 the contract: floor, gate counts, artifacts, exercises
-  words.txt                 the chapter's length, recorded when the book was built
   files/                    the listings, the demos, the harness
   files/exercises/          the five exercises, their checks and the runner
-runs/NNNN-<case>/           one recorded run: result.json or gate/output
+runs/chapterNN/<id>-<name>/  one recorded experiment: result.json or gate/output
 runs/INDEX.md               the one row every run has
-tools/                      provider check, hello scripts, the recorded-run scripts
+live_scripts/               provider check, hello scripts, one folder per chapter
 run_offline.sh              the suite, POSIX shell
 run_offline.py              the same suite, shell-free
 requirements.txt            the pinned stack

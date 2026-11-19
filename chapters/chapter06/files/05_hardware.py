@@ -2,14 +2,14 @@
 
 Run: python3 chapters/chapter06/files/05_hardware.py
 
-Reads runs/0011-ibm-bv/result.json: one job, one circuit, 1024 shots.
+Reads runs/chapter06/0011-bv-1011-1024-ibm/result.json: one job, one circuit, 1024 shots.
 """
 
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0011-ibm-bv/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter06/0011-bv-1011-1024-ibm/result.json").read_text())
 
 counts = record["counts"]
 total = sum(counts.values())

@@ -25,7 +25,7 @@ ROOT = _pathlib.Path(__file__).resolve().parents[4]
 IDEAL = 2 * math.sqrt(2)
 
 
-def load_run(name: str = "0007-ibm-chsh") -> Dict[str, Dict[str, int]]:
+def load_run(name: str = "chapter04/0007-chsh-1024-ibm") -> Dict[str, Dict[str, int]]:
     record = json.loads((ROOT / f"runs/{name}/result.json").read_text())
     return record["counts"]
 

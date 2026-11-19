@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[3]
 
 
 def load(path: Path | None = None) -> dict:
-    target = Path(path) if path else (ROOT / "runs/0009-ibm-readout/result.json")
+    target = Path(path) if path else (ROOT / "runs/chapter12/0009-readout-4circuits-4096-ibm/result.json")
     record = json.loads(Path(target).read_text())
     if "counts" not in record or "preparations" not in record:
         raise ValueError(f"{target} is not a calibration file")

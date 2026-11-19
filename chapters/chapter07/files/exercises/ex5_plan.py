@@ -25,7 +25,7 @@ def plan_text(size: int) -> str:
 
 
 def hardware_line() -> str:
-    record = json.loads((ROOT / "runs/0013-ibm-grover/result.json").read_text())
+    record = json.loads((ROOT / "runs/chapter07/0013-grover-3qubits-1024-ibm/result.json").read_text())
     counts = record["counts"]
     total = sum(counts.values())
     hits = counts.get(record["marked_bits"], 0)

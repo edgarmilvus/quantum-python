@@ -20,8 +20,8 @@ ROOT = _pathlib.Path(__file__).resolve().parents[4]
 
 
 def rates() -> Dict[str, float]:
-    syndrome = json.loads((ROOT / "runs/0034-ibm-fez-syndrome/result.json").read_text())
-    memory = json.loads((ROOT / "runs/0031-ibm-fez-dynamic/result.json").read_text())
+    syndrome = json.loads((ROOT / "runs/chapter17/0034-syndrome-two-registers-8192-ibm/result.json").read_text())
+    memory = json.loads((ROOT / "runs/chapter17/0031-dynamic-correction-4096-ibm/result.json").read_text())
     row = next(entry for entry in syndrome["results"] if entry["prepared"] == 1)
     total = sum(row["syndromes"].values())
     false_syndrome = sum(count for key, count in row["syndromes"].items() if key != "00") / total
@@ -56,7 +56,7 @@ def checks(check: Callable[[bool, str], None]) -> None:
     check(threshold < r["false syndrome"], "a syndrome below half the data error would be comfortable")
 
     # The consequence, measured: correction on a clean codeword is worse than none.
-    memory = json.loads((ROOT / "runs/0031-ibm-fez-dynamic/result.json").read_text())
+    memory = json.loads((ROOT / "runs/chapter17/0031-dynamic-correction-4096-ibm/result.json").read_text())
     by = {(entry["prepared"], entry["idle_us"], entry["corrected"]): entry for entry in memory["results"]}
 
     def logical(entry) -> float:

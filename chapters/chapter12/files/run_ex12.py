@@ -135,14 +135,14 @@ else:
 
 # -- the recorded corrections ------------------------------------------
 section("the recorded runs")
-bell_run = json.loads((device.ROOT / "runs/0001-ibm-fez-bell/result.json").read_text())
+bell_run = json.loads((device.ROOT / "runs/chapter18/0001-bell-1024-ibm/result.json").read_text())
 bell_fixed, clipped = confusion.correct(bell_run["counts"], matrix)
 bell_raw = (bell_run["counts"]["00"] + bell_run["counts"]["11"]) / sum(bell_run["counts"].values())
 check(abs(bell_raw - 0.9463) < 1e-4, "the Bell run is 0.9463 correlated")
 check(abs(bell_fixed["00"] + bell_fixed["11"] - 0.9896) < 1e-3, "the correction takes it to 0.9896")
 check(clipped < 1e-9, "and clips nothing")
 
-chsh_run = json.loads((device.ROOT / "runs/0007-ibm-chsh/result.json").read_text())
+chsh_run = json.loads((device.ROOT / "runs/chapter04/0007-chsh-1024-ibm/result.json").read_text())
 raw_correlators = {
     name: confusion.correlation({key: value / sum(counts.values()) for key, value in counts.items()})
     for name, counts in chsh_run["counts"].items()
@@ -155,7 +155,7 @@ check(abs(confusion.chsh(raw_correlators) - 2.541) < 1e-3, "the CHSH run is 2.54
 check(abs(confusion.chsh(fixed_correlators) - 2.7815) < 1e-3, "the correction takes it to 2.7815")
 check(confusion.chsh(fixed_correlators) < 2 * math.sqrt(2), "and stays below the Tsirelson bound")
 
-grover_run = json.loads((device.ROOT / "runs/0013-ibm-grover/result.json").read_text())
+grover_run = json.loads((device.ROOT / "runs/chapter07/0013-grover-3qubits-1024-ibm/result.json").read_text())
 three = device.Readout.independent((flips[0], flips[1], flips[1]))
 grover_fixed, _ = confusion.correct(grover_run["counts"], three.matrix())
 check(abs(grover_run["counts"]["101"] / 1024 - 0.7148) < 1e-4, "Grover found the item 0.7148 of the time")

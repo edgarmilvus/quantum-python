@@ -86,7 +86,7 @@ check(estimate.estimate(task, key_present=False).allowed is False, "a missing ke
 
 # -- the readout --------------------------------------------------------
 section("the readout")
-record = run.load("0039-ibm-fez-pipeline")
+record = run.load("chapter19/0039-bv-1011-pipeline-2048-ibm")
 model = run.readout(record)
 check(len(model.p_one_given_zero) == 4, "four qubits in the model")
 check(abs(model.p_one_given_zero[3] - 0.0488) < 0.01, "qubit 3 misreads a zero 4.9% of the time")

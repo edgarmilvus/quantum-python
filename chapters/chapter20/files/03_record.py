@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from teleport import Calibration, Prepared
 
 ROOT = Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0042-ibm-fez-teleport/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter20/0042-teleport-pi3-pi4-2048-ibm/result.json").read_text())
 
 print(f"{record['backend']}, job {record['job_id']}, {record['shots']} shots, depth {record['transpiled_depth']}")
 prepared = Prepared(record["prepared"]["theta"], record["prepared"]["phi"])

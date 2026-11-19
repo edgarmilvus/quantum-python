@@ -2,8 +2,8 @@
 """Show which providers answer, without spending anything.
 
 Usage:
-  python3 tools/providers.py --check    # who is reachable
-  python3 tools/providers.py --budget   # remaining free allowance, where reported
+  python3 live_scripts/check_providers.py --check    # who is reachable
+  python3 live_scripts/check_providers.py --budget   # remaining free allowance, where reported
 
 No secrets are printed: only lengths, backend names and status codes.
 """

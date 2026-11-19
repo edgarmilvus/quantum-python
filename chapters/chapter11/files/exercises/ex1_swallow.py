@@ -71,7 +71,7 @@ def checks(check: Callable[[bool, str], None]) -> None:
     else:
         check(False, "the repair propagates the provider's words")
 
-    replay = p.Replay("0001-ibm-fez-bell")
+    replay = p.Replay("chapter18/0001-bell-1024-ibm")
     check(propagate(replay, circuit, 100).shots > 0, "the repair still returns real results")
 
     check(empty.job.shots == 0, "the defect's job claims zero shots")

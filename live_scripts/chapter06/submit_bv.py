@@ -1,6 +1,6 @@
 """Bernstein-Vazirani with a three-bit secret on a real device.
 
-Writes runs/0011-ibm-bv/result.json. One job, one circuit, 1024 shots.
+Writes runs/chapter06/0011-bv-1011-1024-ibm/result.json. One job, one circuit, 1024 shots.
 """
 
 import json
@@ -70,7 +70,7 @@ record = {
     "transpiled_depth": isa.depth(),
     "counts": counts,
 }
-out = ROOT / "runs" / "0011-ibm-bv"
+out = ROOT / "runs" / "chapter06/0011-bv-1011-1024-ibm"
 out.mkdir(parents=True, exist_ok=True)
 (out / "result.json").write_text(json.dumps(record, indent=2))
 print(json.dumps(counts, indent=1), flush=True)

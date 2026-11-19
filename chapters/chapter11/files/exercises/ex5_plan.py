@@ -17,7 +17,7 @@ import providers as p
 from plan_core import summarise
 from plan_render import render
 
-CASES = ("0001-ibm-fez-bell", "0011-ibm-bv", "0013-ibm-grover")
+CASES = ("chapter18/0001-bell-1024-ibm", "chapter06/0011-bv-1011-1024-ibm", "chapter07/0013-grover-3qubits-1024-ibm")
 
 
 def report(case: str, circuit: p.Circuit, expected: str) -> str:
@@ -29,18 +29,18 @@ def report(case: str, circuit: p.Circuit, expected: str) -> str:
 
 def checks(check: Callable[[bool, str], None]) -> None:
     bell = p.Circuit(2).add("h", 0).add("cx", 0, 1)
-    text = report("0001-ibm-fez-bell", bell, "00")
-    check("0001-ibm-fez-bell" in text, "the title names the case")
+    text = report("chapter18/0001-bell-1024-ibm", bell, "00")
+    check("chapter18/0001-bell-1024-ibm" in text, "the title names the case")
     check("dbm" not in text.lower(), "no placeholder text survives")
 
-    backend = p.Replay("0001-ibm-fez-bell")
+    backend = p.Replay("chapter18/0001-bell-1024-ibm")
     result = backend.result(backend.submit(bell, 1024))
     summary = summarise(result, "00")
     check(summary["shots"] == 1024, "the summary counts the shots")
     check(summary["top"] in ("00", "11"), "the top outcome is a Bell outcome")
     check(summary["frequency"] > 0.4, "with a large share")
 
-    check(report("0001-ibm-fez-bell", bell, "00") == text, "the report is deterministic")
+    check(report("chapter18/0001-bell-1024-ibm", bell, "00") == text, "the report is deterministic")
 
     for case in CASES:
         case_backend = p.Replay(case)

@@ -3,10 +3,10 @@
 The provider ships a saved calibration of ibm_fez inside qiskit-ibm-runtime as
 the fake backend `FakeFez`. This script reads it once, transpiles the chapter's
 Grover circuit against it, and writes every gate's error rate to
-runs/0020-ibm-fez-calibration/circuit.json. The chapter then reads the file and
+runs/chapter12/0020-calibration-snapshot/circuit.json. The chapter then reads the file and
 does its own arithmetic, offline, with no Qiskit.
 
-Run: python3 tools/export_calibration.py
+Run: python3 chapters/chapter12/files/export_snapshot.py
 """
 
 from __future__ import annotations
@@ -18,8 +18,8 @@ from qiskit import QuantumCircuit
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime.fake_provider import FakeFez
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs/0020-ibm-fez-calibration"
+ROOT = Path(__file__).resolve().parents[3]
+OUT = ROOT / "runs/chapter12/0020-calibration-snapshot"
 SEED = 7
 MARKED = 5
 STEPS = 2

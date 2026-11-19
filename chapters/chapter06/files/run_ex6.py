@@ -166,7 +166,7 @@ check(right == 8, "the algorithm labels only the promised eight correctly")
 
 # -- the recorded run ---------------------------------------------------
 section("the recorded device run")
-record = json.loads((ROOT / "runs/0011-ibm-bv/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter06/0011-bv-1011-1024-ibm/result.json").read_text())
 check(record["secret_bits"] == "101", "the secret submitted was 101")
 check(record["n"] == 3, "three input bits")
 check(sum(record["counts"].values()) == 1024, "the counts add up to the shots")

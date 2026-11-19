@@ -35,7 +35,7 @@ def budget(device: dict, two_qubit_gates: int, measured_qubits: int) -> Dict[str
 
 
 def observed() -> float:
-    run = json.loads((ROOT / "runs/0001-ibm-fez-bell/result.json").read_text())
+    run = json.loads((ROOT / "runs/chapter18/0001-bell-1024-ibm/result.json").read_text())
     return float(run["derived"]["p_anti_correlated"])
 
 

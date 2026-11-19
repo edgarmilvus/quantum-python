@@ -149,7 +149,7 @@ check(abs(local_e - 0.5) < 0.05, "the local model gives about 0.5 at these angle
 
 # -- the recorded run --------------------------------------------------
 section("the recorded run")
-record = json.loads((ROOT / "runs/0007-ibm-chsh/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter04/0007-chsh-1024-ibm/result.json").read_text())
 check(record["backend"] == "ibm_fez", "the run is from ibm_fez")
 check(record["shots"] == 1024, "1024 shots per setting")
 check(len(record["counts"]) == 4, "four settings were measured")

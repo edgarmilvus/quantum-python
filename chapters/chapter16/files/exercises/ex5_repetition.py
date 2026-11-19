@@ -21,7 +21,7 @@ ROOT = _pathlib.Path(__file__).resolve().parents[4]
 
 
 def load() -> dict:
-    return json.loads((ROOT / "runs/0029-ibm-fez-idle/result.json").read_text())
+    return json.loads((ROOT / "runs/chapter16/0029-idle-0-20-60us-4096-ibm/result.json").read_text())
 
 
 def summarise_all() -> List[Dict[str, float]]:

@@ -19,7 +19,7 @@ import numpy as np
 
 from noise import confusion, device
 
-DEFECT_RECORD = "0009-ibm-readout"
+DEFECT_RECORD = "chapter12/0009-readout-4circuits-4096-ibm"
 
 
 def correct_without_renormalising(counts: Dict[str, int], matrix: np.ndarray) -> Dict[str, float]:
@@ -66,7 +66,7 @@ def checks(check: Callable[[bool, str], None]) -> None:
     )
 
     real = device.load_json(device.ROOT / f"runs/{DEFECT_RECORD}/result.json")
-    bell = device.load_json(device.ROOT / "runs/0001-ibm-fez-bell/result.json")
+    bell = device.load_json(device.ROOT / "runs/chapter18/0001-bell-1024-ibm/result.json")
     honest, honest_clipped = confusion.correct(bell["counts"], matrix)
     check(honest_clipped < 1e-9, "a well-conditioned histogram clips nothing")
     check(abs(sum(honest.values()) - 1.0) < 1e-9, "so the two functions agree there")

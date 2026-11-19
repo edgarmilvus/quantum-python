@@ -3,7 +3,7 @@
 Run: python3 chapters/chapter03/files/05_hardware.py
 
 It reads two recorded files and nothing from the network:
-  runs/0001-ibm-fez-bell/result.json   the job that ran
+  runs/chapter18/0001-bell-1024-ibm/result.json   the job that ran
   chapter03/profiles/ibm_fez.json      the device, captured before the job
 """
 
@@ -13,7 +13,7 @@ from pathlib import Path
 from profile import depth_where_prediction_crosses, load, predicted_error, summary, worst_two_qubit_error
 
 ROOT = Path(__file__).resolve().parents[3]
-run = json.loads((ROOT / "runs/0001-ibm-fez-bell/result.json").read_text())
+run = json.loads((ROOT / "runs/chapter18/0001-bell-1024-ibm/result.json").read_text())
 device = load()
 
 info = summary(device)

@@ -119,7 +119,7 @@ else:
 
 # -- the device ---------------------------------------------------------
 section("the recorded device run")
-record = json.loads((ROOT / "runs/0017-ibm-vqe/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter10/0017-vqe-h2-10000-ibm/result.json").read_text())
 check(record["theta"] == theta, "the device ran the converged angle")
 check(record["shots"] == 10_000, "ten thousand shots per basis")
 check(sum(record["counts"]["Z"].values()) == 10_000, "the Z counts add up")

@@ -4,7 +4,7 @@ One task and one calibration, in a single job: a Bernstein-Vazirani circuit with
 secret 1011 at 2,048 shots, and five circuits that prepare each qubit in |1> plus the
 all-zero state, which is what a per-qubit readout model needs.
 
-Run: python3 tools/run_pipeline.py
+Run: python3 live_scripts/chapter19/submit_bv_pipeline.py
 """
 
 from __future__ import annotations
@@ -18,8 +18,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from qiskit import ClassicalRegister, QuantumCircuit, transpile
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs/0039-ibm-fez-pipeline"
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "runs/chapter19/0039-bv-1011-pipeline-2048-ibm"
 SHOTS = 2048
 SECRET = "1011"
 

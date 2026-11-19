@@ -127,7 +127,7 @@ check(postselect(histogram, "X", correct=False)["1"] == 50, "the control flips n
 
 # -- the record ---------------------------------------------------------
 section("the record")
-record = json.loads((ROOT / "runs/0042-ibm-fez-teleport/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter20/0042-teleport-pi3-pi4-2048-ibm/result.json").read_text())
 check(record["shots"] == 2048, "2,048 shots")
 check(record["transpiled_depth"] == 18, "depth 18 after transpilation")
 check(record["backend"] == "ibm_kingston", "the backend is ibm_kingston")

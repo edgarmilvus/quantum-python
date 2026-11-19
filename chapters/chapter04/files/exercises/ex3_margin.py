@@ -20,7 +20,7 @@ ROOT = _pathlib.Path(__file__).resolve().parents[4]
 
 
 def measured() -> Dict[str, float]:
-    record = json.loads((ROOT / "runs/0007-ibm-chsh/result.json").read_text())
+    record = json.loads((ROOT / "runs/chapter04/0007-chsh-1024-ibm/result.json").read_text())
     return {name: bell.expectation_from_counts(c) for name, c in record["counts"].items()}
 
 

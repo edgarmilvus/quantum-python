@@ -16,7 +16,7 @@ import numpy as np
 from qaoa import graph as g, optimize
 
 ROOT = Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0022-ibm-fez-qaoa/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter13/0022-qaoa-maxcut4-36x1024-ibm/result.json").read_text())
 instance = g.square_with_diagonal()
 
 print("the precision the optimiser needs:")

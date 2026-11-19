@@ -4,7 +4,7 @@ A three-qubit repetition code with in-circuit syndrome extraction and a conditio
 correction. Two preparations, two idle times, and a control without the correction,
 so the run measures what feed-forward buys rather than asserting it.
 
-Run: python3 tools/run_dynamic.py
+Run: python3 live_scripts/chapter17/submit_dynamic.py
 """
 
 from __future__ import annotations
@@ -18,8 +18,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from qiskit import ClassicalRegister, QuantumCircuit, QuantumRegister, transpile
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs/0031-ibm-fez-dynamic"
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "runs/chapter17/0031-dynamic-correction-4096-ibm"
 SHOTS = 4096
 PREPARATIONS = (0, 1)
 IDLES = (0.0, 20.0)

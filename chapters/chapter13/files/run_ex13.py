@@ -179,7 +179,7 @@ for bad in (0.0, -0.1):
 
 # -- the device ---------------------------------------------------------
 section("the device")
-record = json.loads((ROOT / "runs/0022-ibm-fez-qaoa/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter13/0022-qaoa-maxcut4-36x1024-ibm/result.json").read_text())
 check(record["backend"] == "ibm_marrakesh", "the run is on ibm_marrakesh")
 check(len(record["results"]) == 36, "36 circuits came back")
 check(record["transpiled_depth"] == 76, "at depth 76")

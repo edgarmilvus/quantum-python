@@ -4,7 +4,7 @@ The same repetition code, held idle for a chosen time before the measurement. Id
 time is where T1 and T2 act, so the logical error grows with it, and the question
 is whether a larger distance buys time or only qubits.
 
-Run: python3 tools/run_idle.py
+Run: python3 live_scripts/chapter16/submit_idle.py
 """
 
 from __future__ import annotations
@@ -18,8 +18,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from qiskit import QuantumCircuit, transpile
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs/0029-ibm-fez-idle"
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "runs/chapter16/0029-idle-0-20-60us-4096-ibm"
 SHOTS = 4096
 DISTANCES = (3, 5)
 PREPARATIONS = (0, 1)

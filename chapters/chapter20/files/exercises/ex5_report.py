@@ -21,7 +21,7 @@ ROOT = _pathlib.Path(__file__).resolve().parents[4]
 
 
 def record() -> Dict:
-    path = ROOT / "runs/0042-ibm-fez-teleport/result.json"
+    path = ROOT / "runs/chapter20/0042-teleport-pi3-pi4-2048-ibm/result.json"
     return json.loads(path.read_text())
 
 

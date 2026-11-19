@@ -101,7 +101,7 @@ check(set(plain) == {"00", "11"}, "without it the pair is correlated instead")
 
 # -- the device ---------------------------------------------------------
 section("the device")
-injection = json.loads((ROOT / "runs/0032-ibm-fez-inject/result.json").read_text())
+injection = json.loads((ROOT / "runs/chapter17/0032-inject-one-flip-4096-ibm/result.json").read_text())
 check(len(injection["results"]) == 6, "six injection circuits")
 rows = {(row["flip"], row["corrected"]): row for row in injection["results"]}
 
@@ -116,7 +116,7 @@ check(abs(clean_fraction(rows[(1, False)]) - 0.010) < 0.01, "against 1.0% withou
 check(clean_fraction(rows[(0, True)]) > 0.75, "the edge qubits are restored above 75%")
 check(clean_fraction(rows[(0, False)]) < 0.05, "against below 5% without")
 
-latency = json.loads((ROOT / "runs/0033-ibm-fez-latency/result.json").read_text())
+latency = json.loads((ROOT / "runs/chapter17/0033-latency-conditional-4096-ibm/result.json").read_text())
 modes = {row["mode"]: row for row in latency["results"]}
 
 
@@ -134,14 +134,14 @@ check(abs(logical(modes["none"]) - 0.0010) < 0.001, "the control's logical error
 check(logical(modes["noop"]) < 0.002, "the conditional with an identity is free")
 check(abs(logical(modes["correct"]) - 0.0237) < 0.003, "the real correction costs 0.024")
 
-syndrome = json.loads((ROOT / "runs/0034-ibm-fez-syndrome/result.json").read_text())
+syndrome = json.loads((ROOT / "runs/chapter17/0034-syndrome-two-registers-8192-ibm/result.json").read_text())
 prepared_one = next(row for row in syndrome["results"] if row["prepared"] == 1)
 total = sum(prepared_one["syndromes"].values())
 false_rate = sum(count for key, count in prepared_one["syndromes"].items() if key != "00") / total
 check(abs(false_rate - 0.063) < 0.01, "a clean one produces a false syndrome 6.3% of the time")
 check(prepared_one["syndromes"]["00"] / total > 0.9, "and the true one 93.7%")
 
-memory = json.loads((ROOT / "runs/0031-ibm-fez-dynamic/result.json").read_text())
+memory = json.loads((ROOT / "runs/chapter17/0031-dynamic-correction-4096-ibm/result.json").read_text())
 check(len(memory["results"]) == 8, "eight memory circuits")
 memory_rows = {(row["prepared"], row["idle_us"], row["corrected"]): row for row in memory["results"]}
 check(abs(logical(memory_rows[(1, 0.0, True)]) - 0.0325) < 0.005, "correction on a clean one costs 0.0325")

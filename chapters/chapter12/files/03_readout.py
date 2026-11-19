@@ -15,7 +15,7 @@ import numpy as np
 from noise import confusion, device
 
 ROOT = Path(__file__).resolve().parents[3]
-readout_record = json.loads((ROOT / "runs/0009-ibm-readout/result.json").read_text())
+readout_record = json.loads((ROOT / "runs/chapter12/0009-readout-4circuits-4096-ibm/result.json").read_text())
 matrix = device.readout_from_record().matrix()
 
 print("the measured matrix, rows reported, columns prepared:")
@@ -33,7 +33,7 @@ print(f"  independent {[round(float(tensor[i, i]), 4) for i in range(4)]}")
 print(f"  the largest cell the independence assumption gets wrong: {confusion.independence_error(readout_record, flips):.4f}")
 print()
 
-bell = json.loads((ROOT / "runs/0001-ibm-fez-bell/result.json").read_text())
+bell = json.loads((ROOT / "runs/chapter18/0001-bell-1024-ibm/result.json").read_text())
 corrected, clipped = confusion.correct(bell["counts"], matrix)
 raw = (bell["counts"].get("00", 0) + bell["counts"].get("11", 0)) / sum(bell["counts"].values())
 fixed = corrected["00"] + corrected["11"]
@@ -41,7 +41,7 @@ print(f"Bell pair      raw {raw:.4f}   corrected {fixed:.4f}   ideal 1.0000   cl
 print(f"               the matrix explains {(fixed - raw) / (1 - raw):.1%} of the gap")
 print()
 
-chsh = json.loads((ROOT / "runs/0007-ibm-chsh/result.json").read_text())
+chsh = json.loads((ROOT / "runs/chapter04/0007-chsh-1024-ibm/result.json").read_text())
 raw_correlators = {
     name: confusion.correlation({key: value / sum(counts.values()) for key, value in counts.items()})
     for name, counts in chsh["counts"].items()
@@ -54,7 +54,7 @@ print(f"CHSH           raw {confusion.chsh(raw_correlators):.4f}   corrected {co
 print(f"               the matrix explains {(confusion.chsh(fixed_correlators) - confusion.chsh(raw_correlators)) / (2.828427 - confusion.chsh(raw_correlators)):.1%} of the gap")
 print()
 
-grover = json.loads((ROOT / "runs/0013-ibm-grover/result.json").read_text())
+grover = json.loads((ROOT / "runs/chapter07/0013-grover-3qubits-1024-ibm/result.json").read_text())
 three = device.Readout.independent((flips[0], flips[1], flips[1]))
 corrected_three, clipped_three = confusion.correct(grover["counts"], three.matrix())
 raw_peak = grover["counts"]["101"] / sum(grover["counts"].values())

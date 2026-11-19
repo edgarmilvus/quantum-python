@@ -21,13 +21,13 @@ def pipeline(task: spec.Task, case: str, seconds: float = 4.0) -> str:
 
 
 task = spec.Task(name="bv-1011", qubits=4, shots=2048, provider="ibm")
-print(pipeline(task, "0039-ibm-fez-pipeline"))
+print(pipeline(task, "chapter19/0039-bv-1011-pipeline-2048-ibm"))
 print()
-print(pipeline(spec.Task(**{**task.__dict__, "provider": "ionq"}), "0039-ibm-fez-pipeline"))
+print(pipeline(spec.Task(**{**task.__dict__, "provider": "ionq"}), "chapter19/0039-bv-1011-pipeline-2048-ibm"))
 print()
 print("the second call never reads a record: the estimate refused it first.")
 print()
-print("what the pipeline leaves on disk: runs/0039-ibm-fez-pipeline/result.json,")
+print("what the pipeline leaves on disk: runs/chapter19/0039-bv-1011-pipeline-2048-ibm/result.json,")
 print("which holds the task's counts, the five calibration circuits, the backend and")
 print("the job id. A stranger can replay it without an account, which is the last")
 print("thing the pipeline promises.")

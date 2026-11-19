@@ -32,7 +32,7 @@ if live:
     backend = p.make("ionq", target="simulator")
     source = "live, IonQ simulator"
 else:
-    backend = p.Replay("0001-ibm-fez-bell")
+    backend = p.Replay("chapter18/0001-bell-1024-ibm")
     source = "replay, run 0001 from ibm_fez"
 
 print(f"source: {source}")

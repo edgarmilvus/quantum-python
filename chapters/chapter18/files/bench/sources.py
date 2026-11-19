@@ -47,7 +47,7 @@ def quoted(provider: str, shots: int) -> float:
 
 def ibm_ghz() -> List[Row]:
     """The two GHZ circuits the IBM job returned, with the wall time of the job."""
-    record = load("0036-ibm-fez-ghz")
+    record = load("chapter18/0036-ghz-4096-ibm")
     ideal = ideal_distribution(3)
     rows = []
     for entry in record["results"]:
@@ -69,7 +69,7 @@ def ibm_ghz() -> List[Row]:
 
 def qbraid_ghz() -> Row:
     """The same circuit through qBraid's gateway to IonQ's simulator."""
-    record = load("0037-qbraid-ghz")
+    record = load("chapter18/0037-ghz-4096-qbraid")
     counts = record["results"][0]["counts"]
     return Row(
         source="qbraid, IonQ simulator",
@@ -107,9 +107,9 @@ def bell_rows() -> List[Row]:
     ideal = {"00": 0.5, "11": 0.5}
     rows = []
     for case, source, kind, wall, note in (
-        ("0001-ibm-fez-bell", "ibm_fez", "qpu", 0.0, "the book's first hardware run"),
-        ("0002-qi-qx-emulator-bell", "quantum inspire emulator", "sim", 0.0, "an exact emulator"),
-        ("0003-ionq-simulator-bell", "IonQ simulator", "sim", 0.0, "probabilities, not counts"),
+        ("chapter18/0001-bell-1024-ibm", "ibm_fez", "qpu", 0.0, "the book's first hardware run"),
+        ("chapter18/0002-bell-1024-qi", "quantum inspire emulator", "sim", 0.0, "an exact emulator"),
+        ("chapter18/0003-bell-1024-ionq", "IonQ simulator", "sim", 0.0, "probabilities, not counts"),
     ):
         record = load(case)
         if "counts" in record:

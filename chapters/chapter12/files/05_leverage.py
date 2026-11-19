@@ -17,7 +17,7 @@ import numpy as np
 from noise import device, fit
 
 ROOT = Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0020-ibm-fez-calibration/circuit.json").read_text())
+record = json.loads((ROOT / "runs/chapter12/0020-calibration-snapshot/circuit.json").read_text())
 measured_raw = 0.7148
 measured_corrected = 0.7649
 shots = 1024

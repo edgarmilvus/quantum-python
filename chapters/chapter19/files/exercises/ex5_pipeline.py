@@ -28,7 +28,7 @@ def report(provider: str = "ibm") -> str:
     plan = estimate.estimate(chosen)
     if not plan.allowed:
         return f"{chosen.name} on {provider}: refused ({plan.reason})\n"
-    record = run.load("0039-ibm-fez-pipeline")
+    record = run.load("chapter19/0039-bv-1011-pipeline-2048-ibm")
     summary = summarise(chosen, record)
     return render(summary, f"{chosen.name} on {provider}", verdict(summary))
 
@@ -39,7 +39,7 @@ def checks(check: Callable[[bool, str], None]) -> None:
     check("verdict" in text, "the table ends on a verdict")
     check("nan" not in text.lower(), "no number failed to compute")
 
-    summary = summarise(task(), run.load("0039-ibm-fez-pipeline"))
+    summary = summarise(task(), run.load("chapter19/0039-bv-1011-pipeline-2048-ibm"))
     check(abs(summary["raw"] - 0.9551) < 0.005, "the raw peak is 0.9551")
     check(abs(summary["corrected"] - 0.9880) < 0.005, "the corrected one 0.9880")
     check(abs(summary["gain"] - 0.0329) < 0.005, "a gain of 3.3 points")

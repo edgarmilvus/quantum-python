@@ -10,7 +10,7 @@ the three.
 import providers as p
 
 circuit = p.Circuit(2).add("h", 0).add("cx", 0, 1)
-replay = p.Replay("0001-ibm-fez-bell")
+replay = p.Replay("chapter18/0001-bell-1024-ibm")
 
 ledger = p.Ledger(cap_usd=150.0, live=False)
 print("a fresh ledger, live mode off, a hundred and fifty dollars of cap")

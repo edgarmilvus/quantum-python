@@ -22,7 +22,7 @@ ROOT = _pathlib.Path(__file__).resolve().parents[4]
 
 
 def rows() -> List[Dict[str, float]]:
-    record = json.loads((ROOT / "runs/0029-ibm-fez-idle/result.json").read_text())
+    record = json.loads((ROOT / "runs/chapter16/0029-idle-0-20-60us-4096-ibm/result.json").read_text())
     out = []
     for row in sim.device_table(record):
         row["predicted"] = code.logical_error_ideal(row["distance"], row["physical"])

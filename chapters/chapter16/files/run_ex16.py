@@ -97,7 +97,7 @@ check(combined > 0.01, "which is worse than the bare qubit's 0.01")
 
 # -- the device ---------------------------------------------------------
 section("the device")
-record = json.loads((ROOT / "runs/0029-ibm-fez-idle/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter16/0029-idle-0-20-60us-4096-ibm/result.json").read_text())
 rows = sim.device_table(record)
 check(record["backend"] == "ibm_marrakesh", "the run is on ibm_marrakesh")
 check(len(rows) == 12, "twelve circuits came back")

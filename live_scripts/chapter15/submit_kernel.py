@@ -4,7 +4,7 @@ The matrix needs 21 distinct training pairs and 36 train-test pairs, so one job 
 57 circuits. Each circuit prepares U(x), applies U(x')-dagger, and measures; the
 all-zero frequency estimates |<x'|x>|^2.
 
-Run: python3 tools/run_kernel.py
+Run: python3 live_scripts/chapter15/submit_kernel.py
 """
 
 from __future__ import annotations
@@ -18,8 +18,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from qiskit import QuantumCircuit, transpile
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs/0026-ibm-fez-kernel"
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "runs/chapter15/0026-kernel-12points-57x1024-ibm"
 REPS = 3
 SHOTS = 1024
 

@@ -2,7 +2,7 @@
 
 Run: python3 chapters/chapter17/files/05_budget.py
 
-Reads runs/0034-ibm-fez-syndrome, two circuits at 8,192 shots that return both the
+Reads runs/chapter17/0034-syndrome-two-registers-8192-ibm, two circuits at 8,192 shots that return both the
 syndrome and the data. A clean |111> produces a nonzero syndrome 6.3 percent of the
 time, and each false syndrome becomes a real flip. The code needs the syndrome to be
 cleaner than the data; here it is about twice as dirty.
@@ -12,8 +12,8 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[3]
-syndromes = json.loads((ROOT / "runs/0034-ibm-fez-syndrome/result.json").read_text())
-memory = json.loads((ROOT / "runs/0031-ibm-fez-dynamic/result.json").read_text())
+syndromes = json.loads((ROOT / "runs/chapter17/0034-syndrome-two-registers-8192-ibm/result.json").read_text())
+memory = json.loads((ROOT / "runs/chapter17/0031-dynamic-correction-4096-ibm/result.json").read_text())
 
 print(f"job {syndromes['job_id']} on {syndromes['backend']}, {syndromes['shots']} shots")
 print()

@@ -23,7 +23,7 @@ from plan_core import summarise, verdict
 from plan_render import render
 
 ROOT = _pathlib.Path(__file__).resolve().parents[4]
-RECORD = ROOT / "runs/0026-ibm-fez-kernel/result.json"
+RECORD = ROOT / "runs/chapter15/0026-kernel-12points-57x1024-ibm/result.json"
 
 
 def load() -> Dict[str, object]:

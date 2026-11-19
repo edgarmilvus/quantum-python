@@ -5,7 +5,7 @@ The task is a three-qubit GHZ state: H, CX, CX, measure. The ideal distribution 
 from the ideal — says how far a backend is, and the same number is comparable
 across providers that share nothing but the circuit.
 
-Run: python3 tools/run_benchmark.py
+Run: python3 live_scripts/chapter18/submit_ghz.py
 """
 
 from __future__ import annotations
@@ -21,7 +21,7 @@ import requests
 from dotenv import load_dotenv
 from qiskit import QuantumCircuit, transpile
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 SHOTS = 4096
 IDEAL = {"000": 0.5, "111": 0.5}
 
@@ -80,7 +80,7 @@ def run_ibm() -> dict:
         "transpiled_depth": max(c.depth() for c in circuits),
         "results": rows,
     }
-    out = ROOT / "runs/0036-ibm-fez-ghz"
+    out = ROOT / "runs/chapter18/0036-ghz-4096-ibm"
     out.mkdir(parents=True, exist_ok=True)
     (out / "result.json").write_text(json.dumps(record, indent=2) + "\n")
     for row in rows:
@@ -130,7 +130,7 @@ def run_qbraid() -> dict:
         "cost_credits": result["data"].get("cost", "0"),
         "results": [{"delay_us": 0.0, "counts": {str(k): int(v) for k, v in counts.items()}}],
     }
-    out = ROOT / "runs/0037-qbraid-ghz"
+    out = ROOT / "runs/chapter18/0037-ghz-4096-qbraid"
     out.mkdir(parents=True, exist_ok=True)
     (out / "result.json").write_text(json.dumps(record, indent=2) + "\n")
     print(f"  qbraid: tvd {total_variation(counts):.4f}, {elapsed:.1f} s wall")

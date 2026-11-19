@@ -1,6 +1,6 @@
 """One job with both registers returned: what syndrome does a clean codeword produce?
 
-Run: python3 tools/run_syn.py
+Run: python3 live_scripts/chapter17/submit_syndrome.py
 """
 from __future__ import annotations
 import json, os, time
@@ -9,8 +9,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from qiskit import ClassicalRegister, QuantumCircuit, QuantumRegister, transpile
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs/0034-ibm-fez-syndrome"
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "runs/chapter17/0034-syndrome-two-registers-8192-ibm"
 SHOTS = 8192
 
 

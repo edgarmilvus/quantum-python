@@ -2,7 +2,7 @@
 
 Run: python3 chapters/chapter17/files/03_inject.py
 
-Reads runs/0032-ibm-fez-inject: one X on a data qubit before the syndrome, with and
+Reads runs/chapter17/0032-inject-one-flip-4096-ibm: one X on a data qubit before the syndrome, with and
 without the conditional correction. The correction brings the codeword back 81 to
 90 percent of the time; the control brings it back 1 to 3 percent of the time.
 That is the mechanism working, measured.
@@ -12,7 +12,7 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0032-ibm-fez-inject/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter17/0032-inject-one-flip-4096-ibm/result.json").read_text())
 
 print(f"job {record['job_id']} on {record['backend']}, {record['shots']} shots")
 print()

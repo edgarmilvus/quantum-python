@@ -7,7 +7,7 @@ import providers as p
 
 circuit = p.Circuit(2).add("h", 0).add("cx", 0, 1)
 
-backend = p.Replay("0001-ibm-fez-bell")
+backend = p.Replay("chapter18/0001-bell-1024-ibm")
 print(f"backend: {backend.provider} / {backend.name}")
 profile = backend.profile()
 print(f"profile: {profile.backend}, {profile.qubits} qubits, basis {profile.basis[:4]}...")

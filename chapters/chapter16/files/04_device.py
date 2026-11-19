@@ -2,7 +2,7 @@
 
 Run: python3 chapters/chapter16/files/04_device.py
 
-Reads runs/0029-ibm-fez-idle: twelve circuits, two distances, two preparations,
+Reads runs/chapter16/0029-idle-0-20-60us-4096-ibm: twelve circuits, two distances, two preparations,
 three idle times. The binomial law takes the measured physical error and predicts
 the logical one to within ten percent, and the distance buys a factor of 2.4 at
 twenty microseconds and 1.2 at sixty.
@@ -14,7 +14,7 @@ import pathlib
 from ecc import code, sim
 
 ROOT = pathlib.Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0029-ibm-fez-idle/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter16/0029-idle-0-20-60us-4096-ibm/result.json").read_text())
 rows = sim.device_table(record)
 
 print(f"job {record['job_id']} on {record['backend']}, {len(rows)} circuits, {record['shots']} shots")

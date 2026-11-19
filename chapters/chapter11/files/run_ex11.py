@@ -57,7 +57,7 @@ else:
 
 # -- the replay ---------------------------------------------------------
 section("the replay backend")
-replay = p.Replay("0001-ibm-fez-bell")
+replay = p.Replay("chapter18/0001-bell-1024-ibm")
 job = replay.submit(BELL, 1024)
 check(job.replay is True, "the job is marked as a replay")
 check(replay.status(job) == "completed", "a replay is always finished")
@@ -69,7 +69,7 @@ profile = replay.profile()
 check(profile.backend == "ibm_fez", "the profile names the device")
 check(profile.qubits == 156, "and its width")
 
-probability_case = p.Replay("0003-ionq-simulator-bell")
+probability_case = p.Replay("chapter18/0003-bell-1024-ionq")
 probability_result = probability_case.result(probability_case.submit(BELL, 1024))
 check(set(probability_result.counts) == {"00", "11"}, "a probability record becomes two outcomes")
 check(abs(probability_result.frequency("00") - 0.5) < 1e-9, "and fifty percent on each")
@@ -177,7 +177,7 @@ finally:
         if value is not None:
             os.environ[name] = value
 
-check(p.make("replay:0001-ibm-fez-bell").provider == "replay", "the replay is built by name")
+check(p.make("replay:0001").provider == "replay", "the replay is built by name")
 # The aggregator only needs a key string to be constructed; the check below never
 # submits. A clone with no .env must still reach this line, so the harness lends
 # it one and gives the environment back afterwards.

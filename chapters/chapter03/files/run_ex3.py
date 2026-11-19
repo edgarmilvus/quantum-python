@@ -185,7 +185,7 @@ else:
 
 # -- the recorded run ----------------------------------------------------
 section("the recorded run")
-recorded = json.loads((ROOT / "runs/0001-ibm-fez-bell/result.json").read_text())
+recorded = json.loads((ROOT / "runs/chapter18/0001-bell-1024-ibm/result.json").read_text())
 check(recorded["backend"] == "ibm_fez", "the run is from the same device as the profile")
 check(recorded["circuit"]["logical_depth"] == 2, "two logical layers were written")
 check(recorded["circuit"]["transpiled_depth"] == 8, "the device ran eight layers")

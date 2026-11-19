@@ -1,6 +1,6 @@
 """Submit the chapter 17 injection test: does the feed-forward actually correct?
 
-Run: python3 tools/run_inject.py
+Run: python3 live_scripts/chapter17/submit_inject.py
 
 One X on a data qubit before the syndrome, with and without the conditional
 correction. If the mechanism works, the corrected circuit turns the flipped
@@ -21,8 +21,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from qiskit import ClassicalRegister, QuantumCircuit, QuantumRegister, transpile
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs/0032-ibm-fez-inject"
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "runs/chapter17/0032-inject-one-flip-4096-ibm"
 SHOTS = 4096
 FLIPS = (0, 1, 2)
 

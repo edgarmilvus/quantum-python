@@ -2,9 +2,9 @@
 
 Two artefacts feed this module, and both are files in runs/:
 
-- `0009-ibm-readout/result.json`, four prepared states measured on ibm_fez,
+- `chapter12/0009-readout-4circuits-4096-ibm/result.json`, four prepared states measured on ibm_fez,
   which gives the readout error of the pair the Bell and CHSH runs used;
-- `0020-ibm-fez-calibration/circuit.json`, the provider's saved calibration of
+- `chapter12/0020-calibration-snapshot/circuit.json`, the provider's saved calibration of
   ibm_fez, exported once, which gives the error of every gate in the Grover
   circuit.
 
@@ -25,8 +25,8 @@ import numpy as np
 from .states import labels
 
 ROOT = Path(__file__).resolve().parents[4]
-READOUT_RUN = ROOT / "runs/0009-ibm-readout/result.json"
-CALIBRATION_RUN = ROOT / "runs/0020-ibm-fez-calibration/circuit.json"
+READOUT_RUN = ROOT / "runs/chapter12/0009-readout-4circuits-4096-ibm/result.json"
+CALIBRATION_RUN = ROOT / "runs/chapter12/0020-calibration-snapshot/circuit.json"
 
 
 def load_json(path: Path) -> dict:

@@ -5,7 +5,7 @@ hardware experiment is not the optimisation, it is a slice of the landscape: 36
 angle pairs on a grid, one job, 1,024 shots each. The chapter then asks whether
 the slice the device returned has the same shape as the simulated one.
 
-Run: python3 tools/run_qaoa.py
+Run: python3 live_scripts/chapter13/submit_qaoa.py
 """
 
 from __future__ import annotations
@@ -20,8 +20,8 @@ import numpy as np
 from dotenv import load_dotenv
 from qiskit import QuantumCircuit, transpile
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "runs/0022-ibm-fez-qaoa"
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "runs/chapter13/0022-qaoa-maxcut4-36x1024-ibm"
 
 GRAPH = {"n": 4, "edges": [[0, 1, 1.0], [1, 2, 1.0], [2, 3, 1.0], [3, 0, 1.0], [0, 2, 1.0]]}
 SHOTS = 1024

@@ -25,7 +25,7 @@ def load(name: str) -> dict:
 
 
 def injection(flip: int = 1) -> str:
-    record = load("0032-ibm-fez-inject")
+    record = load("chapter17/0032-inject-one-flip-4096-ibm")
     by = {(row["flip"], row["corrected"]): row for row in record["results"]}
     control = summarise(by[(flip, False)]["counts"], prepared=0)
     fixed = summarise(by[(flip, True)]["counts"], prepared=0)
@@ -33,7 +33,7 @@ def injection(flip: int = 1) -> str:
 
 
 def memory() -> str:
-    record = load("0031-ibm-fez-dynamic")
+    record = load("chapter17/0031-dynamic-correction-4096-ibm")
     by = {(row["prepared"], row["idle_us"], row["corrected"]): row for row in record["results"]}
     control = summarise(by[(1, 0.0, False)]["counts"], prepared=1)
     fixed = summarise(by[(1, 0.0, True)]["counts"], prepared=1)
@@ -46,7 +46,7 @@ def checks(check: Callable[[bool, str], None]) -> None:
     check("codeword repaired, logical rate worse" in text, "the verdict separates the repair from the rate")
     check("nan" not in text.lower(), "no number failed to compute")
 
-    by = {(row["flip"], row["corrected"]): row for row in load("0032-ibm-fez-inject")["results"]}
+    by = {(row["flip"], row["corrected"]): row for row in load("chapter17/0032-inject-one-flip-4096-ibm")["results"]}
     fixed = summarise(by[(1, True)]["counts"], 0)
     control = summarise(by[(1, False)]["counts"], 0)
     check(abs(fixed["clean"] - 0.904) < 0.01, "the corrected codeword is clean 90.4% of the time")
@@ -58,7 +58,7 @@ def checks(check: Callable[[bool, str], None]) -> None:
     check("correction hurt" in text2, "and the verdict says it hurt")
 
     clean_rows = {(row["prepared"], row["idle_us"], row["corrected"]): row
-                  for row in load("0031-ibm-fez-dynamic")["results"]}
+                  for row in load("chapter17/0031-dynamic-correction-4096-ibm")["results"]}
     fixed2 = summarise(clean_rows[(1, 0.0, True)]["counts"], 1)
     control2 = summarise(clean_rows[(1, 0.0, False)]["counts"], 1)
     check(abs(fixed2["logical"] - 0.0325) < 0.005, "the corrected logical error is 0.0325")

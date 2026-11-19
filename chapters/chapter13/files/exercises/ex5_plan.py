@@ -33,7 +33,7 @@ def optimised_summary(instance: g.Graph) -> Dict[str, float]:
 
 def measured_peak(instance: g.Graph) -> float:
     """The best mean cut the recorded device run reached, on this instance."""
-    record = json.loads((ROOT / "runs/0022-ibm-fez-qaoa/result.json").read_text())
+    record = json.loads((ROOT / "runs/chapter13/0022-qaoa-maxcut4-36x1024-ibm/result.json").read_text())
     best = 0.0
     for entry in record["results"]:
         counts = {int(key, 2): value for key, value in entry["counts"].items()}

@@ -10,7 +10,7 @@ the answer.
 from pipe import run, spec
 
 task = spec.Task(name="bv-1011", qubits=4, shots=2048, provider="ibm")
-record = run.load("0039-ibm-fez-pipeline")
+record = run.load("chapter19/0039-bv-1011-pipeline-2048-ibm")
 report = run.run(record, task, seconds=4.0, usd=0.0)
 print(report.report())
 print()

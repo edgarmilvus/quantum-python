@@ -18,12 +18,12 @@ import providers as p
 
 # case: (circuits, shots per circuit, where it ran)
 RUNS = {
-    "0001-ibm-fez-bell": (1, 1024, "ibm open plan"),
-    "0007-ibm-chsh": (4, 1024, "ibm open plan"),
-    "0009-ibm-readout": (4, 4096, "ibm open plan"),
-    "0011-ibm-bv": (1, 1024, "ibm open plan"),
-    "0013-ibm-grover": (1, 1024, "ibm open plan"),
-    "0017-ibm-vqe": (2, 10_000, "ibm open plan"),
+    "chapter18/0001-bell-1024-ibm": (1, 1024, "ibm open plan"),
+    "chapter04/0007-chsh-1024-ibm": (4, 1024, "ibm open plan"),
+    "chapter12/0009-readout-4circuits-4096-ibm": (4, 4096, "ibm open plan"),
+    "chapter06/0011-bv-1011-1024-ibm": (1, 1024, "ibm open plan"),
+    "chapter07/0013-grover-3qubits-1024-ibm": (1, 1024, "ibm open plan"),
+    "chapter10/0017-vqe-h2-10000-ibm": (2, 10_000, "ibm open plan"),
 }
 
 
@@ -56,10 +56,10 @@ def checks(check: Callable[[bool, str], None]) -> None:
     check(sum(row["cost"] for row in rows) > 600, "the whole book's runs cost more than six hundred dollars on a QPU")
     check(total("ionq") < 5000, "and less than five thousand")
 
-    bell = next(row for row in rows if row["case"] == "0001-ibm-fez-bell")
+    bell = next(row for row in rows if row["case"] == "chapter18/0001-bell-1024-ibm")
     check(abs(bell["cost"] - 82.22) < 0.01, "the Bell run alone is 82.22")
 
-    vqe = next(row for row in rows if row["case"] == "0017-ibm-vqe")
+    vqe = next(row for row in rows if row["case"] == "chapter10/0017-vqe-h2-10000-ibm")
     check(abs(vqe["cost"] - 1600.6) < 1.0, "the VQE run is 1,600 dollars")
     check(vqe["cost"] > bell["cost"], "because two tallies at ten thousand shots")
 

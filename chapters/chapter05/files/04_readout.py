@@ -2,7 +2,7 @@
 
 Run: python3 chapters/chapter05/files/04_readout.py
 
-Reads runs/0009-ibm-readout (the calibration) and runs/0007-ibm-chsh (the data).
+Reads runs/chapter12/0009-readout-4circuits-4096-ibm (the calibration) and runs/chapter04/0007-chsh-1024-ibm (the data).
 """
 
 import json
@@ -30,7 +30,7 @@ print()
 print(f"average readout error: {calibrate.diagonal_error(matrix):.4f}")
 print()
 
-chsh = json.loads((ROOT / "runs/0007-ibm-chsh/result.json").read_text())
+chsh = json.loads((ROOT / "runs/chapter04/0007-chsh-1024-ibm/result.json").read_text())
 values = calibrate.corrected_chsh(chsh["counts"], inverse)
 
 print(f"{'setting':16s}{'raw E':>9s}{'corrected':>11s}{'clipped':>9s}")

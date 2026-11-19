@@ -2,7 +2,7 @@
 
 Run: python3 chapters/chapter10/files/05_hardware.py
 
-Reads runs/0017-ibm-vqe/result.json: two tallies, 10,000 shots each, theta = -0.2235.
+Reads runs/chapter10/0017-vqe-h2-10000-ibm/result.json: two tallies, 10,000 shots each, theta = -0.2235.
 """
 
 import json
@@ -12,7 +12,7 @@ import h2
 import vqe
 
 ROOT = Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0017-ibm-vqe/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter10/0017-vqe-h2-10000-ibm/result.json").read_text())
 
 # Qiskit writes the bitstring with qubit 1 first; this book puts qubit 0 first.
 z_counts = {bits[::-1]: count for bits, count in record["counts"]["Z"].items()}

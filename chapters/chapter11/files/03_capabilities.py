@@ -9,10 +9,10 @@ provider, and the differences are qubit count, basis, queue and price.
 import providers as p
 
 CASES = {
-    "ibm_fez (recorded)": "0001-ibm-fez-bell",
-    "ibm_marrakesh (recorded)": "0011-ibm-bv",
-    "IonQ simulator (recorded)": "0003-ionq-simulator-bell",
-    "Quantum Inspire emulator (recorded)": "0002-qi-qx-emulator-bell",
+    "ibm_fez (recorded)": "chapter18/0001-bell-1024-ibm",
+    "ibm_marrakesh (recorded)": "chapter06/0011-bv-1011-1024-ibm",
+    "IonQ simulator (recorded)": "chapter18/0003-bell-1024-ionq",
+    "Quantum Inspire emulator (recorded)": "chapter18/0002-bell-1024-qi",
 }
 
 print(f"{'source':34s}{'qubits':>8s}{'queue':>7s}{'basis':>8s}")

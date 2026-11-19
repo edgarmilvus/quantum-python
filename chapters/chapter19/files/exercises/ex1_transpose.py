@@ -31,7 +31,7 @@ def correct_transposed(counts: Dict[str, int], model: run.Readout) -> Dict[str, 
 
 
 def checks(check: Callable[[bool, str], None]) -> None:
-    record = run.load("0039-ibm-fez-pipeline")
+    record = run.load("chapter19/0039-bv-1011-pipeline-2048-ibm")
     model = run.readout(record)
     correct = run.correct(record["counts"], model)
     transposed = correct_transposed(record["counts"], model)

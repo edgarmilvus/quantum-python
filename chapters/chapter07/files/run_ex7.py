@@ -111,7 +111,7 @@ for bad in (0, 1):
 
 # -- the device ---------------------------------------------------------
 section("the recorded device run")
-record = json.loads((ROOT / "runs/0013-ibm-grover/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter07/0013-grover-3qubits-1024-ibm/result.json").read_text())
 counts = record["counts"]
 total = sum(counts.values())
 marked = record["marked_bits"]

@@ -2,7 +2,7 @@
 
 Run: python3 chapters/chapter17/files/04_latency.py
 
-Reads runs/0033-ibm-fez-latency: three circuits on a clean |111>, one with no
+Reads runs/chapter17/0033-latency-conditional-4096-ibm: three circuits on a clean |111>, one with no
 conditional, one whose conditionals apply an identity, and one that corrects. The
 middle circuit is free, so the cost is not the feed-forward latency; it is the
 gates the correction applies on the strength of a syndrome that is sometimes wrong.
@@ -12,7 +12,7 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[3]
-record = json.loads((ROOT / "runs/0033-ibm-fez-latency/result.json").read_text())
+record = json.loads((ROOT / "runs/chapter17/0033-latency-conditional-4096-ibm/result.json").read_text())
 
 print(f"job {record['job_id']} on {record['backend']}, {record['shots']} shots")
 print(f"{'circuit':>10s}{'clean 111':>12s}{'logical error':>15s}")
