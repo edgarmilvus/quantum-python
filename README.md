@@ -121,6 +121,32 @@ You can put them in the repository's `.env` — every script reads that file —
 | Quantum Inspire | no key: sign up at <https://compute.quantum-inspire.com/> and run `qi login` once |
 | `QUANTUM_LIVE`, `QUANTUM_MAX_SPEND_USD` | set them yourself; they are not secrets |
 
+### Quantum Inspire, once per machine
+
+Quantum Inspire does not use an API key. It authenticates once with a device code and
+stores the token in `~/.quantuminspire/config.json`:
+
+```bash
+qi logout
+qi login
+```
+
+The command prints a URL and a code such as `RWXD-CGJS`. The browser opens the
+confirmation page: check that the code on the page is the same one the terminal printed,
+then click **Confirm**. The terminal answers `Login successful! Using member ID ...`. If
+the browser does not open, copy the URL the command printed.
+
+If the login fails with `403` and `invalid_grant` — `Unknown or invalid refresh token` —
+the stored token is stale. Force a new one:
+
+```bash
+qi login --force --override-auth-config
+```
+
+or move `~/.quantuminspire/config.json` aside and run `qi login` again. `qi backends` shows
+the devices and their status once the login works; with the Tuna machines offline, the QX
+emulator is the one that answers, and `python live_scripts/hello_qi.py` prints its counts.
+
 Then run these, in this order. Each one submits a job and writes its record under
 `runs/chapterNN/`.
 
