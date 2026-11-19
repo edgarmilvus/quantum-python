@@ -93,8 +93,9 @@ CHECKS = {
 
 
 def main() -> None:
-    if len(sys.argv) != 2 or sys.argv[1] not in ("--check", "--budget"):
-        raise SystemExit("usage: providers.py --check | --budget")
+    args = sys.argv[1:] or ["--check"]
+    if len(args) != 1 or args[0] not in ("--check", "--budget"):
+        raise SystemExit("usage: check_providers.py [--check | --budget]")
     width = max(len(name) for name in CHECKS)
     for name, fn in CHECKS.items():
         try:

@@ -125,7 +125,7 @@ Then run these, in this order. Each one submits a job and writes its record unde
 `runs/chapterNN/`.
 
 ```bash
-python3 live_scripts/check_providers.py        # who answers; submits nothing
+python3 live_scripts/check_providers.py --check        # who answers; submits nothing
 
 python3 live_scripts/hello_ibm.py              # IBM smoke test, 1 x 1,024
 python3 live_scripts/hello_ionq.py             # IonQ simulator, free
@@ -188,7 +188,7 @@ $env:QUANTUM_MAX_SPEND_USD = "5"
 Then the live runs, in the same order as the section above:
 
 ```powershell
-.venv\Scripts\python live_scripts\check_providers.py
+.venv\Scripts\python live_scripts\check_providers.py --check
 .venv\Scripts\python live_scripts\hello_ibm.py
 .venv\Scripts\python live_scripts\hello_ionq.py
 .venv\Scripts\python live_scripts\hello_qi.py
