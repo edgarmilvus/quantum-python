@@ -119,8 +119,8 @@ figures:
   - "the decision the table supports"
 
 runs:
-  - "runs/0036-ibm-fez-ghz/result.json (2 circuits, 4 s runtime, 160 s wall)"
-  - "runs/0037-qbraid-ghz/result.json (1 circuit, 0 credits, 11.6 s)"
+  - "runs/chapter18/0036-ghz-4096-ibm/result.json (2 circuits, 4 s runtime, 160 s wall)"
+  - "runs/chapter18/0037-ghz-4096-qbraid/result.json (1 circuit, 0 credits, 11.6 s)"
 
 chapter_notes: >
   The GHZ run is the chapter's new evidence; the Bell rows are the book's first three

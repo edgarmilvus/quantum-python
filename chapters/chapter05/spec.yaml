@@ -118,5 +118,5 @@ figures:
   - "S before and after correction, against the two bounds"
 
 chapter_notes: >
-  The calibration is runs/0009-ibm-readout, four preparations at 4096 shots. The data
-  corrected is runs/0007-ibm-chsh. Both are recorded once and never re-run.
+  The calibration is runs/chapter12/0009-readout-4circuits-4096-ibm, four preparations at 4096 shots. The data
+  corrected is runs/chapter04/0007-chsh-1024-ibm. Both are recorded once and never re-run.

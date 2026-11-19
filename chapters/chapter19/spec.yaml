@@ -122,7 +122,7 @@ figures:
   - "the record's fields"
 
 runs:
-  - "runs/0039-ibm-fez-pipeline/result.json (1 BV circuit + 5 calibration, 4 s)"
+  - "runs/chapter19/0039-bv-1011-pipeline-2048-ibm/result.json (1 BV circuit + 5 calibration, 4 s)"
 
 chapter_notes: >
   The BV run is the chapter's evidence: 2,048 shots on ibm_fez, raw peak 0.9551,

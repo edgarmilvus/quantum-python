@@ -124,7 +124,7 @@ figures:
   - "the circuits against the points"
 
 runs:
-  - "runs/0026-ibm-fez-kernel/result.json (57 circuits, one job, 17 seconds)"
+  - "runs/chapter15/0026-kernel-12points-57x1024-ibm/result.json (57 circuits, one job, 17 seconds)"
 
 chapter_notes: >
   The device numbers come from one job of 57 circuits on ibm_fez at 1,024 shots, depth 66.

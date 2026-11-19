@@ -121,6 +121,6 @@ figures:
   - "query counts, classical against quantum, for the two problems"
 
 chapter_notes: >
-  The device run is runs/0011-ibm-bv: one circuit, 1024 shots, ibm_marrakesh, secret 101.
+  The device run is runs/chapter06/0011-bv-1011-1024-ibm: one circuit, 1024 shots, ibm_marrakesh, secret 101.
   The first submission of that circuit returned zeros because the X on the output qubit was
   missing; the record kept is the corrected one.

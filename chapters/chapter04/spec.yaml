@@ -118,5 +118,5 @@ figures:
   - "the file graph"
 
 chapter_notes: >
-  The device numbers come from runs/0007-ibm-chsh/result.json, one job with four
+  The device numbers come from runs/chapter04/0007-chsh-1024-ibm/result.json, one job with four
   circuits at 1024 shots, submitted once and never re-run.

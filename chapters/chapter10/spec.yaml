@@ -121,6 +121,6 @@ figures:
   - "the device's energy against exact, Hartree-Fock and the noise band"
 
 chapter_notes: >
-  The device run is runs/0017-ibm-vqe: two tallies at theta -0.2235, 10,000 shots each,
+  The device run is runs/chapter10/0017-vqe-h2-10000-ibm: two tallies at theta -0.2235, 10,000 shots each,
   depth 9. The coefficients are Qollab's table, which reproduces the PySCF and
   qiskit-nature rows; the exact energies were re-derived from them in this chapter's code.

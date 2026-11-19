@@ -120,10 +120,10 @@ figures:
   - "the syndrome's error rate against the data's"
 
 runs:
-  - "runs/0031-ibm-fez-dynamic/result.json (8 circuits, memory)"
-  - "runs/0032-ibm-fez-inject/result.json (6 circuits, injection)"
-  - "runs/0033-ibm-fez-latency/result.json (3 circuits, latency probe)"
-  - "runs/0034-ibm-fez-syndrome/result.json (2 circuits, both registers)"
+  - "runs/chapter17/0031-dynamic-correction-4096-ibm/result.json (8 circuits, memory)"
+  - "runs/chapter17/0032-inject-one-flip-4096-ibm/result.json (6 circuits, injection)"
+  - "runs/chapter17/0033-latency-conditional-4096-ibm/result.json (3 circuits, latency probe)"
+  - "runs/chapter17/0034-syndrome-two-registers-8192-ibm/result.json (2 circuits, both registers)"
 
 chapter_notes: >
   Four device runs, all on ibm_kingston or ibm_marrakesh. The injection test proves the

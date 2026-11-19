@@ -125,7 +125,7 @@ figures:
   - "the simulated and measured surfaces, and the point they share"
 
 runs:
-  - "runs/0022-ibm-fez-qaoa/result.json (36 circuits, one job, 12 seconds of runtime)"
+  - "runs/chapter13/0022-qaoa-maxcut4-36x1024-ibm/result.json (36 circuits, one job, 12 seconds of runtime)"
 
 chapter_notes: >
   The hardware experiment is one job of 36 circuits on ibm_marrakesh at 1,024 shots,

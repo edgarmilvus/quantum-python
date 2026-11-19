@@ -120,8 +120,8 @@ figures:
   - "the measured rows and the binomial prediction beside them"
 
 runs:
-  - "runs/0028-ibm-fez-repetition/result.json (12 circuits, ibm_kingston)"
-  - "runs/0029-ibm-fez-idle/result.json (12 circuits, ibm_marrakesh)"
+  - "runs/chapter16/0028-repetition-d3-d5-4096-ibm/result.json (12 circuits, ibm_kingston)"
+  - "runs/chapter16/0029-idle-0-20-60us-4096-ibm/result.json (12 circuits, ibm_marrakesh)"
 
 chapter_notes: >
   Two device runs, both 12 circuits at 4,096 shots. The idle experiment is the chapter's

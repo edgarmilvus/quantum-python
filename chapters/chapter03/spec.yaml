@@ -125,6 +125,6 @@ figures:
   - "the file graph"
 
 chapter_notes: >
-  The device numbers come from runs/0001-ibm-fez-bell/result.json, recorded in chapter
+  The device numbers come from runs/chapter18/0001-bell-1024-ibm/result.json, recorded in chapter
   1 and reused rather than re-run. The profile is captured once and committed. The
   chapter does not route, and says so.

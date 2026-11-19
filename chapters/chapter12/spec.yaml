@@ -130,7 +130,7 @@ figures:
   - "the mitigation pipeline and what each stage closes"
 
 runs:
-  - "runs/0020-ibm-fez-calibration/circuit.json (exported by tools/export_calibration.py)"
+  - "runs/chapter12/0020-calibration-snapshot/circuit.json (exported by tools/export_calibration.py)"
   - "runs/0021-chapter12-local/{gate.txt,output.txt}"
 
 chapter_notes: >
