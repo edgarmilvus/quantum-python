@@ -11,7 +11,7 @@ import pathlib
 
 from dotenv import load_dotenv
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
+ROOT = pathlib.Path(__file__).resolve().parents[2]
 load_dotenv(ROOT / ".env")
 
 from qiskit import QuantumCircuit
