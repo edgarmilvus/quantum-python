@@ -95,70 +95,71 @@ cd chapters/chapter20/files
 python3 05_report.py
 ```
 
-## Live run
+## Running every live experiment
 
-Chapters 11 to 20 were recorded against real providers, and the records live under
-`runs/chapterNN/<id>-<name>/`. Two different things can spend a job, and they are guarded
-differently:
-
-- **the chapter 11 interface** — `providers/registry.py` refuses to submit unless
-  `QUANTUM_LIVE=1`, and its budget guard enforces `QUANTUM_MAX_SPEND_USD` (five dollars by
-  default). The chapter's demos go through it.
-- **the submit scripts under `live_scripts/`** — `submit_bv.py`, `submit_teleport.py` and
-  the rest submit as soon as they are invoked. They read the keys from `.env` and do not
-  check `QUANTUM_LIVE`; run them one at a time, on purpose.
-
-Copy the environment file and fill in the keys you have:
+To run every live experiment you need to set these seven environment variables:
 
 ```bash
-cp .env.example .env
+export QISKIT_IBM_TOKEN="..."           # secret
+export QISKIT_IBM_INSTANCE="crn:v1:bluemix:public:quantum-computing:..."
+export QISKIT_IBM_CHANNEL="ibm_quantum_platform"
+export QBRAID_API_KEY="..."             # secret
+export IONQ_API_KEY="..."               # secret
+export QUANTUM_LIVE=1
+export QUANTUM_MAX_SPEND_USD=5
 ```
 
-| variable | provider | what it enables |
-| --- | --- | --- |
-| `QISKIT_IBM_TOKEN`, `QISKIT_IBM_INSTANCE` | IBM Quantum | the device runs in chapters 4, 7, 13, 15, 16, 17, 18, 19, 20 |
-| `QBRAID_API_KEY` | qBraid | the gateway to IonQ in chapters 11 and 18 |
-| `IONQ_API_KEY` | IonQ | the simulator and device calls in chapter 11 |
-| `QUANTUM_LIVE` | chapter 11 | `1` allows a submission through the interface; `0` replays |
-| `QUANTUM_MAX_SPEND_USD` | chapter 11 | the interface's ceiling, five dollars by default |
+You can put them in the repository's `.env` — every script reads that file — or in your
+`~/.env`, loaded with `set -a; source ~/.env; set +a`. `.env` is git-ignored.
 
-The submit scripts, with the job each one sends and what it costs in QPU time (one second
-of runtime is roughly 3,000 shots):
+| variable | where it comes from |
+| --- | --- |
+| `QISKIT_IBM_TOKEN` | <https://cloud.ibm.com/iam/apikeys> → Create → copy the key |
+| `QISKIT_IBM_INSTANCE` | <https://quantum.cloud.ibm.com/instances> → open the Open Plan instance → copy its CRN |
+| `QBRAID_API_KEY` | <https://account.qbraid.com/> → Profile → API keys → Create |
+| `IONQ_API_KEY` | <https://cloud.ionq.com/settings/keys> → Create API key |
+| Quantum Inspire | no key: sign up at <https://compute.quantum-inspire.com/> and run `qi login` once |
+| `QUANTUM_LIVE`, `QUANTUM_MAX_SPEND_USD` | set them yourself; they are not secrets |
 
-| script | re-records | job | QPU |
-| --- | --- | --- | --- |
-| `live_scripts/hello_ibm.py` | a smoke test | 1 × 1,024 | < 1 s |
-| `live_scripts/hello_ionq.py` | a smoke test | 1 × 1,024 | free |
-| `live_scripts/hello_qi.py` | a smoke test | 1 × 1,024 | free |
-| `live_scripts/chapter04/submit_chsh.py` | chapter 4 | 4 × 1,024 | ~1.5 s |
-| `live_scripts/chapter06/submit_bv.py` | chapter 6 | 1 × 1,024 | < 1 s |
-| `live_scripts/chapter07/submit_grover.py` | chapter 7 | 1 × 1,024 | < 1 s |
-| `live_scripts/chapter10/submit_vqe.py` | chapter 10 | 2 × 10,000 | ~7 s |
-| `live_scripts/chapter12/submit_readout.py` | chapter 12 | 4 × 4,096 | ~5 s |
-| `live_scripts/chapter13/submit_qaoa.py` | chapter 13 | 36 × 1,024 | ~12 s |
-| `live_scripts/chapter15/submit_kernel.py` | chapter 15 | 57 × 1,024 | ~19 s |
-| `live_scripts/chapter16/submit_repetition.py` | chapter 16 | 12 × 4,096 | ~16 s |
-| `live_scripts/chapter16/submit_idle.py` | chapter 16 | 12 × 4,096 | ~16 s |
-| `live_scripts/chapter17/submit_dynamic.py` | chapter 17 | 8 × 4,096 | ~11 s |
-| `live_scripts/chapter17/submit_inject.py` | chapter 17 | 6 × 4,096 | ~8 s |
-| `live_scripts/chapter17/submit_latency.py` | chapter 17 | 3 × 4,096 | ~4 s |
-| `live_scripts/chapter17/submit_syndrome.py` | chapter 17 | 2 × 8,192 | ~5 s |
-| `live_scripts/chapter18/submit_ghz.py` | chapter 18 | 2 × 4,096, plus qBraid | ~3 s |
-| `live_scripts/chapter19/submit_bv_pipeline.py` | chapter 19 | 6 × 2,048 | ~4 s |
-| `live_scripts/chapter20/submit_teleport.py` | chapter 20 | 13 × 2,048 | ~9 s |
+Then run these, in this order. Each one submits a job and writes its record under
+`runs/chapterNN/`.
 
-A full pass is about two minutes of QPU and thirty to sixty minutes of wall clock, almost
-all of it in the queue. Each script **overwrites** its record under `runs/chapterNN/`; the
-harnesses assert the recorded numbers, so after an experiment either restore the tree with
-`git checkout -- runs/` or work in a second clone.
+```bash
+python3 live_scripts/check_providers.py        # who answers; submits nothing
 
-The book spent **0.00 USD**: every provider it used was a free tier. The IBM open plan
-gives ten minutes of QPU time per 28 days, which is the real budget; qBraid and IonQ's
-simulator were free. D-Wave had no trial token in 2026, so chapter 14 runs on local
-simulators and says so rather than borrowing a number. A paid job is a choice the estimate
-in chapter 19 prices before it is submitted, and it refused the one quote in the book:
-984.84 USD for six circuits at 2,048 shots.
+python3 live_scripts/hello_ibm.py              # IBM smoke test, 1 x 1,024
+python3 live_scripts/hello_ionq.py             # IonQ simulator, free
+python3 live_scripts/hello_qi.py               # Quantum Inspire, after `qi login`
 
+python3 live_scripts/chapter04/submit_chsh.py          # chapter 4,  4 x 1,024
+python3 live_scripts/chapter06/submit_bv.py            # chapter 6,  1 x 1,024
+python3 live_scripts/chapter07/submit_grover.py        # chapter 7,  1 x 1,024
+python3 live_scripts/chapter10/submit_vqe.py           # chapter 10, 2 x 10,000
+python3 live_scripts/chapter12/submit_readout.py       # chapter 12, 4 x 4,096
+python3 live_scripts/chapter13/submit_qaoa.py          # chapter 13, 36 x 1,024
+python3 live_scripts/chapter15/submit_kernel.py        # chapter 15, 57 x 1,024
+python3 live_scripts/chapter16/submit_repetition.py    # chapter 16, 12 x 4,096
+python3 live_scripts/chapter16/submit_idle.py          # chapter 16, 12 x 4,096
+python3 live_scripts/chapter17/submit_dynamic.py       # chapter 17, 8 x 4,096
+python3 live_scripts/chapter17/submit_inject.py        # chapter 17, 6 x 4,096
+python3 live_scripts/chapter17/submit_latency.py       # chapter 17, 3 x 4,096
+python3 live_scripts/chapter17/submit_syndrome.py      # chapter 17, 2 x 8,192
+python3 live_scripts/chapter18/submit_ghz.py           # chapter 18, IBM + qBraid
+python3 live_scripts/chapter19/submit_bv_pipeline.py   # chapter 19, 6 x 2,048
+python3 live_scripts/chapter20/submit_teleport.py      # chapter 20, 13 x 2,048
+
+python3 chapters/chapter11/files/02_live_or_replay.py  # chapter 11, honours QUANTUM_LIVE
+```
+
+A full pass is about **two minutes of QPU** and **thirty to sixty minutes of wall clock**,
+almost all of it in the queue. The IBM open plan gives ten minutes of QPU per 28 days,
+which is the real budget; qBraid and IonQ's simulator are free.
+
+Two things to know before you start. The submit scripts send as soon as they are invoked
+and do not read `QUANTUM_LIVE`; that variable, and the five-dollar ceiling, guard chapter
+11's provider interface instead. And each script **overwrites** its record under
+`runs/chapterNN/`, while the harnesses assert the recorded numbers: run the experiments in
+a second clone, or restore the tree with `git checkout -- runs/` afterwards.
 ## Windows
 
 Native Windows works; there is no WSL step.
