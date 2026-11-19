@@ -41,9 +41,8 @@ runs offline in about fifty seconds.
 | 19 | [The Pipeline](chapters/chapter19/) | 113 | 19 |
 | 20 | [The Last Experiment](chapters/chapter20/) | 126 | 20 |
 
-Each chapter folder holds `spec.yaml` (the contract: floor, gate counts and files),
-`words.txt` (the chapter's length, recorded when the book was built), and `files/` with the
-code the chapter publishes. The prose itself is the book; this repository is what it runs. Every `**How to run it.**`
+Each chapter folder holds `spec.yaml` (the contract: floor, gate counts and files) and
+`files/` with the code the chapter publishes. The prose itself is the book; this repository is what it runs. Every `**How to run it.**`
 block in the prose names the file it belongs to, and the listing in the book is the file
 byte for byte.
 
