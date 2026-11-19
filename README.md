@@ -181,11 +181,23 @@ A full pass is about **two minutes of QPU** and **thirty to sixty minutes of wal
 almost all of it in the queue. The IBM open plan gives ten minutes of QPU per 28 days,
 which is the real budget; qBraid and IonQ's simulator are free.
 
-Two things to know before you start. The submit scripts send as soon as they are invoked
+One thing to know before you start: the submit scripts send as soon as they are invoked
 and do not read `QUANTUM_LIVE`; that variable, and the five-dollar ceiling, guard chapter
-11's provider interface instead. And each script **overwrites** its record under
-`runs/chapterNN/`, while the harnesses assert the recorded numbers: run the experiments in
-a second clone, or restore the tree with `git checkout -- runs/` afterwards.
+11's provider interface instead.
+
+### After the live runs
+
+The scripts have overwritten the records under `runs/chapterNN/` with your own counts, and
+the harnesses assert the numbers the book prints. Put the book's records back with:
+
+```bash
+git checkout -- runs/
+```
+
+A folder the scripts created that the repository does not track stays after that; remove it
+with `git clean -fd runs/`. If you want to keep your results, run the experiments in a
+second clone.
+
 ## Windows
 
 Native Windows works.
