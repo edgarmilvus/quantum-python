@@ -98,9 +98,17 @@ python3 05_report.py
 
 ## Live run
 
-Chapters 11 to 19 were recorded against real providers, and their records live under
-`runs/`. To submit a job yourself, copy the environment file and fill in the keys you
-have:
+Chapters 11 to 20 were recorded against real providers, and the records live under
+`runs/`. Two different things can spend a job, and they are guarded differently:
+
+- **the chapter 11 interface** — `providers/registry.py` refuses to submit unless
+  `QUANTUM_LIVE=1`, and its budget guard enforces `QUANTUM_MAX_SPEND_USD` (five dollars by
+  default). The chapter's demos go through it.
+- **the recorders in `tools/`** — `run_pipeline.py`, `run_teleport.py`, `run_qaoa.py` and
+  the rest submit as soon as they are invoked. They read the keys from `.env` and do not
+  check `QUANTUM_LIVE`; run them one at a time, on purpose.
+
+Copy the environment file and fill in the keys you have:
 
 ```bash
 cp .env.example .env
@@ -108,20 +116,38 @@ cp .env.example .env
 
 | variable | provider | what it enables |
 | --- | --- | --- |
-| `QISKIT_IBM_TOKEN` | IBM Quantum | the device runs in chapters 4, 7, 13, 15, 16, 17, 18, 19 |
+| `QISKIT_IBM_TOKEN`, `QISKIT_IBM_INSTANCE` | IBM Quantum | the device runs in chapters 4, 7, 13, 15, 16, 17, 18, 19, 20 |
 | `QBRAID_API_KEY` | qBraid | the gateway to IonQ in chapters 11 and 18 |
 | `IONQ_API_KEY` | IonQ | the simulator and device calls in chapter 11 |
-| `QUANTUM_LIVE` | all | `1` allows a submission; `0` replays the record |
-| `QUANTUM_MAX_SPEND_USD` | all | the guard's ceiling, five dollars by default |
+| `QUANTUM_LIVE` | chapter 11 | `1` allows a submission through the interface; `0` replays |
+| `QUANTUM_MAX_SPEND_USD` | chapter 11 | the interface's ceiling, five dollars by default |
 
-With `QUANTUM_LIVE=0`, every script reads the recorded run and prints the same answer
-without a network. With `QUANTUM_LIVE=1` and a key, the scripts that say so submit:
+The recorders, with the job each one submits and what it costs in QPU time (one second of
+runtime is roughly 3,000 shots):
 
-```bash
-python3 tools/run_pipeline.py      # chapter 19: six circuits, about four seconds of IBM runtime
-python3 tools/run_benchmark.py     # chapter 18: GHZ on IBM and through qBraid
-python3 tools/hello_ibm.py         # the smallest possible job
-```
+| recorder | re-records | job | QPU |
+| --- | --- | --- | --- |
+| `hello_ibm.py` | a smoke test | 1 × 1,024 | < 1 s |
+| `run_bv.py` | chapter 6 | 1 × 1,024 | < 1 s |
+| `run_chsh.py` | chapter 4 | 4 × 1,024 | ~1.5 s |
+| `run_grover.py` | chapter 7 | 1 × 1,024 | < 1 s |
+| `run_vqe.py` | chapter 10 | 2 × 10,000 | ~7 s |
+| `run_qaoa.py` | chapter 13 | 36 × 1,024 | ~12 s |
+| `run_kernel.py` | chapter 15 | 57 × 1,024 | ~19 s |
+| `run_repetition.py` | chapter 16 | 12 × 4,096 | ~16 s |
+| `run_idle.py` | chapter 16 | 12 × 4,096 | ~16 s |
+| `run_dynamic.py` | chapter 17 | 8 × 4,096 | ~11 s |
+| `run_inject.py` | chapter 17 | 6 × 4,096 | ~8 s |
+| `run_latency.py` | chapter 17 | 3 × 4,096 | ~4 s |
+| `run_syn.py` | chapter 17 | 2 × 8,192 | ~5 s |
+| `run_benchmark.py` | chapter 18 | 2 × 4,096, plus qBraid | ~3 s |
+| `run_pipeline.py` | chapter 19 | 6 × 2,048 | ~4 s |
+| `run_teleport.py` | chapter 20 | 13 × 2,048 | ~9 s |
+
+A full pass is about two minutes of QPU and half an hour to an hour of wall clock, almost
+all of it in the queue. Each recorder **overwrites** `runs/<case>/result.json`; the
+harnesses assert the recorded numbers, so after an experiment either restore the tree with
+`git checkout -- runs/` or work in a second clone.
 
 The book spent **0.00 USD**: every provider it used was a free tier. The IBM open plan
 gives ten minutes of QPU time per 28 days, which is the real budget; qBraid and IonQ's
