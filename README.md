@@ -172,8 +172,49 @@ python -m venv .venv
 .venv\Scripts\python run_offline.py chapter20
 ```
 
+The live experiments run from the same shell. Put the seven variables in the repository's
+`.env` — the scripts read it, so no `$env:` line is needed — or set them for the session:
+
+```powershell
+$env:QISKIT_IBM_TOKEN = "..."
+$env:QISKIT_IBM_INSTANCE = "crn:v1:bluemix:public:quantum-computing:..."
+$env:QISKIT_IBM_CHANNEL = "ibm_quantum_platform"
+$env:QBRAID_API_KEY = "..."
+$env:IONQ_API_KEY = "..."
+$env:QUANTUM_LIVE = "1"
+$env:QUANTUM_MAX_SPEND_USD = "5"
+```
+
+Then the live runs, in the same order as the section above:
+
+```powershell
+.venv\Scripts\python live_scripts\check_providers.py
+.venv\Scripts\python live_scripts\hello_ibm.py
+.venv\Scripts\python live_scripts\hello_ionq.py
+.venv\Scripts\python live_scripts\hello_qi.py
+
+.venv\Scripts\python live_scripts\chapter04\submit_chsh.py
+.venv\Scripts\python live_scripts\chapter06\submit_bv.py
+.venv\Scripts\python live_scripts\chapter07\submit_grover.py
+.venv\Scripts\python live_scripts\chapter10\submit_vqe.py
+.venv\Scripts\python live_scripts\chapter12\submit_readout.py
+.venv\Scripts\python live_scripts\chapter13\submit_qaoa.py
+.venv\Scripts\python live_scripts\chapter15\submit_kernel.py
+.venv\Scripts\python live_scripts\chapter16\submit_repetition.py
+.venv\Scripts\python live_scripts\chapter16\submit_idle.py
+.venv\Scripts\python live_scripts\chapter17\submit_dynamic.py
+.venv\Scripts\python live_scripts\chapter17\submit_inject.py
+.venv\Scripts\python live_scripts\chapter17\submit_latency.py
+.venv\Scripts\python live_scripts\chapter17\submit_syndrome.py
+.venv\Scripts\python live_scripts\chapter18\submit_ghz.py
+.venv\Scripts\python live_scripts\chapter19\submit_bv_pipeline.py
+.venv\Scripts\python live_scripts\chapter20\submit_teleport.py
+
+.venv\Scripts\python chapters\chapter11\files\02_live_or_replay.py
+```
+
 `run_offline.sh` is a bash script; `run_offline.py` is its twin and takes the same
-argument. The individual programs are plain Python and run the same way:
+argument. A single chapter's program runs the same way:
 
 ```powershell
 cd chapters\chapter20\files
