@@ -61,9 +61,9 @@ artifacts:
 
 gates:
   harness: "python3 chapters/chapter02/files/run_ex2.py"
-  harness_expected: "NN/NN checks passed"
+  harness_expected: "80/80 checks passed"
   exercises: "python3 chapters/chapter02/files/exercises/run_exercises.py"
-  exercises_expected: "NN/NN exercise checks passed"
+  exercises_expected: "55/55 exercise checks passed"
 
 words: { target: 17000, floor: 14000 }
 
