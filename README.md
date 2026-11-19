@@ -162,7 +162,7 @@ and do not read `QUANTUM_LIVE`; that variable, and the five-dollar ceiling, guar
 a second clone, or restore the tree with `git checkout -- runs/` afterwards.
 ## Windows
 
-Native Windows works; there is no WSL step.
+Native Windows works.
 
 ```powershell
 python -m venv .venv
