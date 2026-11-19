@@ -1,6 +1,6 @@
 # Quantum Python — pinned stack for the offline suite.
 #
-# Every chapter runs with these six packages. The live hardware runs in chapters
+# Every chapter runs with these eight packages. The live hardware runs in chapters
 # 11-19 use the provider keys described in .env.example and add nothing else.
 #
 # Python 3.11 or 3.12. Graphviz and pandoc are system tools, not pip packages:
@@ -12,3 +12,5 @@ qiskit-ibm-runtime==0.52.1
 qiskit-quantuminspire==0.18.6
 python-dotenv==1.2.4
 requests==2.34.2
+pennylane==0.45.1
+cirq-core==1.7.0
