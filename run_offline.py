@@ -44,17 +44,17 @@ def chapter_gate(chapter_id: str) -> int:
 
 
 def main() -> int:
-    specs = sorted(CHAPTERS.glob("chapter*/spec.yaml"))
-    if not specs:
-        raise SystemExit(f"no chapter contracts under {CHAPTERS}")
+    found = sorted(path.parent.name for path in CHAPTERS.glob("chapter*/files"))
+    if not found:
+        raise SystemExit(f"no chapter folders under {CHAPTERS}")
 
     chosen = sys.argv[1:]
-    chapters = chosen or [spec.parent.name for spec in specs]
+    chapters = chosen or found
 
     failures = 0
     for chapter_id in chapters:
-        if not (CHAPTERS / chapter_id / "spec.yaml").exists():
-            raise SystemExit(f"no spec for {chapter_id}")
+        if not (CHAPTERS / chapter_id / "files").exists():
+            raise SystemExit(f"no files folder for {chapter_id}")
         failures += chapter_gate(chapter_id)
 
     if failures:

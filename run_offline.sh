@@ -21,8 +21,8 @@ run_chapter() {
 }
 
 if [ "$CHAPTER" = "all" ]; then
-  for spec in chapters/chapter*/spec.yaml; do
-    run_chapter "$(basename "$(dirname "$spec")")"
+  for files in chapters/chapter*/files; do
+    run_chapter "$(basename "$(dirname "$files")")"
   done
 else
   run_chapter "$CHAPTER"

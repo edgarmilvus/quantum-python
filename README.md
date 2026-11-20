@@ -51,8 +51,7 @@ code, a recorded run and five exercises.
 | 19 | [The Pipeline](chapters/chapter19/) | 113 | 19 |
 | 20 | [The Last Experiment](chapters/chapter20/) | 126 | 20 |
 
-Each chapter folder holds `spec.yaml` (the contract: floor, gate counts and files) and
-`files/` with the code the chapter publishes. The prose itself is the book; this repository is what it runs. Every `**How to run it.**`
+Each chapter folder holds `files/` with the code the chapter publishes. The prose itself is the book; this repository is what it runs. Every `**How to run it.**`
 block in the prose names the file it belongs to, and the listing in the book is the file
 byte for byte.
 
@@ -276,7 +275,6 @@ book shows `chapters/chapter20/...`; that is the only difference.
 
 ```
 chapters/chapterNN/
-  spec.yaml                 the contract: floor, gate counts, artifacts, exercises
   files/                    the listings, the demos, the harness
   files/exercises/          the five exercises, their checks and the runner
 runs/chapterNN/<id>-<name>/  one recorded experiment: result.json or gate/output
@@ -304,7 +302,6 @@ redistributing the book is not. `LICENSE-BOOK.md` has the exact terms.
 | message | what it means |
 | --- | --- |
 | `ModuleNotFoundError: No module named 'qiskit'` | the virtual environment is not active, or `pip install -r requirements.txt` was never run in it |
-| `no spec: chapters/chapter20/spec.yaml` | run the commands from the repository root, where the chapter globs resolve |
 | `refused: 984.84 USD is over the 5.00 budget` | the pipeline working as designed: the estimate prices a job before it is submitted |
 | `no key` in a live script | `.env` is missing or empty: copy `.env.example` and set the key for that provider |
 
