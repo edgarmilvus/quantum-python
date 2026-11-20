@@ -4,8 +4,8 @@ The repository for *Quantum Python* by Edgar Milvus: twenty chapters that take a
 software engineer from a complex amplitude to a priced, corrected, replayable pipeline,
 with no physics assumed.
 
-It holds one contract per chapter, the code each chapter publishes, the recorded runs the
-prose quotes, and the scripts that rerun them. One command takes a fresh clone to a green
+It holds the code each chapter publishes, the recorded runs the prose quotes, and the
+scripts that rerun them. One command takes a fresh clone to a green
 suite:
 
 ```bash
