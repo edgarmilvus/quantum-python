@@ -16,6 +16,16 @@ Every chapter ships a harness that asserts on real numbers and five exercises wi
 own checks. Across the twenty chapters that is **2,629 assertions**, and the whole suite
 runs offline in about fifty seconds.
 
+## The Book
+
+<img src="cover.jpg" alt="Quantum Python cover" width="320">
+
+*Quantum Python* takes a senior software engineer from a complex amplitude to a
+teleportation experiment on a real device, with twenty chapters that each end in runnable
+code, a recorded run and five exercises.
+
+[for additional information](https://tiny.cc/QuantumPython)
+
 ## The chapters
 
 | # | chapter | assertions | files |
