@@ -21,7 +21,7 @@ RUNS = {
     "chapter18/0001-bell-1024-ibm": (1, 1024, "ibm open plan"),
     "chapter04/0007-chsh-1024-ibm": (4, 1024, "ibm open plan"),
     "chapter12/0009-readout-4circuits-4096-ibm": (4, 4096, "ibm open plan"),
-    "chapter06/0011-bv-1011-1024-ibm": (1, 1024, "ibm open plan"),
+    "chapter06/0011-bv-101-1024-ibm": (1, 1024, "ibm open plan"),
     "chapter07/0013-grover-3qubits-1024-ibm": (1, 1024, "ibm open plan"),
     "chapter10/0017-vqe-h2-10000-ibm": (2, 10_000, "ibm open plan"),
 }

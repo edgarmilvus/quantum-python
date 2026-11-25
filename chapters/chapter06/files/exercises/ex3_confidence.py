@@ -42,7 +42,7 @@ ROOT = _pathlib.Path(__file__).resolve().parents[4]
 
 
 def load() -> dict:
-    return json.loads((ROOT / "runs/chapter06/0011-bv-1011-1024-ibm/result.json").read_text())
+    return json.loads((ROOT / "runs/chapter06/0011-bv-101-1024-ibm/result.json").read_text())
 
 
 def answer_quality(counts: Dict[str, int], secret: str) -> Dict[str, float]:

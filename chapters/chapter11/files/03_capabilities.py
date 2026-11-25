@@ -10,7 +10,7 @@ import providers as p
 
 CASES = {
     "ibm_fez (recorded)": "chapter18/0001-bell-1024-ibm",
-    "ibm_marrakesh (recorded)": "chapter06/0011-bv-1011-1024-ibm",
+    "ibm_marrakesh (recorded)": "chapter06/0011-bv-101-1024-ibm",
     "IonQ simulator (recorded)": "chapter18/0003-bell-1024-ionq",
     "Quantum Inspire emulator (recorded)": "chapter18/0002-bell-1024-qi",
 }

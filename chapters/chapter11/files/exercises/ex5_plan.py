@@ -17,7 +17,7 @@ import providers as p
 from plan_core import summarise
 from plan_render import render
 
-CASES = ("chapter18/0001-bell-1024-ibm", "chapter06/0011-bv-1011-1024-ibm", "chapter07/0013-grover-3qubits-1024-ibm")
+CASES = ("chapter18/0001-bell-1024-ibm", "chapter06/0011-bv-101-1024-ibm", "chapter07/0013-grover-3qubits-1024-ibm")
 
 
 def report(case: str, circuit: p.Circuit, expected: str) -> str:
